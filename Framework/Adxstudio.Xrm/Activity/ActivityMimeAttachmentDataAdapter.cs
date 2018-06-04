@@ -96,7 +96,7 @@ namespace Adxstudio.Xrm.Activity
 				AttachmentContentType = activityMimeAttachment.GetAttributeValue<string>("mimetype"),
 				AttachmentFileName = activityMimeAttachment.GetAttributeValue<string>("filename"),
 				AttachmentIsImage =
-					(new List<string> {"image/jpeg", "image/gif", "image/png"}).Contains(
+					(new List<string> { "image/jpeg", "image/gif", "image/png" }).Contains(
 						activityMimeAttachment.GetAttributeValue<string>("mimetype")),
 				AttachmentSize = attachmentSize,
 				AttachmentSizeDisplay = attachmentSize.ToString(),
@@ -174,8 +174,8 @@ namespace Adxstudio.Xrm.Activity
 				}
 			}
 
-			if (String.Equals(response.ContentType, "text/html", StringComparison.OrdinalIgnoreCase) ||
-				String.Equals(response.ContentType, "application/octet-stream", StringComparison.OrdinalIgnoreCase))
+			if (string.Equals(response.ContentType, "text/html", StringComparison.OrdinalIgnoreCase) ||
+				string.Equals(response.ContentType, "application/octet-stream", StringComparison.OrdinalIgnoreCase))
 			{
 				contentDispositionText = "attachment";
 			}

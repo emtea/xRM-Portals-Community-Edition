@@ -13,9 +13,9 @@ namespace Adxstudio.Xrm.Blogs
 {
 	public class BlogFeedHandler : BlogDataAdapterFeedHandler
 	{
-		public BlogFeedHandler() : this(null, null) {}
+		public BlogFeedHandler() : this(null, null) { }
 
-		public BlogFeedHandler(string portalName, Guid? id) : base(portalName, typeof (BlogFeedRouteHandler).FullName)
+		public BlogFeedHandler(string portalName, Guid? id) : base(portalName, typeof(BlogFeedRouteHandler).FullName)
 		{
 			Id = id;
 		}

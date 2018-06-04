@@ -421,7 +421,7 @@ namespace Adxstudio.Xrm.EntityList
 				return PackageType.Solution;
 			}
 
-			if (type.Value == (int) PackageType.Data)
+			if (type.Value == (int)PackageType.Data)
 			{
 				return PackageType.Data;
 			}
@@ -458,7 +458,7 @@ namespace Adxstudio.Xrm.EntityList
 					try
 					{
 						configuration = JsonConvert.DeserializeObject<PackageConfiguration>(configurationJson,
-							new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects, Binder = new PackageConfigurationSerializationBinder()});
+							new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects, Binder = new PackageConfigurationSerializationBinder() });
 					}
 					catch (Exception e)
 					{
@@ -525,7 +525,7 @@ namespace Adxstudio.Xrm.EntityList
 				FromAttribute = "adx_packageid",
 				ToAttribute = "adx_packageid",
 				Type = JoinOperator.LeftOuter,
-				Attributes = new []
+				Attributes = new[]
 				{
 					new FetchAttribute("adx_packagecomponentid"),
 					new FetchAttribute("adx_name"),
@@ -544,18 +544,18 @@ namespace Adxstudio.Xrm.EntityList
 						FromAttribute = "adx_packageid",
 						ToAttribute = "adx_componentpackageid",
 						Type = JoinOperator.LeftOuter,
-						Attributes = new []
+						Attributes = new[]
 						{
 							new FetchAttribute("adx_packageid"),
 							new FetchAttribute("adx_name"),
 							new FetchAttribute("adx_uniquename"),
 							new FetchAttribute("adx_packagerepositoryid")
 						},
-						Filters = new []
+						Filters = new[]
 						{
 							new Filter
 							{
-								Conditions = new []
+								Conditions = new[]
 								{
 									new Condition("statecode", ConditionOperator.Equal, 0)
 								}
@@ -563,11 +563,11 @@ namespace Adxstudio.Xrm.EntityList
 						}
 					}
 				},
-				Filters = new []
+				Filters = new[]
 				{
 					new Filter
 					{
-						Conditions = new []
+						Conditions = new[]
 						{
 							new Condition("statecode", ConditionOperator.Equal, 0)
 						}
@@ -585,7 +585,7 @@ namespace Adxstudio.Xrm.EntityList
 				FromAttribute = "adx_packageid",
 				ToAttribute = "adx_packageid",
 				Type = JoinOperator.LeftOuter,
-				Attributes = new []
+				Attributes = new[]
 				{
 					new FetchAttribute("adx_packagedependencyid"),
 					new FetchAttribute("adx_name"),
@@ -605,18 +605,18 @@ namespace Adxstudio.Xrm.EntityList
 						FromAttribute = "adx_packageid",
 						ToAttribute = "adx_dependencypackageid",
 						Type = JoinOperator.LeftOuter,
-						Attributes = new []
+						Attributes = new[]
 						{
 							new FetchAttribute("adx_packageid"),
 							new FetchAttribute("adx_name"),
 							new FetchAttribute("adx_uniquename"),
 							new FetchAttribute("adx_packagerepositoryid")
 						},
-						Filters = new []
+						Filters = new[]
 						{
 							new Filter
 							{
-								Conditions = new []
+								Conditions = new[]
 								{
 									new Condition("statecode", ConditionOperator.Equal, 0)
 								}
@@ -624,11 +624,11 @@ namespace Adxstudio.Xrm.EntityList
 						}
 					}
 				},
-				Filters = new []
+				Filters = new[]
 				{
 					new Filter
 					{
-						Conditions = new []
+						Conditions = new[]
 						{
 							new Condition("statecode", ConditionOperator.Equal, 0)
 						}
@@ -646,17 +646,17 @@ namespace Adxstudio.Xrm.EntityList
 				FromAttribute = "adx_packageid",
 				ToAttribute = "adx_packageid",
 				Type = JoinOperator.LeftOuter,
-				Attributes = new []
+				Attributes = new[]
 				{
 					new FetchAttribute("adx_packageimageid"),
 					new FetchAttribute("adx_name"),
 					new FetchAttribute("adx_description"),
 				},
-				Filters = new []
+				Filters = new[]
 				{
 					new Filter
 					{
-						Conditions = new []
+						Conditions = new[]
 						{
 							new Condition("statecode", ConditionOperator.Equal, 0)
 						}
@@ -674,7 +674,7 @@ namespace Adxstudio.Xrm.EntityList
 				FromAttribute = "adx_packagepublisherid",
 				ToAttribute = "adx_publisherid",
 				Type = JoinOperator.LeftOuter,
-				Attributes = new []
+				Attributes = new[]
 				{
 					new FetchAttribute("adx_name"),
 					new FetchAttribute("adx_uniquename"),
@@ -691,7 +691,7 @@ namespace Adxstudio.Xrm.EntityList
 				FromAttribute = "adx_packageid",
 				ToAttribute = "adx_packageid",
 				Type = JoinOperator.LeftOuter,
-				Attributes = new []
+				Attributes = new[]
 				{
 					new FetchAttribute("adx_packageversionid"),
 					new FetchAttribute("adx_description"),
@@ -702,11 +702,11 @@ namespace Adxstudio.Xrm.EntityList
 					new FetchAttribute("adx_version"),
 					new FetchAttribute("adx_configuration")
 				},
-				Filters = new []
+				Filters = new[]
 				{
 					new Filter
 					{
-						Conditions = new []
+						Conditions = new[]
 						{
 							new Condition("statecode", ConditionOperator.Equal, 0)
 						}
@@ -736,12 +736,12 @@ namespace Adxstudio.Xrm.EntityList
 						FromAttribute = "adx_packagecategoryid",
 						ToAttribute = "adx_packagecategoryid",
 						Type = JoinOperator.Inner,
-						Filters = new []
+						Filters = new[]
 						{
 							new Filter
 							{
 								Type = LogicalOperator.And,
-								Conditions = new []
+								Conditions = new[]
 								{
 									new Condition("adx_name", ConditionOperator.Equal, category),
 									new Condition("statecode", ConditionOperator.Equal, 0)
@@ -1050,7 +1050,7 @@ namespace Adxstudio.Xrm.EntityList
 			{
 				if (_knownTypes == null)
 				{
-					return new List<Type>
+					_knownTypes = new List<Type>
 					{
 						typeof(PackageConfiguration)
 					};

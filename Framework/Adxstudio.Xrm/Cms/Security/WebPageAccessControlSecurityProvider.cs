@@ -129,7 +129,7 @@ namespace Adxstudio.Xrm.Cms.Security
 
 			// when we use rule scope we're checking permissions for parent page of web file
 			//	and we need to check permissions only for one level
-			var useInheritance = !useScope;
+			var useInheritance = !useScope || right == CrmEntityRight.Change;
 
 			// Get all rules applicable to the page and its parent path, grouping equivalent rules. (Rules that
 			// target the same web page and confer the same right are equivalent.)
@@ -169,7 +169,7 @@ namespace Adxstudio.Xrm.Cms.Security
 				// is read...
 				else if (ruleGrouping.Key.Right == RightOption.RestrictRead && right == CrmEntityRight.Read)
 				{
-					if (useScope && ruleGrouping.Any(rule => rule.Scope.HasValue && (ScopeOption) rule.Scope.Value == ScopeOption.ExcludeDirectChildWebFiles))
+					if (useScope && ruleGrouping.Any(rule => rule.Scope.HasValue && (ScopeOption)rule.Scope.Value == ScopeOption.ExcludeDirectChildWebFiles))
 					{
 						// Ignore read restriction for web files where scope is ExcludeDirectChildWebFiles
 						ADXTrace.Instance.TraceInfo(TraceCategory.Application, string.Format("Ignoring web page ({0}) read restriction due to ExcludeDirectChildWebFiles", ruleGrouping.Key.WebPageId));

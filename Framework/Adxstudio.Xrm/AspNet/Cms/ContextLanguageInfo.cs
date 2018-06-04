@@ -657,7 +657,7 @@ namespace Adxstudio.Xrm.AspNet.Cms
 					if (contentMapHasPortalLanguages)
 					{
 						// Portal corrupted: if there exists PortalLanguages entity, but no WebsiteLanguages, then user must have deleted their WebsiteLanguages, thus corrupting the Portal.
-						ADXTrace.Instance.TraceWarning(TraceCategory.Application, string.Format("[{0}]. No WebsiteLanguage records exist. Org solutions support Multilanguage, but the portal [{1}] does not have the data provided from upgrade.", website.Id, website.Name ));
+						ADXTrace.Instance.TraceWarning(TraceCategory.Application, string.Format("[{0}]. No WebsiteLanguage records exist. Org solutions support Multilanguage, but the portal [{1}] does not have the data provided from upgrade.", website.Id, website.Name));
 					}
 					else
 					{
@@ -1061,7 +1061,6 @@ namespace Adxstudio.Xrm.AspNet.Cms
 		public static ApplicationPath FormatUrl(string languageCode, Uri uri, bool displayCodeInUrl, bool excludeLeadingSlash = false)
 		{
 			string absolutePathWithoutLanguageCode;
-			string query;
 			IEnumerable<IWebsiteLanguage> languages = GetActiveWebsiteLanguages();
 
 			// Extract the absolute path without language code from the given Uri.

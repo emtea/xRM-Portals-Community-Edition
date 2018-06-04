@@ -51,8 +51,8 @@ namespace Adxstudio.Xrm.Products
 					return null;
 				}
 				var type =  option.Value;
-				return Enum.IsDefined(typeof (SalesLiteratureTypeCode), type)
-					       ? (SalesLiteratureTypeCode?) ((SalesLiteratureTypeCode) type)
+				return Enum.IsDefined(typeof(SalesLiteratureTypeCode), type)
+					       ? (SalesLiteratureTypeCode?)((SalesLiteratureTypeCode)type)
 					       : null;
 			}
 		}

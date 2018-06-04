@@ -141,8 +141,8 @@ namespace Adxstudio.Xrm.Web.Providers
 			{
 				{
 					"adx_communityforumthread",
-					new Tuple<string[], Relationship, string, string, bool> (
-						new [] {"adx_communityforumthreadid"},
+					new Tuple<string[], Relationship, string, string, bool>(
+						new[] { "adx_communityforumthreadid" },
 						"adx_communityforum_communityforumthread".ToRelationship(),
 						"adx_communityforum",
 						null,
@@ -150,8 +150,8 @@ namespace Adxstudio.Xrm.Web.Providers
 				},
 				{
 					"adx_communityforum",
-					new Tuple<string[], Relationship, string, string, bool> (
-						new [] {"adx_partialurl"},
+					new Tuple<string[], Relationship, string, string, bool>(
+						new[] { "adx_partialurl" },
 						"adx_webpage_communityforum".ToRelationship(),
 						"adx_webpage",
 						"Forums",
@@ -159,8 +159,8 @@ namespace Adxstudio.Xrm.Web.Providers
 				},
 				{
 					"adx_event",
-					new Tuple<string[], Relationship, string, string, bool> (
-						new [] {"adx_partialurl"},
+					new Tuple<string[], Relationship, string, string, bool>(
+						new[] { "adx_partialurl" },
 						"adx_webpage_event".ToRelationship(),
 						"adx_webpage",
 						"Events",
@@ -168,8 +168,8 @@ namespace Adxstudio.Xrm.Web.Providers
 				},
 				{
 					"adx_survey",
-					new Tuple<string[], Relationship, string, string, bool> (
-						new [] {"adx_partialurl"},
+					new Tuple<string[], Relationship, string, string, bool>(
+						new[] { "adx_partialurl" },
 						"adx_webpage_survey".ToRelationship(),
 						"adx_webpage",
 						"Surveys",
@@ -177,8 +177,8 @@ namespace Adxstudio.Xrm.Web.Providers
 				},
 				{
 					"adx_blog",
-					new Tuple<string[], Relationship, string, string, bool> (
-						new [] {"adx_partialurl"},
+					new Tuple<string[], Relationship, string, string, bool>(
+						new[] { "adx_partialurl" },
 						"adx_webpage_blog".ToRelationship(),
 						"adx_webpage",
 						null,
@@ -186,8 +186,8 @@ namespace Adxstudio.Xrm.Web.Providers
 				},
 				{
 					"adx_blogpost",
-					new Tuple<string[], Relationship, string, string, bool> (
-						new [] {"adx_partialurl", "adx_blogpostid"},
+					new Tuple<string[], Relationship, string, string, bool>(
+						new[] { "adx_partialurl", "adx_blogpostid" },
 						"adx_blog_blogpost".ToRelationship(),
 						"adx_blog",
 						null,
@@ -593,7 +593,7 @@ namespace Adxstudio.Xrm.Web.Providers
 			}
 			else
 			{
-				url = urlHelper.Action("Article", "Article", new {number = number, lang = languageLocaleCode, area = "KnowledgeManagement"});
+				url = urlHelper.Action("Article", "Article", new { number = number, lang = languageLocaleCode, area = "KnowledgeManagement" });
 			}
 
 			return url == null ? null : ApplicationPath.FromAbsolutePath(url);

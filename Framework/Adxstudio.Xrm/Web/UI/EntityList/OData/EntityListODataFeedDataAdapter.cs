@@ -29,7 +29,7 @@ namespace Adxstudio.Xrm.Web.UI.EntityList.OData
 	/// <summary>
 	/// Data adapter regarding OData feeds enabled for Entity List.
 	/// </summary>
-	public class EntityListODataFeedDataAdapter: IEntityListODataFeedDataAdapter
+	public class EntityListODataFeedDataAdapter : IEntityListODataFeedDataAdapter
 	{
 		private enum StateCode
 		{
@@ -217,7 +217,7 @@ namespace Adxstudio.Xrm.Web.UI.EntityList.OData
 			model.AddElement(entityReferenceType);
 			model.AddElement(picklistType);
 
-			var entitySetNames = new List<String>();
+			var entitySetNames = new List<string>();
 
 			foreach (var entitylist in entitylists)
 			{
@@ -413,7 +413,7 @@ namespace Adxstudio.Xrm.Web.UI.EntityList.OData
 			fetch.Entity.Orders.Clear();
 			fetch.Entity.Filters.Clear();
 
-			var filter = new Filter {Type = LogicalOperator.And};
+			var filter = new Filter { Type = LogicalOperator.And };
 			var conditions = new List<Condition>();
 			var condition = new Condition
 								{

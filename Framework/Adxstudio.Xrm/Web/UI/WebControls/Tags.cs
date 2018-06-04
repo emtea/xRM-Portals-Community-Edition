@@ -31,7 +31,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 		private string newTagTitle = ResourceManager.GetString("New_Tag_Title_Text");
 		private string newTagButtonName = ResourceManager.GetString("Create_Text");
 		private string newTagButtonCssClass = "create-tag";
-		private string readOnlyMessage = "";
+		private string readOnlyMessage = string.Empty;
 		private int autocompleteMaxItemsToShow = 10;
 		#endregion
 
@@ -91,7 +91,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 			set { autocompleteMaxItemsToShow = value; }
 		}
 		
-		public string Title { get; set;}
+		public string Title { get; set; }
 	
 		public bool IsReadOnly { get; set; }
 
@@ -112,7 +112,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 			}
 		}
 		
-		public string AutoCompleteServiceUrl { get; set;}
+		public string AutoCompleteServiceUrl { get; set; }
 
 		public string NavigateUrl { get; set; }
 
@@ -150,7 +150,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 
 		public string DefaultItemTemplateUrl { get; private set; }
 
-		public string CssClass{ get; set;}
+		public string CssClass { get; set; }
 
 		public string PortalName { get; set; }
 		
@@ -174,7 +174,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 			{
 				return;
 			}
-			if (HeaderTemplate== null)
+			if (HeaderTemplate == null)
 			{
 				HeaderTemplate = new CompiledTemplateBuilder(BuildTemplate);
 			}
@@ -248,7 +248,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 			var ulOpen = new Literal();
 			ulOpen.DataBinding += (sender, args) =>
 			{
-				ulOpen.Text = "<ul class='" + CssClass + "' id ='"+ID +"'>";
+				ulOpen.Text = "<ul class='" + CssClass + "' id ='" + ID + "'>";
 			};
 			(container as Control).Controls.Add(ulOpen);
 		}
@@ -259,8 +259,8 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 		/// <param name="container">The container.</param>
 		protected virtual void BuildFooterTemplate(IDataItemContainer container)
 		{
-			var ulClose= new Literal();
-			ulClose.DataBinding += (sender, args) =>ulClose.Text = "</ul>";
+			var ulClose = new Literal();
+			ulClose.DataBinding += (sender, args) => ulClose.Text = "</ul>";
 
 			(container as Control).Controls.Add(ulClose);
 			if (!IsReadOnly)
@@ -288,7 +288,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 					createButton.ID += createButton;
 					createButton.Text = NewTagButtonName;
 					createButton.CssClass = NewTagButtonCssClass;
-					createButton.Click +=CreateNewTag;
+					createButton.Click += CreateNewTag;
 				};
 				(container as Control).Controls.Add(createButton);
 			}
@@ -300,7 +300,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 					div.DataBinding += (sender, args) => 
 					{
 						div.InnerText = ReadOnlyMessage;
-						div.Attributes.Add("class","read-only-message");
+						div.Attributes.Add("class", "read-only-message");
 					};
 					(container as Control).Controls.Add(div);
 				}
@@ -312,7 +312,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 		/// </summary>
 		/// <param name="container">The container.</param>
 		protected virtual void BuildPagerTemplate(IDataItemContainer container)
-		{}
+		{ }
 
 		/// <summary>
 		/// Builds the alternating item template.
@@ -357,7 +357,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 		public Tags()
 		{
 			Init += TagRepeater_Init;
-			PreRender+= TagRepeater_PreRender;
+			PreRender += TagRepeater_PreRender;
 		}
 
 		/// <summary>
@@ -403,7 +403,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 		/// <param name="container">The container.</param>
 		protected void BuildItemTemplate(IDataItemContainer container)
 		{
-			string liClass = "";
+			string liClass = string.Empty;
 			if (container.DataItemIndex == 0)
 			{
 				liClass = "first";
@@ -418,7 +418,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 			{
 				if (!string.IsNullOrEmpty(liClass))
 				{
-					liOpen.Text = "<li class='" + liClass.Trim()+ "'>";
+					liOpen.Text = "<li class='" + liClass.Trim() + "'>";
 				}
 				else
 				{
@@ -453,7 +453,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 			}
 			
 			var liClose = new Literal();
-			liClose.DataBinding += (sender, args) =>liClose.Text = "</li>";
+			liClose.DataBinding += (sender, args) => liClose.Text = "</li>";
 			(container as Control).Controls.Add(liClose);
 		}
 
@@ -464,12 +464,12 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 		/// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
 		protected void CreateNewTag(object sender, EventArgs e)
 		{
-			if (newTagTextBox.Text != "")
+			if (newTagTextBox.Text != string.Empty)
 			{
 				string[] tags = newTagTextBox.Text.Split(',');
 				foreach (string s in tags)
 				{
-					if (s != "")
+					if (s != string.Empty)
 					{
 						TaggableItem.AddTag(s.Trim());
 					}

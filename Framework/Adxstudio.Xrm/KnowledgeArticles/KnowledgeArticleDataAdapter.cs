@@ -147,7 +147,7 @@ namespace Adxstudio.Xrm.KnowledgeArticles
 				articles = serviceContext.RetrieveMultiple(fetchRelatedArticles, RequestFlag.AllowStaleData);
 			}
 
-			return new List<EntityCollection> {products, articles}.AsEnumerable();
+			return new List<EntityCollection> { products, articles }.AsEnumerable();
 		}
 
 		private IEnumerable<IRelatedProduct> ToRelatedProducts(EntityCollection relatedProductsCollection)
@@ -204,7 +204,7 @@ namespace Adxstudio.Xrm.KnowledgeArticles
 			var annotationDataAdapter = new AnnotationDataAdapter(this.Dependencies);
 			var webPrefix = GetNotesFilterPrefix;
 
-			var relatedNotes = annotationDataAdapter.GetDocuments(article.EntityReference,webPrefix: webPrefix);
+			var relatedNotes = annotationDataAdapter.GetDocuments(article.EntityReference, webPrefix: webPrefix);
 			return relatedNotes.Select(a => new RelatedNote(a.NoteText == null ? string.Empty : a.NoteText.ToString().Substring(webPrefix.Length), a.FileAttachment.FileName, a.FileAttachment.Url));
 		}
 
@@ -479,13 +479,13 @@ namespace Adxstudio.Xrm.KnowledgeArticles
 
 			var attributes = new Dictionary<string, object>
 			{
-				{"regardingobjectid", KnowledgeArticle},
-				{"createdon", postedOn},
-				{"title", StringHelper.GetCommentTitleFromContent(content)},
-				{"adx_createdbycontact", authorName},
-				{"adx_contactemail", authorEmail},
-				{"adx_approved", article.CommentPolicy == CommentPolicy.Open || article.CommentPolicy == CommentPolicy.OpenToAuthenticatedUsers},
-				{ "comments", content},
+				{ "regardingobjectid", KnowledgeArticle },
+				{ "createdon", postedOn },
+				{ "title", StringHelper.GetCommentTitleFromContent(content) },
+				{ "adx_createdbycontact", authorName },
+				{ "adx_contactemail", authorEmail },
+				{ "adx_approved", article.CommentPolicy == CommentPolicy.Open || article.CommentPolicy == CommentPolicy.OpenToAuthenticatedUsers },
+				{ "comments", content },
 			};
 
 			var portalUser = Dependencies.GetPortalUser();

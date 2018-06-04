@@ -23,7 +23,7 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace Adxstudio.Xrm.Cms
 {
-	public class WebPageDataAdapter: RatingDataAdapter, ICommentDataAdapter
+	public class WebPageDataAdapter : RatingDataAdapter, ICommentDataAdapter
 	{
 		private bool? _hasCommentModerationPermission;
 
@@ -48,9 +48,9 @@ namespace Adxstudio.Xrm.Cms
 
 		}
 
-		public WebPageDataAdapter(Entity page, IDataAdapterDependencies dependencies) : this(page.ToEntityReference(), dependencies) {}
+		public WebPageDataAdapter(Entity page, IDataAdapterDependencies dependencies) : this(page.ToEntityReference(), dependencies) { }
 
-		public WebPageDataAdapter(EntityReference pageReference, string portalName = null) : this(pageReference, new PortalConfigurationDataAdapterDependencies(portalName)) {}
+		public WebPageDataAdapter(EntityReference pageReference, string portalName = null) : this(pageReference, new PortalConfigurationDataAdapterDependencies(portalName)) { }
 
 		public WebPageDataAdapter(Entity page, string portalName = null) : this(page.ToEntityReference(), new PortalConfigurationDataAdapterDependencies(portalName)) { }
 
@@ -79,14 +79,14 @@ namespace Adxstudio.Xrm.Cms
 
 			attributes = new Dictionary<string, object>
 			{
-				{"regardingobjectid", page.ToEntityReference()},
-				{"createdon", postedOn},
-				{"title", StringHelper.GetCommentTitleFromContent(content)},
-				{"adx_approved",     (policyReader.IsCommentPolicyOpen || policyReader.IsCommentPolicyOpenToAuthenticatedUsers)},
-				{"adx_createdbycontact", authorName},
-				{"adx_contactemail", authorEmail},
-				{"comments", content},
-				{"source", new OptionSetValue((int) FeedbackSource.Portal)}
+				{ "regardingobjectid", page.ToEntityReference() },
+				{ "createdon", postedOn },
+				{ "title", StringHelper.GetCommentTitleFromContent(content) },
+				{ "adx_approved",     (policyReader.IsCommentPolicyOpen || policyReader.IsCommentPolicyOpenToAuthenticatedUsers) },
+				{ "adx_createdbycontact", authorName },
+				{ "adx_contactemail", authorEmail },
+				{ "comments", content },
+				{ "source", new OptionSetValue((int)FeedbackSource.Portal) }
 			};
 
 			var portalUser = Dependencies.GetPortalUser();
@@ -95,7 +95,7 @@ namespace Adxstudio.Xrm.Cms
 			{
 				attributes[FeedbackMetadataAttributes.UserIdAttributeName] = portalUser;
 			}
-			else if (context != null && context.Profile!=null)
+			else if (context != null && context.Profile != null)
 			{
 				attributes[FeedbackMetadataAttributes.VisitorAttributeName] = context.Profile.UserName;
 			}

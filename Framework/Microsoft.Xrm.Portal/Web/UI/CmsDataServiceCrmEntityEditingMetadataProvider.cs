@@ -25,7 +25,7 @@ namespace Microsoft.Xrm.Portal.Web.UI
 	{
 		private static readonly Dictionary<string, IEnumerable<Relationship>> _defaultChildAssociationsByEntityName = new Dictionary<string, IEnumerable<Relationship>>
 		{
-			{ "adx_webpage", new [] { "adx_webpage_webfile".ToRelationship(), "adx_webpage_webpage".ToRelationship(EntityRole.Referenced) } },
+			{ "adx_webpage", new[] { "adx_webpage_webfile".ToRelationship(), "adx_webpage_webpage".ToRelationship(EntityRole.Referenced) } },
 		};
 
 		private static readonly List<string> _defaultDeletableEntityNames = new List<string>
@@ -64,7 +64,7 @@ namespace Microsoft.Xrm.Portal.Web.UI
 				_defaultUrlEntityNames,
 				_defaultChildAssociationsByEntityName,
 				_defaultFileAttachmentEntityNames)
-		{}
+		{ }
 
 		public CmsDataServiceCrmEntityEditingMetadataProvider(
 			IEnumerable<string> dependencyEntityNames,
@@ -238,14 +238,14 @@ namespace Microsoft.Xrm.Portal.Web.UI
 
 				if (dependencyProvider == null)
 				{
-					throw new InvalidOperationException("Unable to create {0} for current portal configuration.".FormatWith(typeof (IDependencyProvider).FullName));
+					throw new InvalidOperationException("Unable to create {0} for current portal configuration.".FormatWith(typeof(IDependencyProvider).FullName));
 				}
 
 				var urlProvider = dependencyProvider.GetDependency<IEntityUrlProvider>();
 
 				if (urlProvider == null)
 				{
-					throw new InvalidOperationException("Unable to create {0} for current portal configuration.".FormatWith(typeof (IEntityUrlProvider).FullName));
+					throw new InvalidOperationException("Unable to create {0} for current portal configuration.".FormatWith(typeof(IEntityUrlProvider).FullName));
 				}
 
 				var parentPath = urlProvider.GetApplicationPath(context, parent ?? entity);

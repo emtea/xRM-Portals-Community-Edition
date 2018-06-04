@@ -42,7 +42,7 @@ namespace Adxstudio.Xrm.Web
 			context.Items["AsyncTrackingEnabled"] = new object();
 		}
 
-		public static IAsyncResult BeginRequestAsync(Object source, EventArgs e, AsyncCallback cb, Object state)
+		public static IAsyncResult BeginRequestAsync(object source, EventArgs e, AsyncCallback cb, object state)
 		{
 			if (!IsTrackable)
 			{
@@ -60,11 +60,11 @@ namespace Adxstudio.Xrm.Web
 
 			try
 			{
-				ipAddress = ((HttpApplication)source).Context.Request.UserHostAddress ?? "";
+				ipAddress = ((HttpApplication)source).Context.Request.UserHostAddress ?? string.Empty;
 			}
 			catch
 			{
-				ipAddress = "";
+				ipAddress = string.Empty;
 			}
 			
 			// Create a delegate instance of the LogRequest method 

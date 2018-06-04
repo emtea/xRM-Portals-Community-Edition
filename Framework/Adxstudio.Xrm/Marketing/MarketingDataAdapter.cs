@@ -151,7 +151,7 @@ namespace Adxstudio.Xrm.Marketing
 			Validate(encodedEmail, encodedList, signature);
 			var emailAddress = Decode(encodedEmail);
 			var listId = Decode(encodedList);
-			return Unsubscribe(emailAddress, new[] {listId});
+			return Unsubscribe(emailAddress, new[] { listId });
 		}
 
 		public IEnumerable<IMarketingList> Unsubscribe(string encodedEmail, IEnumerable<string> listIds, string signature)
@@ -205,7 +205,7 @@ namespace Adxstudio.Xrm.Marketing
 		private void Validate(string encodedEmail, string encodedList, string signature)
 		{
 			var confirmation = ConstructSignature(encodedEmail, encodedList);
-			if(signature != confirmation)
+			if (signature != confirmation)
 			{
 				throw new InvalidSignatureException();
 			}
@@ -223,7 +223,7 @@ namespace Adxstudio.Xrm.Marketing
 
 		public static string Decode(string str)
 		{
-			while (str.Length%4 != 0)
+			while (str.Length % 4 != 0)
 			{
 				str += '=';
 			}

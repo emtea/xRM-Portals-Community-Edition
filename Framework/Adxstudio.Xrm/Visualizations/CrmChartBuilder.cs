@@ -478,8 +478,7 @@ namespace Adxstudio.Xrm.Visualizations
 					groupbyAttribute = record.Attributes.FirstOrDefault(a =>
 						a.Key != dategroupAttribute.Key
 						&&
-						a.Key.StartsWith(dategroupAttribute.Key.Substring(0, dategroupAttribute.Key.IndexOf("_dategroup_value", StringComparison.InvariantCulture)))
-					);
+						a.Key.StartsWith(dategroupAttribute.Key.Substring(0, dategroupAttribute.Key.IndexOf("_dategroup_value", StringComparison.InvariantCulture))));
 				}
 
 				foreach (var attribute in record.Attributes)
@@ -536,14 +535,14 @@ namespace Adxstudio.Xrm.Visualizations
 								}
 								if (value is DateTime)
 								{
-									formattedValue = ((DateTime) value).ToString(this.culture.DateTimeFormat.ShortDatePattern);
+									formattedValue = ((DateTime)value).ToString(this.culture.DateTimeFormat.ShortDatePattern);
 								}
 								break;
 							case AttributeTypeCode.BigInt:
 							case AttributeTypeCode.Integer:
 								if (value is int)
 								{
-									formattedValue = ((int) value).ToString("N", this.culture);
+									formattedValue = ((int)value).ToString("N", this.culture);
 								}
 								break;
 							case AttributeTypeCode.Decimal:
@@ -551,7 +550,7 @@ namespace Adxstudio.Xrm.Visualizations
 								if (decimalAttributeMetadata != null && value is decimal)
 								{
 									formattedValue =
-										((decimal) value).ToString(string.Format("N{0}", decimalAttributeMetadata.Precision.GetValueOrDefault(2)),
+										((decimal)value).ToString(string.Format("N{0}", decimalAttributeMetadata.Precision.GetValueOrDefault(2)),
 											this.culture);
 								}
 								break;
@@ -560,7 +559,7 @@ namespace Adxstudio.Xrm.Visualizations
 								if (doubleAttributeMetadata != null && value is double)
 								{
 									formattedValue =
-										((double) value).ToString(string.Format("N{0}", doubleAttributeMetadata.Precision.GetValueOrDefault(2)),
+										((double)value).ToString(string.Format("N{0}", doubleAttributeMetadata.Precision.GetValueOrDefault(2)),
 											this.culture);
 								}
 								break;

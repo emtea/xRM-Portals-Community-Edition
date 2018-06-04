@@ -260,7 +260,7 @@ namespace Site.Areas.Commerce.Controls
 
 		protected void Page_PreRender(object sender, EventArgs e)
 		{
-			if (Purchasable == null )
+			if (Purchasable == null)
 			{
 				WebForm.EnableDisableNextButton(false);
 			}
@@ -526,12 +526,12 @@ namespace Site.Areas.Commerce.Controls
 
 			var args = new Dictionary<string, string>
 			{
-				{"cmd", "_cart"},
-				{"upload", "1"},
-				{"business", accountEmail},
-				{"no_note", "1"},
-				{"invoice", Purchasable.Quote.Id.ToString()},
-				{"email", accountEmail}
+				{ "cmd", "_cart" },
+				{ "upload", "1" },
+				{ "business", accountEmail },
+				{ "no_note", "1" },
+				{ "invoice", Purchasable.Quote.Id.ToString() },
+				{ "email", accountEmail }
 			};
 
 			if (addressOverride)

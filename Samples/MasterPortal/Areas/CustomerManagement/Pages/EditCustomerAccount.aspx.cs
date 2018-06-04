@@ -140,7 +140,7 @@ namespace Site.Areas.CustomerManagement.Pages
 				{
 					contactid = c.GetAttributeValue<Guid>("contactid"),
 					ID = c.GetAttributeValue<string>("fullname"),
-					CompanyName = c.GetRelatedEntity(ServiceContext, new Relationship("contact_customer_accounts")) == null ? String.Empty : c.GetRelatedEntity(ServiceContext, new Relationship("contact_customer_accounts")).GetAttributeValue<string>("name"),
+					CompanyName = c.GetRelatedEntity(ServiceContext, new Relationship("contact_customer_accounts")) == null ? string.Empty : c.GetRelatedEntity(ServiceContext, new Relationship("contact_customer_accounts")).GetAttributeValue<string>("name"),
 					City = c.GetAttributeValue<string>("address1_city"),
 					State = c.GetAttributeValue<string>("address1_stateorprovince"),
 					Phone = c.GetAttributeValue<string>("address1_telephone1"),
@@ -310,7 +310,7 @@ namespace Site.Areas.CustomerManagement.Pages
 		{
 			var id = AccountToEdit.GetAttributeValue<Guid>("accountid");
 
-			var queryStringCollection = new QueryStringCollection("");
+			var queryStringCollection = new QueryStringCollection(string.Empty);
 
 			queryStringCollection.Set("AccountID", id.ToString());
 

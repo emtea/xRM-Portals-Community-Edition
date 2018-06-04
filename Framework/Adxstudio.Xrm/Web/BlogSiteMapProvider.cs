@@ -803,7 +803,7 @@ namespace Adxstudio.Xrm.Web
 							Conditions = new[]
 							{
 								new Condition("adx_blogid", ConditionOperator.NotNull),
-								new Condition("adx_partialurl", ConditionOperator.Equal,pathMatch.Groups["right"].Value)
+								new Condition("adx_partialurl", ConditionOperator.Equal, pathMatch.Groups["right"].Value)
 							}
 						}
 					},
@@ -1122,8 +1122,8 @@ namespace Adxstudio.Xrm.Web
 			{
 				Entity = new FetchEntity("contact")
 				{
-					Attributes = new List<FetchAttribute> {new FetchAttribute("fullname")},
-					Filters = new List<Filter> {new Filter {Conditions = new[] {new Condition("contactid", ConditionOperator.Equal, authorId)}}}
+					Attributes = new List<FetchAttribute> { new FetchAttribute("fullname") },
+					Filters = new List<Filter> { new Filter { Conditions = new[] { new Condition("contactid", ConditionOperator.Equal, authorId) } } }
 				}
 			};
 
@@ -1145,14 +1145,14 @@ namespace Adxstudio.Xrm.Web
 
 		public static bool TryGetAuthorArchiveNodeAttribute(SiteMapNode node, out Guid authorId)
 		{
-			authorId = default (Guid);
+			authorId = default(Guid);
 
 			return node != null && Guid.TryParse(node[AuthorArchiveNodeAttributeKey], out authorId);
 		}
 
 		public static bool TryGetMonthArchiveNodeAttribute(SiteMapNode node, out DateTime month)
 		{
-			month = default (DateTime);
+			month = default(DateTime);
 
 			return node != null && DateTime.TryParseExact(node[MonthArchiveNodeAttributeKey], "o", CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out month);
 		}
@@ -1202,7 +1202,7 @@ namespace Adxstudio.Xrm.Web
 			var type = pageTemplate.GetAttributeValue<OptionSetValue>("adx_type");
 			var webTemplate = pageTemplate.GetAttributeValue<EntityReference>("adx_webtemplateid");
 
-			if (type == null || type.Value != (int) PageTemplateNode.TemplateType.WebTemplate || webTemplate == null)
+			if (type == null || type.Value != (int)PageTemplateNode.TemplateType.WebTemplate || webTemplate == null)
 			{
 				return false;
 			}

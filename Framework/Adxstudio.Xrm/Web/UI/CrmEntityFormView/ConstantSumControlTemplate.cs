@@ -87,7 +87,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityFormView
 			}
 			else
 			{
-				hiddenField = (HiddenField) hiddenFieldControl;
+				hiddenField = (HiddenField)hiddenFieldControl;
 				int.TryParse(hiddenField.Value, out index);
 			}
 			index++;
@@ -106,7 +106,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityFormView
 					ID = string.Format("ConstantSumTotalValidator{0}", Metadata.GroupName),
 					ControlToValidate = string.Format("ConstantSumTotalValue{0}", Metadata.GroupName),
 					ValidationGroup = ValidationGroup,
-					ErrorMessage = ValidationSummaryMarkup((String.IsNullOrWhiteSpace(Metadata.ConstantSumValidationErrorMessage) ? ResourceManager.GetString("Constant_Sum_Validation_Error_Message") : Metadata.ConstantSumValidationErrorMessage)),
+					ErrorMessage = ValidationSummaryMarkup((string.IsNullOrWhiteSpace(Metadata.ConstantSumValidationErrorMessage) ? ResourceManager.GetString("Constant_Sum_Validation_Error_Message") : Metadata.ConstantSumValidationErrorMessage)),
 					Text = "*",
 					CssClass = "validator-text"
 				};
@@ -117,7 +117,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityFormView
 			}
 		}
 
-		private static ServerValidateEventHandler GetConstantSumValidationHandler(Control container, string groupname,int min, int max)
+		private static ServerValidateEventHandler GetConstantSumValidationHandler(Control container, string groupname, int min, int max)
 		{
 			return (sender, args) =>
 			{
@@ -125,7 +125,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityFormView
 			};
 		}
 
-		protected static Boolean IsTotalValid(Control container, string groupname, int min, int max)
+		protected static bool IsTotalValid(Control container, string groupname, int min, int max)
 		{
 			var total = 0;
 

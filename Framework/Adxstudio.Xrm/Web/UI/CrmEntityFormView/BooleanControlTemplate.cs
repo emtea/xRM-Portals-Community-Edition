@@ -42,7 +42,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityFormView
 			{
 				if (Metadata != null)
 				{
-					if(Metadata.ClassID == DropDownClassID)
+					if (Metadata.ClassID == DropDownClassID)
 					{
 						return "boolean-dropdown";
 					} 
@@ -91,7 +91,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityFormView
 
 		private ValidatorDisplay ValidatorDisplay
 		{
-			get { return String.IsNullOrWhiteSpace(ValidationText) ? ValidatorDisplay.None : ValidatorDisplay.Dynamic; }
+			get { return string.IsNullOrWhiteSpace(ValidationText) ? ValidatorDisplay.None : ValidatorDisplay.Dynamic; }
 		}
 
 		protected override bool LabelIsAssociated
@@ -123,7 +123,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityFormView
 			}
 			else if (Metadata.ClassID == DropDownClassID)
 			{
-				listControl = new DropDownList {CssClass = string.Join(" ", "form-control", CssClass, Metadata.CssClass)};
+				listControl = new DropDownList { CssClass = string.Join(" ", "form-control", CssClass, Metadata.CssClass) };
 			}
 			else
 			{
@@ -159,7 +159,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityFormView
 					ControlToValidate = ControlID,
 					ValidationGroup = ValidationGroup,
 					Display = ValidatorDisplay,
-					ErrorMessage = ValidationSummaryMarkup((String.IsNullOrWhiteSpace(Metadata.RequiredFieldValidationErrorMessage) ? (Metadata.Messages == null || !Metadata.Messages.ContainsKey("boolean")) ? ResourceManager.GetString("Check_The_Box_Labeled").FormatWith(Metadata.Label) : Metadata.Messages["boolean"].FormatWith(Metadata.Label) : Metadata.RequiredFieldValidationErrorMessage)),
+					ErrorMessage = ValidationSummaryMarkup((string.IsNullOrWhiteSpace(Metadata.RequiredFieldValidationErrorMessage) ? (Metadata.Messages == null || !Metadata.Messages.ContainsKey("boolean")) ? ResourceManager.GetString("Check_The_Box_Labeled").FormatWith(Metadata.Label) : Metadata.Messages["boolean"].FormatWith(Metadata.Label) : Metadata.RequiredFieldValidationErrorMessage)),
 					Text = ValidationText,
 				});
 			}
@@ -171,7 +171,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityFormView
 					ControlToValidate = ControlID,
 					ValidationGroup = ValidationGroup,
 					Display = ValidatorDisplay,
-					ErrorMessage = ValidationSummaryMarkup((String.IsNullOrWhiteSpace(Metadata.RequiredFieldValidationErrorMessage) ? (Metadata.Messages == null || !Metadata.Messages.ContainsKey("required")) ? ResourceManager.GetString("Required_Field_Error").FormatWith(Metadata.Label) : Metadata.Messages["required"].FormatWith(Metadata.Label) : Metadata.RequiredFieldValidationErrorMessage)),
+					ErrorMessage = ValidationSummaryMarkup((string.IsNullOrWhiteSpace(Metadata.RequiredFieldValidationErrorMessage) ? (Metadata.Messages == null || !Metadata.Messages.ContainsKey("required")) ? ResourceManager.GetString("Required_Field_Error").FormatWith(Metadata.Label) : Metadata.Messages["required"].FormatWith(Metadata.Label) : Metadata.RequiredFieldValidationErrorMessage)),
 					Text = ValidationText,
 				});
 			}

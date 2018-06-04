@@ -166,8 +166,7 @@ namespace Adxstudio.Xrm.Web
 				forums = forumsInCurrentWebsite
 					.Where(e => e.GetAttributeValue<EntityReference>("adx_parentpageid") == rootPage
 					&& (e.GetAttributeValue<EntityReference>("adx_websitelanguageid") == null
-					|| e.GetAttributeValue<EntityReference>("adx_websitelanguageid") == languageInfo.ContextLanguage.EntityReference)
-					);
+					|| e.GetAttributeValue<EntityReference>("adx_websitelanguageid") == languageInfo.ContextLanguage.EntityReference));
 			}
 			else
 			{
@@ -274,7 +273,7 @@ namespace Adxstudio.Xrm.Web
 
 			var forumsInCurrentWebsite = context.RetrieveMultiple(
 				"adx_communityforum",
-				new string [] { },
+				new string[] { },
 				new[] { new Condition("adx_websiteid", ConditionOperator.Equal, website.Id) });
 
 			var webForum = forumsInCurrentWebsite.Entities
@@ -464,7 +463,7 @@ namespace Adxstudio.Xrm.Web
 			var type = pageTemplate.GetAttributeValue<OptionSetValue>("adx_type");
 			var webTemplate = pageTemplate.GetAttributeValue<EntityReference>("adx_webtemplateid");
 
-			if (type == null || type.Value != (int) PageTemplateNode.TemplateType.WebTemplate || webTemplate == null)
+			if (type == null || type.Value != (int)PageTemplateNode.TemplateType.WebTemplate || webTemplate == null)
 			{
 				return false;
 			}

@@ -41,29 +41,29 @@ namespace Adxstudio.Xrm.Web.Mvc.Controllers
 				.GetTemplateFiles()
 				.OrderBy(template => template.Name)
 				.Select(template => new JObject {
-					{"name", template.Name},
-					{"title", template.Title},
-					{"description", template.Description},
-					{"include", string.IsNullOrEmpty(template.DefaultArguments)
+					{ "name", template.Name },
+					{ "title", template.Title },
+					{ "description", template.Description },
+					{ "include", string.IsNullOrEmpty(template.DefaultArguments)
 						? "{{% include '{0}' %}}".FormatWith(template.Name)
 						: "{{% include '{0}' {1} %}}".FormatWith(template.Name, template.DefaultArguments)
 					},
-					{"url", Url.RouteUrl("CmsTemplate_Get", new
+					{ "url", Url.RouteUrl("CmsTemplate_Get", new
 					{
 						encodedName = EncodeTemplateName(template.Name),
 						context
-					})},
-					{"preview_url", Url.RouteUrl("CmsTemplate_GetPreview", new
+					}) },
+					{ "preview_url", Url.RouteUrl("CmsTemplate_GetPreview", new
 					{
 						encodedName = EncodeTemplateName(template.Name),
 						__currentSiteMapNodeUrl__ = currentSiteMapNodeUrl,
 						context
-					})},
-					{"live_preview_url", Url.RouteUrl("CmsTemplate_GetLivePreview", new
+					}) },
+					{ "live_preview_url", Url.RouteUrl("CmsTemplate_GetLivePreview", new
 					{
 						__currentSiteMapNodeUrl__ = currentSiteMapNodeUrl,
 						context
-					})}
+					}) }
 				});
 
 			return new JContainerResult(new JArray(templates));
@@ -131,7 +131,7 @@ namespace Adxstudio.Xrm.Web.Mvc.Controllers
 
 			using (var serviceContext = portalViewContext.CreateServiceContext())
 			{
-				var response = (RetrieveResponse) serviceContext.Execute(new RetrieveRequest
+				var response = (RetrieveResponse)serviceContext.Execute(new RetrieveRequest
 				{
 					ColumnSet = new ColumnSet(true),
 					Target = new EntityReference(entityLogicalName, id)

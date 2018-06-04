@@ -50,7 +50,7 @@ namespace Adxstudio.Xrm.Web.Mvc.Html
 
 				link.Attributes["role"] = "menuitem";
 				link.Attributes["tabindex"] = "-1";
-				link.Attributes["title"] = "";
+				link.Attributes["title"] = string.Empty;
 
 				if (!string.IsNullOrEmpty(viewActionLink.ButtonCssClass)) link.AddCssClass(viewActionLink.ButtonCssClass);
 			}
@@ -159,7 +159,7 @@ namespace Adxstudio.Xrm.Web.Mvc.Html
 
 			link.Attributes["href"] = viewActionLink.URL != null ? viewActionLink.URL.PathWithQueryString : null;
 
-			link.MergeAttribute("data-url", viewActionLink.URL != null? viewActionLink.URL.PathWithQueryString : null);
+			link.MergeAttribute("data-url", viewActionLink.URL != null ? viewActionLink.URL.PathWithQueryString : null);
 
 			return new HtmlString(link.ToString());
 		}

@@ -76,22 +76,22 @@ namespace Adxstudio.Xrm.Web.UI.JsonConfiguration
 			Modal.CloseButtonText = formMetadata.WorkflowDialog.CloseButtonText.GetLocalizedString(languageCode);
 			Modal.CssClass = formMetadata.WorkflowDialog.CssClass;
 			Modal.DismissButtonSrText = formMetadata.WorkflowDialog.DismissButtonSrText.GetLocalizedString(languageCode);
-			Modal.PrimaryButtonCssClass =formMetadata.WorkflowDialog.PrimaryButtonCssClass;
+			Modal.PrimaryButtonCssClass = formMetadata.WorkflowDialog.PrimaryButtonCssClass;
 			Modal.Size = formMetadata.WorkflowDialog.Size;
 			Modal.TitleCssClass = formMetadata.WorkflowDialog.TitleCssClass;
 
 			var customPrimaryButtonText = action.WorkflowDialogPrimaryButtonText.GetLocalizedString(languageCode);
-			Modal.PrimaryButtonText = !String.IsNullOrEmpty(customPrimaryButtonText)
+			Modal.PrimaryButtonText = !string.IsNullOrEmpty(customPrimaryButtonText)
 				? customPrimaryButtonText
 				: formMetadata.WorkflowDialog.PrimaryButtonText.GetLocalizedString(languageCode);
 
 			var customCloseButtonTest = action.WorkflowDialogCloseButtonText.GetLocalizedString(languageCode);
-			Modal.CloseButtonText = !String.IsNullOrEmpty(customCloseButtonTest)
+			Modal.CloseButtonText = !string.IsNullOrEmpty(customCloseButtonTest)
 				? customCloseButtonTest
 				: formMetadata.WorkflowDialog.CloseButtonText.GetLocalizedString(languageCode);
 
 			var customTitle = action.WorkflowDialogTitle.GetLocalizedString(languageCode);
-			Modal.Title = !String.IsNullOrEmpty(customTitle)
+			Modal.Title = !string.IsNullOrEmpty(customTitle)
 				? customTitle
 				: formMetadata.WorkflowDialog.Title.GetLocalizedString(languageCode);
 		}
@@ -110,18 +110,18 @@ namespace Adxstudio.Xrm.Web.UI.JsonConfiguration
 			Modal.Size = gridMetadata.WorkflowDialog.Size;
 			Modal.TitleCssClass = gridMetadata.WorkflowDialog.TitleCssClass;
 
-			var customPrimaryButtonText= action.WorkflowDialogPrimaryButtonText.GetLocalizedString(languageCode);
-			Modal.PrimaryButtonText = !String.IsNullOrEmpty(customPrimaryButtonText)
+			var customPrimaryButtonText = action.WorkflowDialogPrimaryButtonText.GetLocalizedString(languageCode);
+			Modal.PrimaryButtonText = !string.IsNullOrEmpty(customPrimaryButtonText)
 				? customPrimaryButtonText
 				: gridMetadata.WorkflowDialog.PrimaryButtonText.GetLocalizedString(languageCode);
 
 			var customCancelButtonText = action.WorkflowDialogCloseButtonText.GetLocalizedString(languageCode);
-			Modal.CloseButtonText = !String.IsNullOrEmpty(customCancelButtonText)
+			Modal.CloseButtonText = !string.IsNullOrEmpty(customCancelButtonText)
 				? customCancelButtonText
 				: gridMetadata.WorkflowDialog.CloseButtonText.GetLocalizedString(languageCode);
 
 			var customTitle = action.WorkflowDialogTitle.GetLocalizedString(languageCode);
-			Modal.Title = !String.IsNullOrEmpty(customTitle)
+			Modal.Title = !string.IsNullOrEmpty(customTitle)
 				? customTitle
 				: gridMetadata.WorkflowDialog.Title.GetLocalizedString(languageCode);
 
@@ -133,13 +133,13 @@ namespace Adxstudio.Xrm.Web.UI.JsonConfiguration
 		{
 			Modal = new ViewWorkflowModal();
 
-			CustomizeModal = action.WorkflowDialogTitle != null || action.WorkflowDialogPrimaryButtonText != null || action.WorkflowDialogCloseButtonText!=null;
+			CustomizeModal = action.WorkflowDialogTitle != null || action.WorkflowDialogPrimaryButtonText != null || action.WorkflowDialogCloseButtonText != null;
 
 			Workflow = workflow;
 
 			if (url == null)
 				URL = EntityListFunctions.BuildControllerActionUrl("ExecuteWorkflow", "EntityGrid",
-					new {area = "Portal", __portalScopeId__ = portalContext.Website.Id});
+					new { area = "Portal", __portalScopeId__ = portalContext.Website.Id });
 
 			var buttonLabel = action.ButtonLabel.GetLocalizedString(languageCode);
 			var buttonTooltip = action.ButtonTooltip.GetLocalizedString(languageCode);
@@ -154,7 +154,7 @@ namespace Adxstudio.Xrm.Web.UI.JsonConfiguration
 			if (string.IsNullOrWhiteSpace(buttonLabel)) Label = DefaultButtonLabel;
 			
 			// Try to extract the text only if the label has HTML
-			string nohtmlLabel = Regex.Replace(Label, @"<[^>]*>", "");
+			string nohtmlLabel = Regex.Replace(Label, @"<[^>]*>", string.Empty);
 			if (string.IsNullOrWhiteSpace(buttonTooltip)) Tooltip = nohtmlLabel;
 		}
 	}

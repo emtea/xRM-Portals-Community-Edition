@@ -10,7 +10,7 @@ using Microsoft.Xrm.Client.Runtime;
 namespace Microsoft.Xrm.Client
 {
 	/// <summary>
-	/// Helper methods on the <see cref="String"/> class.
+	/// Helper methods on the <see cref="string"/> class.
 	/// </summary>
 	public static class StringExtensions
 	{
@@ -41,7 +41,7 @@ namespace Microsoft.Xrm.Client
 		/// <returns></returns>
 		public static T ToEnum<T>(this string enumName)
 		{
-			return (T) Enum.Parse(typeof(T), enumName);
+			return (T)Enum.Parse(typeof(T), enumName);
 		}
 
 		/// <summary>

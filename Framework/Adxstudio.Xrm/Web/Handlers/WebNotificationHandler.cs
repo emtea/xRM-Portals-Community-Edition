@@ -31,7 +31,7 @@ namespace Adxstudio.Xrm.Web.Handlers
 	/// </summary>
 	public class WebNotificationHandler : IHttpHandler, IRouteHandler
 	{
-		private static readonly string [] SearchIndexApplicableMessages = new[] { "Build", "Publish", "PublishAll", "Delete", "Create", "Update", "Associate", "Disassociate" };
+		private static readonly string[] SearchIndexApplicableMessages = new[] { "Build", "Publish", "PublishAll", "Delete", "Create", "Update", "Associate", "Disassociate" };
 		private static readonly IEqualityComparer<string> MessageComparer = StringComparer.InvariantCultureIgnoreCase;
 
 		public void ProcessRequest(HttpContext context)
@@ -110,7 +110,7 @@ namespace Adxstudio.Xrm.Web.Handlers
 			if (!string.IsNullOrWhiteSpace(body))
 			{
 				var message =
-					body.DeserializeByJson(typeof (OrganizationServiceCachePluginMessage), null) as
+					body.DeserializeByJson(typeof(OrganizationServiceCachePluginMessage), null) as
 						OrganizationServiceCachePluginMessage;
 
 				if (message == null)

@@ -159,7 +159,7 @@ namespace Microsoft.Xrm.Portal.Web.UI.WebControls
 
 					if (_tracking)
 					{
-						((IStateManager) _queryByAttribute).TrackViewState();
+						((IStateManager)_queryByAttribute).TrackViewState();
 					}
 				}
 
@@ -178,7 +178,7 @@ namespace Microsoft.Xrm.Portal.Web.UI.WebControls
 
 					if (_tracking)
 					{
-						((IStateManager) _queryParameters).TrackViewState();
+						((IStateManager)_queryParameters).TrackViewState();
 					}
 				}
 
@@ -210,7 +210,7 @@ namespace Microsoft.Xrm.Portal.Web.UI.WebControls
 
 					if (_tracking)
 					{
-						((IStateManager) _selectParameters).TrackViewState();
+						((IStateManager)_selectParameters).TrackViewState();
 					}
 				}
 
@@ -1016,7 +1016,7 @@ namespace Microsoft.Xrm.Portal.Web.UI.WebControls
 					}
 					else
 					{
-						string[] parts = columnSet.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
+						string[] parts = columnSet.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
 						if (parts.Length > 0)
 						{
@@ -1121,7 +1121,7 @@ namespace Microsoft.Xrm.Portal.Web.UI.WebControls
 
 		private static void AppendSortExpressionToQuery(string sortExpression, Action<OrderExpression> action)
 		{
-			string[] parts = sortExpression.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
+			string[] parts = sortExpression.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
 			for (int i = 0; i < parts.Length; ++i)
 			{
@@ -1129,7 +1129,7 @@ namespace Microsoft.Xrm.Portal.Web.UI.WebControls
 
 				// attribute name and direction are separated by a space, direction is optional
 				// attribute1 ascending, attribute2 descending
-				string[] pairs = part.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+				string[] pairs = part.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 				OrderExpression order = new OrderExpression();
 				order.AttributeName = pairs[0];
 				if (pairs.Length > 1 && (pairs[1].StartsWith("desc", StringComparison.InvariantCultureIgnoreCase)))
@@ -1163,16 +1163,16 @@ namespace Microsoft.Xrm.Portal.Web.UI.WebControls
 		{
 			if (savedState != null)
 			{
-				Pair state = (Pair) savedState;
+				Pair state = (Pair)savedState;
 
 				if (state.First != null)
 				{
-					((IStateManager) SelectParameters).LoadViewState(state.First);
+					((IStateManager)SelectParameters).LoadViewState(state.First);
 				}
 
 				if (state.Second != null)
 				{
-					((IStateManager) QueryByAttribute).LoadViewState(state.Second);
+					((IStateManager)QueryByAttribute).LoadViewState(state.Second);
 				}
 			}
 		}
@@ -1180,8 +1180,8 @@ namespace Microsoft.Xrm.Portal.Web.UI.WebControls
 		protected virtual object SaveViewState()
 		{
 			Pair state = new Pair();
-			state.First = (SelectParameters != null) ? ((IStateManager) SelectParameters).SaveViewState() : null;
-			state.Second = (QueryByAttribute != null) ? ((IStateManager) QueryByAttribute).SaveViewState() : null;
+			state.First = (SelectParameters != null) ? ((IStateManager)SelectParameters).SaveViewState() : null;
+			state.Second = (QueryByAttribute != null) ? ((IStateManager)QueryByAttribute).SaveViewState() : null;
 
 			if ((state.First == null) && (state.Second == null))
 			{
@@ -1197,12 +1197,12 @@ namespace Microsoft.Xrm.Portal.Web.UI.WebControls
 
 			if (_selectParameters != null)
 			{
-				((IStateManager) _selectParameters).TrackViewState();
+				((IStateManager)_selectParameters).TrackViewState();
 			}
 
 			if (_queryByAttribute != null)
 			{
-				((IStateManager) _queryByAttribute).TrackViewState();
+				((IStateManager)_queryByAttribute).TrackViewState();
 			}
 		}
 	}

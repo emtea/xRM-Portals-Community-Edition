@@ -13,7 +13,7 @@ namespace Adxstudio.Xrm.Commerce
 {
 	public class DiscountCodeValidationResult
 	{
-		public DiscountCodeValidationResult(){}
+		public DiscountCodeValidationResult() { }
 
 		public DiscountCodeValidationResult(bool isValid)
 		{
@@ -96,7 +96,7 @@ namespace Adxstudio.Xrm.Commerce
 						d =>
 							d.GetAttributeValue<OptionSetValue>("statecode").Value == 0 &&
 							(d.GetAttributeValue<OptionSetValue>("adx_scope") != null &&
-							 d.GetAttributeValue<OptionSetValue>("adx_scope").Value == (int) DiscountScope.Order) &&
+							 d.GetAttributeValue<OptionSetValue>("adx_scope").Value == (int)DiscountScope.Order) &&
 							((d.GetAttributeValue<DateTime?>("adx_startdate") == null ||
 							  d.GetAttributeValue<DateTime?>("adx_startdate") <= DateTime.UtcNow) &&
 							 (d.GetAttributeValue<DateTime?>("adx_enddate") == null ||
@@ -106,7 +106,7 @@ namespace Adxstudio.Xrm.Commerce
 
 			if (orderScopedDiscounts.Any())
 			{
-				var discountPercentage = quote.GetAttributeValue<Decimal?>("discountpercentage") ?? 0;
+				var discountPercentage = quote.GetAttributeValue<decimal?>("discountpercentage") ?? 0;
 				var discountAmount = GetDecimalFromMoney(quote, "discountamount");
 				var newDiscountPercentage = discountPercentage;
 				var newDiscountAmount = discountAmount;
@@ -123,7 +123,7 @@ namespace Adxstudio.Xrm.Commerce
 
 					if (applied)
 					{
-						discountErrors.Add(new DiscountError {ErrorCode = DiscountErrorCode.AlreadyApplied});
+						discountErrors.Add(new DiscountError { ErrorCode = DiscountErrorCode.AlreadyApplied });
 						continue;
 					}
 
@@ -136,30 +136,30 @@ namespace Adxstudio.Xrm.Commerce
 
 					if (typeOption == null)
 					{
-						discountErrors.Add(new DiscountError {ErrorCode = DiscountErrorCode.InvalidDiscountConfiguration});
+						discountErrors.Add(new DiscountError { ErrorCode = DiscountErrorCode.InvalidDiscountConfiguration });
 						continue;
 					}
 
 					switch (typeOption.Value)
 					{
-						case (int) DiscountType.Percentage:
-							percentage = discount.GetAttributeValue<Decimal?>("adx_percentage") ?? 0;
+						case (int)DiscountType.Percentage:
+							percentage = discount.GetAttributeValue<decimal?>("adx_percentage") ?? 0;
 							break;
-						case (int) DiscountType.Amount:
+						case (int)DiscountType.Amount:
 							amount = GetDecimalFromMoney(discount, "adx_amount");
 							break;
 						default:
-							discountErrors.Add(new DiscountError {ErrorCode = DiscountErrorCode.InvalidDiscountConfiguration});
+							discountErrors.Add(new DiscountError { ErrorCode = DiscountErrorCode.InvalidDiscountConfiguration });
 							continue;
 					}
 
 					if (minimumPurchaseAmount > 0 && prefreightAmount < minimumPurchaseAmount)
 					{
-						discountErrors.Add(new DiscountError {ErrorCode = DiscountErrorCode.MinimumAmountNotMet});
+						discountErrors.Add(new DiscountError { ErrorCode = DiscountErrorCode.MinimumAmountNotMet });
 					}
 					else if (maximumRedemptions > 0 && redemptions >= maximumRedemptions)
 					{
-						discountErrors.Add(new DiscountError {ErrorCode = DiscountErrorCode.MaximumRedemptions});
+						discountErrors.Add(new DiscountError { ErrorCode = DiscountErrorCode.MaximumRedemptions });
 					}
 					else
 					{
@@ -195,7 +195,7 @@ namespace Adxstudio.Xrm.Commerce
 								d =>
 									d.GetAttributeValue<OptionSetValue>("statecode").Value == 0 &&
 									(d.GetAttributeValue<OptionSetValue>("adx_scope") != null &&
-									 d.GetAttributeValue<OptionSetValue>("adx_scope").Value == (int) DiscountScope.Product) &&
+									 d.GetAttributeValue<OptionSetValue>("adx_scope").Value == (int)DiscountScope.Product) &&
 									((d.GetAttributeValue<DateTime?>("adx_startdate") == null ||
 									  d.GetAttributeValue<DateTime?>("adx_startdate") <= DateTime.UtcNow) &&
 									 (d.GetAttributeValue<DateTime?>("adx_enddate") == null ||
@@ -219,7 +219,7 @@ namespace Adxstudio.Xrm.Commerce
 
 						if (baseAmount <= 0)
 						{
-							discountErrors.Add(new DiscountError {ErrorCode = DiscountErrorCode.ZeroAmount});
+							discountErrors.Add(new DiscountError { ErrorCode = DiscountErrorCode.ZeroAmount });
 							continue;
 						}
 
@@ -238,7 +238,7 @@ namespace Adxstudio.Xrm.Commerce
 
 							if (applied)
 							{
-								discountErrors.Add(new DiscountError {ErrorCode = DiscountErrorCode.AlreadyApplied});
+								discountErrors.Add(new DiscountError { ErrorCode = DiscountErrorCode.AlreadyApplied });
 								continue;
 							}
 
@@ -284,30 +284,30 @@ namespace Adxstudio.Xrm.Commerce
 
 							if (typeOption == null)
 							{
-								discountErrors.Add(new DiscountError {ErrorCode = DiscountErrorCode.InvalidDiscountConfiguration});
+								discountErrors.Add(new DiscountError { ErrorCode = DiscountErrorCode.InvalidDiscountConfiguration });
 								continue;
 							}
 
 							switch (typeOption.Value)
 							{
-								case (int) DiscountType.Percentage:
-									var percentage = discount.GetAttributeValue<Decimal?>("adx_percentage") ?? 0;
+								case (int)DiscountType.Percentage:
+									var percentage = discount.GetAttributeValue<decimal?>("adx_percentage") ?? 0;
 									if (percentage > 0 && baseAmount > 0)
 									{
-										amount = baseAmount*percentage/100;
+										amount = baseAmount * percentage / 100;
 									}
 									break;
-								case (int) DiscountType.Amount:
+								case (int)DiscountType.Amount:
 									amount = GetDecimalFromMoney(discount, "adx_amount");
 									break;
 								default:
-									discountErrors.Add(new DiscountError {ErrorCode = DiscountErrorCode.InvalidDiscountConfiguration});
+									discountErrors.Add(new DiscountError { ErrorCode = DiscountErrorCode.InvalidDiscountConfiguration });
 									continue;
 							}
 
 							if (maximumRedemptions > 0 && redemptions >= maximumRedemptions)
 							{
-								discountErrors.Add(new DiscountError {ErrorCode = DiscountErrorCode.MaximumRedemptions});
+								discountErrors.Add(new DiscountError { ErrorCode = DiscountErrorCode.MaximumRedemptions });
 								continue;
 							}
 
@@ -331,7 +331,7 @@ namespace Adxstudio.Xrm.Commerce
 
 			if (!isValid && !discountErrors.Any())
 			{
-				discountErrors.Add(new DiscountError {ErrorCode = DiscountErrorCode.NotApplicable});
+				discountErrors.Add(new DiscountError { ErrorCode = DiscountErrorCode.NotApplicable });
 				errorCode = DiscountErrorCode.NotApplicable;
 			}
 

@@ -73,7 +73,7 @@ namespace Site.Areas.Products.Controllers
 				Reviews = reviews;
 				ItemCount = itemCount;
 				PageCount = itemCount > 0 ? (int)Math.Ceiling(itemCount / (double)pageSize) : 0;
-				PageNumber = startIndex > 0 ? (int) Math.Ceiling(startIndex/(double) pageSize) + 1 : 1;
+				PageNumber = startIndex > 0 ? (int)Math.Ceiling(startIndex / (double)pageSize) + 1 : 1;
 				PageSize = pageSize;
 			}
 
@@ -158,7 +158,7 @@ namespace Site.Areas.Products.Controllers
 			var visitorID = HttpContext.Profile.UserName;
 			ShoppingCart cart;
 			var portal = PortalCrmConfigurationManager.CreatePortalContext();
-			var context = portal.ServiceContext ;
+			var context = portal.ServiceContext;
 			var product = context.CreateQuery("product").FirstOrDefault(p => p.GetAttributeValue<Guid>("productid") == productid);
 			var productDataAdapter = new ProductDataAdapter(product, new Adxstudio.Xrm.Products.PortalContextDataAdapterDependencies(portal, null, Request.RequestContext));
 			

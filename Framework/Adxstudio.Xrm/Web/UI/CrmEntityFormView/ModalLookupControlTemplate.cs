@@ -81,7 +81,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityFormView
 
 		private ValidatorDisplay ValidatorDisplay
 		{
-			get { return String.IsNullOrWhiteSpace(ValidationText) ? ValidatorDisplay.None : ValidatorDisplay.Dynamic; }
+			get { return string.IsNullOrWhiteSpace(ValidationText) ? ValidatorDisplay.None : ValidatorDisplay.Dynamic; }
 		}
 		
 		protected override bool LabelIsAssociated
@@ -112,7 +112,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityFormView
 				textbox.Enabled = false;
 				textbox.Attributes.Add("aria-disabled", "true");
 			}
-			var hiddenValue = new HtmlInputHidden {ID = ControlID};
+			var hiddenValue = new HtmlInputHidden { ID = ControlID };
 			var hiddenValueEntityName = new HtmlInputHidden { ID = string.Format("{0}_entityname", ControlID) };
 			inputGroup.Controls.Add(textbox);
 			inputGroup.Controls.Add(hiddenValue);
@@ -122,7 +122,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityFormView
 			if (Metadata.IsRequired || Metadata.WebFormForceFieldIsRequired)
 			{
 				hiddenValue.Attributes.Add("aria-required", "true");
-				textbox.Attributes.Add("aria-labelledby", "");
+				textbox.Attributes.Add("aria-labelledby", string.Empty);
 				textbox.Attributes["aria-label"] = string.Format(ResourceManager.GetString("Required_Field_Error"), Metadata.Label);
 			}
 
@@ -188,7 +188,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityFormView
 					ControlToValidate = ControlID,
 					ValidationGroup = ValidationGroup,
 					Display = ValidatorDisplay,
-					ErrorMessage = ValidationSummaryMarkup((String.IsNullOrWhiteSpace(Metadata.RequiredFieldValidationErrorMessage) ? (Metadata.Messages == null || !Metadata.Messages.ContainsKey("required")) ? ResourceManager.GetString("Required_Field_Error").FormatWith(Metadata.Label) : Metadata.Messages["required"].FormatWith(Metadata.Label) : Metadata.RequiredFieldValidationErrorMessage)),
+					ErrorMessage = ValidationSummaryMarkup((string.IsNullOrWhiteSpace(Metadata.RequiredFieldValidationErrorMessage) ? (Metadata.Messages == null || !Metadata.Messages.ContainsKey("required")) ? ResourceManager.GetString("Required_Field_Error").FormatWith(Metadata.Label) : Metadata.Messages["required"].FormatWith(Metadata.Label) : Metadata.RequiredFieldValidationErrorMessage)),
 					Text = Metadata.ValidationText,
 				});
 			}
@@ -287,7 +287,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityFormView
 			{
 				var pos = Metadata.LookupDependentAttributeName.IndexOf(".", StringComparison.InvariantCulture);
 				filterFieldName = pos >= 0
-					? Metadata.LookupDependentAttributeName.Substring(pos+1)
+					? Metadata.LookupDependentAttributeName.Substring(pos + 1)
 					: Metadata.LookupDependentAttributeName;
 			}
 			
@@ -339,11 +339,11 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityFormView
 			{
 				var entityForm = serviceContext.RetrieveSingle(
 					"adx_entityform",
-					new[] {"adx_entityname", "adx_mode"},
+					new[] { "adx_entityname", "adx_mode" },
 					new[] {
 						new Condition("adx_entityformid", ConditionOperator.Equal, Metadata.LookupReferenceEntityFormId),
 						new Condition("statuscode", ConditionOperator.NotNull),
-						new Condition("statuscode", ConditionOperator.Equal, (int) Enums.EntityFormStatusCode.Active)
+						new Condition("statuscode", ConditionOperator.Equal, (int)Enums.EntityFormStatusCode.Active)
 					});
 
 				if (entityForm != null)

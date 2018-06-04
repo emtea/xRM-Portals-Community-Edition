@@ -92,7 +92,7 @@ namespace Adxstudio.Xrm.EventHubBasedInvalidation
 
             foreach (KeyValuePair<string, string> entity in updatedEntites)
             {
-                if (entity.Value == String.Empty || entity.Value == null)
+                if (entity.Value == string.Empty || entity.Value == null)
                 {
                     QueryExpression query = new QueryExpression()
                     {
@@ -168,7 +168,7 @@ namespace Adxstudio.Xrm.EventHubBasedInvalidation
 				var entities = string.Join(",", entitiesWithLastTimestamp.Keys);
 				ADXTrace.Instance.TraceInfo(TraceCategory.Application, string.Format("Retrieving changes for entities = {0}.", entities));
 
-				var response = (ExecuteMultipleResponse) context.Service.Execute(request);
+				var response = (ExecuteMultipleResponse)context.Service.Execute(request);
 
 				if (response == null || response.Responses == null)
 				{
@@ -315,7 +315,7 @@ namespace Adxstudio.Xrm.EventHubBasedInvalidation
 		/// <returns>List of updated records</returns>
 		private TimeBasedChangedData ParseBusinessEntityChangesResponse(Dictionary<string, RetrieveEntityChangesResponse> responseCollection, CrmDbContext context, Guid websiteId)
 		{
-			if(responseCollection == null || responseCollection.Count == 0)
+			if (responseCollection == null || responseCollection.Count == 0)
 			{
 				return null;
 			}

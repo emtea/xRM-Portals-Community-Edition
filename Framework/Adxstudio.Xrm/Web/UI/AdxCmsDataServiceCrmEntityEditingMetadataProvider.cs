@@ -34,13 +34,13 @@ namespace Adxstudio.Xrm.Web.UI
 		private static readonly Dictionary<string, IEnumerable<Relationship>> _childAssociationsByEntityName = new Dictionary<string, IEnumerable<Relationship>>
 		{
 			{ "adx_event",
-				new []
+				new[]
 				{
 					"adx_event_eventschedule".ToRelationship()
 				}
 			},
 			{ "adx_webpage",
-				new []
+				new[]
 				{
 					"adx_webpage_webfile".ToRelationship(),
 					"adx_webpage_webpage".ToRelationship(EntityRole.Referenced),
@@ -54,7 +54,7 @@ namespace Adxstudio.Xrm.Web.UI
 		private static readonly Dictionary<string, IEnumerable<string>> _siteMapChildEntitiesByEntityName = new Dictionary<string, IEnumerable<string>>
 		{
 			{ "adx_webpage",
-				new []
+				new[]
 				{
 					"adx_communityforum",
 					"adx_event",
@@ -226,7 +226,7 @@ namespace Adxstudio.Xrm.Web.UI
 				IDictionary<string, IEnumerable<Relationship>> childAssociationsByEntityName,
 				IEnumerable<string> fileAttachmentEntityNames,
 				string portalName)
-					: base(dependencyEntityNames, deletableEntityNames, urlEntityNames, childAssociationsByEntityName, fileAttachmentEntityNames, portalName) {}
+					: base(dependencyEntityNames, deletableEntityNames, urlEntityNames, childAssociationsByEntityName, fileAttachmentEntityNames, portalName) { }
 
 			public override void AddAttributeMetadata(string portalName, IEditableCrmEntityControl control, Control container, Entity entity, string propertyName, string propertyDisplayName)
 			{
@@ -300,7 +300,7 @@ namespace Adxstudio.Xrm.Web.UI
 					}
 
 					// Add the service reference to the bound entity.
-					container.Controls.Add(new HyperLink {CssClass = "xrm-entity-ref", NavigateUrl = VirtualPathUtility.ToAbsolute(serviceUri), Text = string.Empty});
+					container.Controls.Add(new HyperLink { CssClass = "xrm-entity-ref", NavigateUrl = VirtualPathUtility.ToAbsolute(serviceUri), Text = string.Empty });
 
 					string entityUrlServiceUri;
 
@@ -496,7 +496,7 @@ namespace Adxstudio.Xrm.Web.UI
 					return;
 				}
 
-				var json = options.SerializeByJson(new Type[] {});
+				var json = options.SerializeByJson(new Type[] { });
 
 				var schemaMap = new HtmlGenericControl("span") { InnerText = json };
 

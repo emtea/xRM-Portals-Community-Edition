@@ -65,7 +65,7 @@ namespace Adxstudio.Xrm.Web.UI
 			if (entityMetadata == null)
 			{
 				var serviceContext = Dependencies.GetServiceContext();
-				var response = (RetrieveEntityResponse) serviceContext.Execute(new RetrieveEntityRequest
+				var response = (RetrieveEntityResponse)serviceContext.Execute(new RetrieveEntityRequest
 				{
 					LogicalName = configuration.EntityName,
 					EntityFilters = EntityFilters.Attributes,
@@ -935,7 +935,7 @@ namespace Adxstudio.Xrm.Web.UI
 		/// ]]>
 		/// </code>
 		/// </example>
-		protected void ApplyEntitlementFilter(Fetch fetch, IDictionary<string,string> filterParameters)
+		protected void ApplyEntitlementFilter(Fetch fetch, IDictionary<string, string> filterParameters)
 		{
 			Guid customerId;
 			Guid primaryContactId;
@@ -1251,12 +1251,12 @@ namespace Adxstudio.Xrm.Web.UI
 		{
 			if (!configuration.EnableEntityPermissions)
 			{
-				return new [] { fetch };
+				return new[] { fetch };
 			}
 
 			if (!AdxstudioCrmConfigurationManager.GetCrmSection().ContentMap.Enabled)
 			{
-				return new [] { fetch };
+				return new[] { fetch };
 			}
 
 			var serviceContext = Dependencies.GetServiceContext();
@@ -1322,7 +1322,7 @@ namespace Adxstudio.Xrm.Web.UI
 
 			var serviceContext = Dependencies.GetServiceContext();
 
-			var response = (RetrieveEntityResponse) serviceContext.Execute(new RetrieveEntityRequest
+			var response = (RetrieveEntityResponse)serviceContext.Execute(new RetrieveEntityRequest
 			{
 				LogicalName = fetchEntity.Name,
 				EntityFilters = EntityFilters.Attributes,
@@ -1361,7 +1361,7 @@ namespace Adxstudio.Xrm.Web.UI
 			fetchEntity.Filters.Add(new Filter
 			{
 				Type = LogicalOperator.And,
-				Filters = new List<Filter> {new Filter {Type = LogicalOperator.Or, Conditions = conditions}}
+				Filters = new List<Filter> { new Filter { Type = LogicalOperator.Or, Conditions = conditions } }
 			});
 		}
 
@@ -1829,7 +1829,7 @@ namespace Adxstudio.Xrm.Web.UI
 			var portalOrganizationService = this.Dependencies.GetRequestContext().HttpContext.GetOrganizationService();
 			var contact = portalOrganizationService.RetrieveSingle(
 				user.LogicalName,
-				new[]{ "parentcustomerid" },
+				new[] { "parentcustomerid" },
 				new[] {
 					new Condition("statecode", ConditionOperator.Equal, 0),
 					new Condition("contactid", ConditionOperator.Equal, user.Id)
@@ -2140,7 +2140,7 @@ namespace Adxstudio.Xrm.Web.UI
 			{
 				fetch.Entity.Filters = new List<Filter>
 				{
-					new Filter {Type = LogicalOperator.And, Filters = new List<Filter> {filter}}
+					new Filter { Type = LogicalOperator.And, Filters = new List<Filter> { filter } }
 				};
 			}
 			else
@@ -2189,7 +2189,7 @@ namespace Adxstudio.Xrm.Web.UI
 		{
 			if (fetch.Entity.Links == null)
 			{
-				fetch.Entity.Links = new List<Link> {link};
+				fetch.Entity.Links = new List<Link> { link };
 			}
 			else
 			{

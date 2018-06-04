@@ -25,7 +25,7 @@ namespace Adxstudio.Xrm.AspNet.Identity
 
 		public static readonly ColumnSet ExternalIdentityAttributes = new ColumnSet("adx_username", "adx_identityprovidername");
 
-		public static readonly EntityNodeColumn [] ContactAttributes =
+		public static readonly EntityNodeColumn[] ContactAttributes =
 		{
 			new EntityNodeColumn("adx_identity_logonenabled", BaseSolutionVersions.NaosAndOlderVersions),
 			new EntityNodeColumn("adx_identity_username", BaseSolutionVersions.NaosAndOlderVersions),
@@ -48,14 +48,14 @@ namespace Adxstudio.Xrm.AspNet.Identity
 	}
 
 	public class CrmUserStore<TUser, TKey>
-		: CrmEntityStore<TUser, TKey>
-		, IUserPasswordStore<TUser, TKey>
-		, IUserEmailStore<TUser, TKey>
-		, IUserPhoneNumberStore<TUser, TKey>
-		, IUserSecurityStampStore<TUser, TKey>
-		, IUserTwoFactorStore<TUser, TKey>
-		, IUserLockoutStore<TUser, TKey>
-		, IUserLoginStore<TUser, TKey>
+		: CrmEntityStore<TUser, TKey>,
+		  IUserPasswordStore<TUser, TKey>,
+		  IUserEmailStore<TUser, TKey>,
+		  IUserPhoneNumberStore<TUser, TKey>,
+		  IUserSecurityStampStore<TUser, TKey>,
+		  IUserTwoFactorStore<TUser, TKey>,
+		  IUserLockoutStore<TUser, TKey>,
+		  IUserLoginStore<TUser, TKey>
 		where TUser : CrmUser<TKey>, new()
 		where TKey : IEquatable<TKey>
 	{
@@ -77,7 +77,7 @@ namespace Adxstudio.Xrm.AspNet.Identity
 					} }
 				}
 			};
-			
+
 			var relatedEntitiesQuery = new RelationshipQueryCollection
 			{
 				{ UserConstants.ContactExternalIdentityRelationship, externalIdentityFetch.ToFetchExpression() },
@@ -345,8 +345,7 @@ namespace Adxstudio.Xrm.AspNet.Identity
 
 			var entity = await FetchByConditionOnExternalIdentityAsync(
 				new Condition("adx_identityprovidername", ConditionOperator.Equal, login.LoginProvider),
-				new Condition("adx_username", ConditionOperator.Equal, login.ProviderKey)
-			).WithCurrentCulture();
+				new Condition("adx_username", ConditionOperator.Equal, login.ProviderKey)).WithCurrentCulture();
 
 			return ToModel(entity);
 		}

@@ -846,7 +846,6 @@ namespace Adxstudio.Xrm.Web.Mvc.Html
 			DisassociateActionLink disassociateAction = null;
 			WorkflowActionLink workflowAction = null;
 			List<CreateRelatedRecordActionLink> createRelatedRecordActionLinks = null;
-			CreateRelatedRecordActionLink createRelatedRecordActionLink = null;
 
 			var defaultFilterDisplayNameChanged = false;
 			var defaultFilterDisplayName = _defaultLookupEntityGridToggleFilterDisplayName;
@@ -931,7 +930,7 @@ namespace Adxstudio.Xrm.Web.Mvc.Html
 					var filteredColumnDisplayName =
 						layout.Columns.Where(c => c.LogicalName == filterAttributeName).Select(c => c.Name).FirstOrDefault();
 
-					if (!String.IsNullOrEmpty(filteredColumnDisplayName))
+					if (!string.IsNullOrEmpty(filteredColumnDisplayName))
 					{
 						defaultFilterDisplayNameChanged = true;
 						defaultFilterDisplayName = string.Format(defaultFilterDisplayName, filteredColumnDisplayName);
@@ -968,11 +967,11 @@ namespace Adxstudio.Xrm.Web.Mvc.Html
 			container.MergeAttribute("data-select-mode", selectMode.ToString());
 			container.MergeAttribute("data-column-width-style", columnWidthStyle.ToString());
 
-			if (!String.IsNullOrEmpty(filterAttributeName))
+			if (!string.IsNullOrEmpty(filterAttributeName))
 			{
 				if (!defaultFilterDisplayNameChanged)
 				{
-					defaultFilterDisplayName = String.Empty;
+					defaultFilterDisplayName = string.Empty;
 				}
 				container.MergeAttribute("data-toggle-filter-display-name", defaultFilterDisplayName);
 			}
@@ -1054,7 +1053,7 @@ namespace Adxstudio.Xrm.Web.Mvc.Html
 			var pagination = new TagBuilder("div");
 			pagination.AddCssClass("view-pagination");
 			pagination.MergeAttribute("data-pages", "1");
-			pagination.MergeAttribute("data-pagesize", "");
+			pagination.MergeAttribute("data-pagesize", string.Empty);
 			pagination.MergeAttribute("data-current-page", "1");
 
 			container.InnerHtml += pagination.ToString();

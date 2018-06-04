@@ -40,14 +40,14 @@ namespace Adxstudio.Xrm.Mapping
 								: GeoHelpers.EarthRadiusInMiles;
 
 			var returnEnumerable = from c in query.ToList()
-								   let latitude = c.GetAttributeValue<Double>(entityLatitudeAttributeName)
-								   let longitude = c.GetAttributeValue<Double>(entityLongitudeAttributeName)
+								   let latitude = c.GetAttributeValue<double>(entityLatitudeAttributeName)
+								   let longitude = c.GetAttributeValue<double>(entityLongitudeAttributeName)
 								   let distance =
-									   earthRadius*2*
+									   earthRadius * 2 *
 									   Math.Asin(
-										   Math.Sqrt(Math.Pow(Math.Sin((Math.Abs(originLatitude) - Math.Abs(latitude))*Math.PI/180/2), 2) +
-													 Math.Cos(Math.Abs(originLatitude)*Math.PI/180)*Math.Cos(Math.Abs(latitude)*Math.PI/180)*
-													 Math.Pow(Math.Sin((Math.Abs(originLongitude) - Math.Abs(longitude))*Math.PI/180/2), 2)))
+										   Math.Sqrt(Math.Pow(Math.Sin((Math.Abs(originLatitude) - Math.Abs(latitude)) * Math.PI / 180 / 2), 2) +
+													 Math.Cos(Math.Abs(originLatitude) * Math.PI / 180) * Math.Cos(Math.Abs(latitude) * Math.PI / 180) *
+													 Math.Pow(Math.Sin((Math.Abs(originLongitude) - Math.Abs(longitude)) * Math.PI / 180 / 2), 2)))
 								   where distance < maxDistance
 								   orderby distance
 								   select c;
@@ -77,8 +77,8 @@ namespace Adxstudio.Xrm.Mapping
 								: GeoHelpers.EarthRadiusInMiles;
 
 			var returnEnumerable = from c in query
-								   let latitude = c.GetAttributeValue<Double>(entityLatitudeAttributeName)
-								   let longitude = c.GetAttributeValue<Double>(entityLongitudeAttributeName)
+								   let latitude = c.GetAttributeValue<double>(entityLatitudeAttributeName)
+								   let longitude = c.GetAttributeValue<double>(entityLongitudeAttributeName)
 								   let distance =
 									   earthRadius * 2 *
 									   Math.Asin(

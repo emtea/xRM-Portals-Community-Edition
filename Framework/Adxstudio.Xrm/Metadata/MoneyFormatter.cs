@@ -112,7 +112,7 @@ namespace Adxstudio.Xrm.Metadata
 		/// </returns>
 		public object GetFormat(Type formatType)
 		{
-			return formatType == typeof (ICustomFormatter) ? this : null;
+			return formatType == typeof(ICustomFormatter) ? this : null;
 		}
 
 		/// <summary>
@@ -321,7 +321,7 @@ namespace Adxstudio.Xrm.Metadata
 		/// </summary>
 		protected TResponse Execute<TResponse>(OrganizationRequest request) where TResponse : OrganizationResponse
 		{
-			return (TResponse) _getServiceContext().Execute(request);
+			return (TResponse)_getServiceContext().Execute(request);
 		}
 
 		/// <summary>

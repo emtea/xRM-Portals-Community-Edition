@@ -82,7 +82,7 @@ namespace Site.Areas.Portal.Controllers
 					if (attribute.Key == "description")
 					{
 						string formattedValue = FormatViewFieldsValue(attribute.Value);
-						if (!String.IsNullOrWhiteSpace(formattedValue))
+						if (!string.IsNullOrWhiteSpace(formattedValue))
 						{
 							return formattedValue;
 						}
@@ -109,7 +109,7 @@ namespace Site.Areas.Portal.Controllers
 			private string FormatViewFieldsValue(object valueObj)
 			{
 				string valueText = valueObj as string;
-				if (String.IsNullOrWhiteSpace(valueText))
+				if (string.IsNullOrWhiteSpace(valueText))
 				{
 					return null;
 				}
@@ -120,7 +120,7 @@ namespace Site.Areas.Portal.Controllers
 					return formattedText;
 
 				}
-				catch (Exception e)
+				catch (Exception)
 				{
 					return null;
 				}
@@ -258,7 +258,7 @@ namespace Site.Areas.Portal.Controllers
 			{
 				// Soon we will change the UI/controller to accept multiple attachments during the create dialog, so the data adapter takes in a list of attachments
 				portalComment.FileAttachments = new IAnnotationFile[]
-				{AnnotationDataAdapter.CreateFileAttachment(file, settings.StorageLocation)};
+				{ AnnotationDataAdapter.CreateFileAttachment(file, settings.StorageLocation) };
 			}
 
 			var result = dataAdapter.CreatePortalComment(portalComment);

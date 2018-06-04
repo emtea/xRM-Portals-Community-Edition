@@ -153,7 +153,7 @@ namespace Adxstudio.Xrm.Web.UI.WebForms
 
 		public static bool IsNull(Expression expression)
 		{
-			return (expression as Object) == null;
+			return (expression as object) == null;
 		}
 
 		public override string ToString()
@@ -624,8 +624,7 @@ namespace Adxstudio.Xrm.Web.UI.WebForms
 						}
 
 						return expression;
-					}
-			);
+					});
 		}
 
 		public Expression Clone()
@@ -675,7 +674,7 @@ namespace Adxstudio.Xrm.Web.UI.WebForms
 			{
 				return true;
 			}
-			return obj.GetType() == typeof (Expression) && Equals((Expression) obj);
+			return obj.GetType() == typeof(Expression) && Equals((Expression)obj);
 		}
 
 		public override int GetHashCode()
@@ -694,7 +693,7 @@ namespace Adxstudio.Xrm.Web.UI.WebForms
 			{
 				value = ((string)value).Trim(new[] { ' ', '\'' });
 
-				if (((string) value).ToLowerInvariant() == "null")
+				if (((string)value).ToLowerInvariant() == "null")
 				{
 					value = null;
 				}
@@ -1312,22 +1311,22 @@ namespace Adxstudio.Xrm.Web.UI.WebForms
 			switch (attributeTypeCode)
 			{
 				case AttributeTypeCode.BigInt:
-					if (expressionValue != null && !(expressionValue is Int64 | expressionValue is Double))
+					if (expressionValue != null && !(expressionValue is long | expressionValue is double))
 					{
 						throw new InvalidOperationException(string.Format("Attribute {0} specified in the expression is expecting a {1}. The value provided isn't valid.", attributeName, attributeTypeCode));
 					}
 					testValue = expressionValue == null ? (object)null : Convert.ToInt64(expressionValue);
 					break;
 				case AttributeTypeCode.Boolean:
-					if (expressionValue != null && !(expressionValue is Boolean))
+					if (expressionValue != null && !(expressionValue is bool))
 					{
 						throw new InvalidOperationException(string.Format("Attribute {0} specified in the expression is expecting a {1}. The value provided isn't valid.", attributeName, attributeTypeCode));
 					}
-					testValue = expressionValue == null ? (object)null : (Boolean)expressionValue;
+					testValue = expressionValue == null ? (object)null : (bool)expressionValue;
 					break;
 				case AttributeTypeCode.Customer:
 					var entityReference = EvaluateEntity.Attributes.ContainsKey(attributeName) ? (EntityReference)EvaluateEntity.Attributes[attributeName] : null;
-					attributeValue = entityReference != null ? (object) entityReference.Id : null;
+					attributeValue = entityReference != null ? (object)entityReference.Id : null;
 					if (expressionValue != null && !(expressionValue is Guid))
 					{
 						throw new InvalidOperationException(string.Format("Attribute {0} specified in the expression is expecting a {1}. The value provided isn't valid.", attributeName, attributeTypeCode));
@@ -1380,7 +1379,7 @@ namespace Adxstudio.Xrm.Web.UI.WebForms
 					break;
 				case AttributeTypeCode.Money:
 					var money = EvaluateEntity.Attributes.ContainsKey(attributeName) ? (Money)EvaluateEntity.Attributes[attributeName] : null;
-					attributeValue = money != null ? (object) Convert.ToDecimal(money.Value) : null;
+					attributeValue = money != null ? (object)Convert.ToDecimal(money.Value) : null;
 					if (expressionValue != null && !(expressionValue is int | expressionValue is double | expressionValue is decimal))
 					{
 						throw new InvalidOperationException(string.Format("Attribute {0} specified in the expression is expecting a {1}. The value provided isn't valid.", attributeName, attributeTypeCode));
@@ -1426,7 +1425,7 @@ namespace Adxstudio.Xrm.Web.UI.WebForms
 					{
 						throw new InvalidOperationException(string.Format("Attribute {0} specified in the expression is expecting a {1}. The value provided isn't valid.", attributeName, attributeTypeCode));
 					}
-					testValue = expressionValue == null ? (object) null : (Guid) expressionValue;
+					testValue = expressionValue == null ? (object)null : (Guid)expressionValue;
 					break;
 				default:
 					throw new InvalidOperationException(string.Format("Unsupported type of attribute {0} specified in the expression.", attributeName));

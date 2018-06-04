@@ -91,18 +91,18 @@ namespace Adxstudio.Xrm.Events
 			return value;
 		}
 
-		public static string FormatOrganizer( string name = null, string email = null )
+		public static string FormatOrganizer(string name = null, string email = null)
 		{
 			var parts = new List<string>();
 
 			if (!string.IsNullOrEmpty(name))
 			{
-				parts.Add(String.Format(CultureInfo.InvariantCulture, "CN={0}", EncodeValue(name)));
+				parts.Add(string.Format(CultureInfo.InvariantCulture, "CN={0}", EncodeValue(name)));
 			}
 
 			if (!string.IsNullOrEmpty(email))
 			{
-				parts.Add(String.Format(CultureInfo.InvariantCulture, "MAILTO={0}", EncodeValue(email)));
+				parts.Add(string.Format(CultureInfo.InvariantCulture, "MAILTO={0}", EncodeValue(email)));
 			}
 
 			if (parts.Count < 1)

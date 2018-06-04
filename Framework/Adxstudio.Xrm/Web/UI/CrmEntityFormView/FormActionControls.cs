@@ -153,7 +153,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityFormView
 			{
 				ID = nextButtonID,
 				CommandName = "Next",
-				Text = String.IsNullOrWhiteSpace(viewActionLink.Label) ? viewActionLink.Label : "Next",
+				Text = string.IsNullOrWhiteSpace(viewActionLink.Label) ? viewActionLink.Label : "Next",
 				ValidationGroup = validationGroup,
 				CausesValidation = true,
 				CssClass = viewActionLink.ButtonCssClass
@@ -191,7 +191,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityFormView
 			{
 				ID = previousButtonID,
 				CommandName = "Previous",
-				Text = String.IsNullOrWhiteSpace(viewActionLink.Label) ? viewActionLink.Label : "Previous",
+				Text = string.IsNullOrWhiteSpace(viewActionLink.Label) ? viewActionLink.Label : "Previous",
 				ValidationGroup = validationGroup,
 				CausesValidation = false,
 				CssClass = viewActionLink.ButtonCssClass,
@@ -431,7 +431,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityFormView
 		public static WebControl FormActionNavbarInnerHtml(HtmlHelper html, WebControl containerLeft, WebControl containerRight, IFormConfiguration formConfiguration,
 			ActionButtonPlacement actionButtonPlacement)
 		{
-			var collapsedNavbar = new Panel {ID = "form-navbar-collapse" + actionButtonPlacement.ToString()};
+			var collapsedNavbar = new Panel { ID = "form-navbar-collapse" + actionButtonPlacement.ToString() };
 
 			collapsedNavbar.AddClass("collapse");
 			collapsedNavbar.AddClass("navbar-collapse");
@@ -720,7 +720,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityFormView
 			{
 				var htmlAttributes = new Dictionary<string, string>
 				{
-					{"data-filtercriteriaid", createRelatedRecordAction.FilterCriteriaId.ToString()}
+					{ "data-filtercriteriaid", createRelatedRecordAction.FilterCriteriaId.ToString() }
 				};
 
 

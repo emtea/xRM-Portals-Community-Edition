@@ -39,7 +39,7 @@ namespace Adxstudio.Xrm.Cms
 
 				httpContext.Items[_key] = new Dictionary<string, object>(StringComparer.Ordinal)
 				{
-					{key, value}
+					{ key, value }
 				};
 
 				return value;
@@ -49,7 +49,7 @@ namespace Adxstudio.Xrm.Cms
 
 			if (cache.TryGetValue(key, out cached))
 			{
-				return (T) cached;
+				return (T)cached;
 			}
 
 			value = get();

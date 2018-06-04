@@ -99,7 +99,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityListView
 			SelectMethod = "Select";
 			EnablePaging = true;
 			Config = configuration;
-			SelectParameters.Add("configuration", TypeCode.Object, "");
+			SelectParameters.Add("configuration", TypeCode.Object, string.Empty);
 			Selecting += OnSelecting;
 		}
 
@@ -145,7 +145,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityListView
 		/// SelectCount Method
 		/// </summary>
 		/// <returns>Total record count</returns>
-		public Int32 SelectCount()
+		public int SelectCount()
 		{
 			return TotalRecordCount;
 		}
@@ -154,7 +154,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityListView
 		/// SelectCount Method
 		/// </summary>
 		/// <returns>Total record count</returns>
-		public Int32 SelectCount(Configuration configuration)
+		public int SelectCount(Configuration configuration)
 		{
 			return TotalRecordCount;
 		}

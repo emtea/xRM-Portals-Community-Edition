@@ -119,7 +119,7 @@ namespace Microsoft.Xrm.Portal.Web.UI.WebControls
 		{
 			Controls.Clear();
 			
-			_hyperLink = new System.Web.UI.WebControls.HyperLink {EnableViewState = false, EnableTheming = false};
+			_hyperLink = new System.Web.UI.WebControls.HyperLink { EnableViewState = false, EnableTheming = false };
 
 			Controls.Add(_hyperLink);
 		}
@@ -160,7 +160,7 @@ namespace Microsoft.Xrm.Portal.Web.UI.WebControls
 		{
 			if (Context.Request.ServerVariables.Get("MANAGED_PIPELINE_MODE") == "Integrated") return true; 
 
-			var handlersSection = (HttpHandlersSection) WebConfigurationManager.GetSection("system.web/httpHandlers");
+			var handlersSection = (HttpHandlersSection)WebConfigurationManager.GetSection("system.web/httpHandlers");
 
 			foreach (HttpHandlerAction handler in handlersSection.Handlers)
 			{

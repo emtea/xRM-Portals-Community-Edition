@@ -53,7 +53,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 		[Description("Indicates whether or not the entity permission provider will add record level filters to the view's fetch query to assert privileges.")]
 		public bool EnableEntityPermissions
 		{
-			get { return (bool) (ViewState["EnableEntityPermissions"] ?? false); }
+			get { return (bool)(ViewState["EnableEntityPermissions"] ?? false); }
 			set { ViewState["EnableEntityPermissions"] = value; }
 		}
 
@@ -63,7 +63,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 		[Description("The Entity Reference of the Entity List to load.")]
 		public EntityReference EntityListReference
 		{
-			get { return ((EntityReference) ViewState["EntityListReference"]); }
+			get { return ((EntityReference)ViewState["EntityListReference"]); }
 			set { ViewState["EntityListReference"] = value; }
 		}
 
@@ -73,7 +73,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 		[Description("The portal configuration that the control binds to.")] [DefaultValue("")]
 		public string PortalName
 		{
-			get { return ((string) ViewState["PortalName"]) ?? string.Empty; }
+			get { return ((string)ViewState["PortalName"]) ?? string.Empty; }
 			set { ViewState["PortalName"] = value; }
 		}
 
@@ -91,7 +91,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 		[Description("The CSS Class assigned to the List.")] [DefaultValue("")]
 		public string ListCssClass
 		{
-			get { return ((string) ViewState["ListCssClass"]) ?? string.Empty; }
+			get { return ((string)ViewState["ListCssClass"]) ?? string.Empty; }
 			set { ViewState["ListCssClass"] = value; }
 		}
 
@@ -101,7 +101,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 		[Description("The Query String parameter name for the selected view.")] [DefaultValue("view")]
 		public string ViewQueryStringParameterName
 		{
-			get { return ((string) ViewState["ViewQueryStringParameterName"]) ?? "view"; }
+			get { return ((string)ViewState["ViewQueryStringParameterName"]) ?? "view"; }
 			set { ViewState["ViewQueryStringParameterName"] = value; }
 		}
 
@@ -111,7 +111,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 		[Description("Indicates whether the list is a gallery or not.")] [DefaultValue("false")]
 		public bool IsGallery
 		{
-			get { return (bool) (ViewState["IsGallery"] ?? false); }
+			get { return (bool)(ViewState["IsGallery"] ?? false); }
 			set { ViewState["IsGallery"] = value; }
 		}
 
@@ -133,7 +133,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 		{
 			get
 			{
-				return (EntityGridExtensions.GridSelectMode) (ViewState["SelectMode"] ?? EntityGridExtensions.GridSelectMode.None);
+				return (EntityGridExtensions.GridSelectMode)(ViewState["SelectMode"] ?? EntityGridExtensions.GridSelectMode.None);
 			}
 			set { ViewState["SelectMode"] = value; }
 		}
@@ -141,7 +141,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 		/// <summary>
 		/// Script files to be loaded.
 		/// </summary>
-		protected virtual string[] ScriptIncludes { get { return new[] {""}; } }
+		protected virtual string[] ScriptIncludes { get { return new[] { string.Empty }; } }
 
 		/// <summary>
 		/// Script files to be loaded for calendar view
@@ -375,7 +375,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 		protected virtual void RenderList(OrganizationServiceContext context, Control container)
 		{
 			var gridHtml = BuildGrid(context);
-			var gridControl = new HtmlGenericControl("div") {InnerHtml = gridHtml.ToString()};
+			var gridControl = new HtmlGenericControl("div") { InnerHtml = gridHtml.ToString() };
 			container.Controls.Add(gridControl);
 		}
 
@@ -598,14 +598,14 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 			var div = new HtmlGenericControl("div");
 			div.Attributes.Add("class", "input-group pull-right entitylist-search");
 
-			var input = new TextBox {ID = string.Format("{0}_{1}", ID, "Search"), Text = query, CssClass = "query form-control"};
+			var input = new TextBox { ID = string.Format("{0}_{1}", ID, "Search"), Text = query, CssClass = "query form-control" };
 			input.Attributes.Add("title", CurrentViewConfiguration.Search.TooltipText);
 			input.Attributes.Add("placeholder", CurrentViewConfiguration.Search.PlaceholderText);
 
 			var buttonContainer = new HtmlGenericControl("div");
 			buttonContainer.Attributes["class"] = "input-group-btn";
 
-			var button = new HtmlButton {InnerHtml = CurrentViewConfiguration.Search.ButtonLabel};
+			var button = new HtmlButton { InnerHtml = CurrentViewConfiguration.Search.ButtonLabel };
 			button.ServerClick += SearchButton_Click;
 			button.Attributes.Add("class", "btn btn-default");
 
@@ -746,7 +746,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 				DefaultText = ResourceManager.GetString("With_In")
 			};
 			optionsContainerElement.Controls.Add(distanceLabelSnippet);
-			var distanceElement = new DropDownList {ID = "entity-list-map-distance", CssClass = "form-control"};
+			var distanceElement = new DropDownList { ID = "entity-list-map-distance", CssClass = "form-control" };
 			foreach (var distanceItem in CurrentViewConfiguration.MapSettings.DistanceValues)
 			{
 				distanceElement.Items.Add(
@@ -755,7 +755,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 						distanceItem.ToString(CultureInfo.InvariantCulture)));
 			}
 			optionsContainerElement.Controls.Add(distanceElement);
-			var searchButton = new HtmlButton {ID = "entity-list-map-search",};
+			var searchButton = new HtmlButton { ID = "entity-list-map-search" };
 			var searchButtonSnippet = new Snippet
 			{
 				SnippetName = "EntityList/Map/SearchButtonLabel",
@@ -780,10 +780,10 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 				CurrentViewConfiguration.MapSettings.DefaultZoom.ToString(CultureInfo.InvariantCulture));
 			mapElement.Attributes.Add("data-latitude",
 				CurrentViewConfiguration.MapSettings.DefaultCenterLatitude.ToString("N",
-					new NumberFormatInfo {NumberDecimalDigits = 5}));
+					new NumberFormatInfo { NumberDecimalDigits = 5 }));
 			mapElement.Attributes.Add("data-longitude",
 				CurrentViewConfiguration.MapSettings.DefaultCenterLongitude.ToString("N",
-					new NumberFormatInfo {NumberDecimalDigits = 5}));
+					new NumberFormatInfo { NumberDecimalDigits = 5 }));
 			mapElement.Attributes.Add("data-pushpin-url", CurrentViewConfiguration.MapSettings.PinImageUrl);
 			mapElement.Attributes.Add("data-pushpin-width",
 				CurrentViewConfiguration.MapSettings.PinImageWidth.ToString(CultureInfo.InvariantCulture));
@@ -842,7 +842,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 
 			var headerElement = new HtmlGenericControl("div");
 			headerElement.Attributes.Add("class", "modal-header");
-			var dismissButton = new HtmlButton {InnerHtml = "&times;"};
+			var dismissButton = new HtmlButton { InnerHtml = "&times;" };
 			dismissButton.Attributes.Add("class", "close");
 			dismissButton.Attributes.Add("data-dismiss", "modal");
 			dismissButton.Attributes.Add("aria-hidden", "true");
@@ -942,7 +942,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 			var longitudeElement = new HtmlInputHidden();
 			longitudeElement.Attributes.Add("id", "entity-list-map-directions-longitude");
 			footerElement.Controls.Add(longitudeElement);
-			var getDirectionsButton = new HtmlButton {ID = "entity-list-map-directions-get",};
+			var getDirectionsButton = new HtmlButton { ID = "entity-list-map-directions-get" };
 			getDirectionsButton.Attributes.Add("class", "btn btn-primary");
 			var getDirectionsButtonSnippet = new Snippet
 			{
@@ -1019,7 +1019,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 				? HttpUtility.ParseQueryString(metadataFilterParameterValue)
 				: new NameValueCollection();
 
-			var containerElement = new HtmlGenericControl("div") {ID = "EntityListFilterControl"};
+			var containerElement = new HtmlGenericControl("div") { ID = "EntityListFilterControl" };
 			containerElement.Attributes.Add("class", "content-panel panel panel-default entitylist-filter");
 
 			var filterGroupPanel = new HtmlGenericControl("div");
@@ -1056,7 +1056,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 				filterGroupListItem.Attributes.Add("class", "entitylist-filter-option-group");
 				filterGroupList.Controls.Add(filterGroupListItem);
 
-				var filterGroupLabel = new HtmlGenericControl("label") {InnerHtml = "<span class='sr-only'>Filter: </span>" + filter.Label};
+				var filterGroupLabel = new HtmlGenericControl("label") { InnerHtml = "<span class='sr-only'>Filter: </span>" + filter.Label };
 				filterGroupLabel.Attributes.Add("class", "entitylist-filter-option-group-label h4");
 				filterGroupListItem.Controls.Add(filterGroupLabel);
 
@@ -1105,7 +1105,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 
 							if (option.Checked)
 							{
-								filterOptionSelect.Attributes.Add("selected", "");
+								filterOptionSelect.Attributes.Add("selected", string.Empty);
 								filterOptionSelect.Attributes.Add("data-selected", "true");
 							}
 
@@ -1208,7 +1208,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 			submitContainer.Attributes.Add("class", "pull-right");
 			filterGroupPanel.Controls.Add(submitContainer);
 
-			var submitButton = new HtmlButton {InnerText = CurrentViewConfiguration.FilterSettings.ApplyButtonLabel ?? "Apply"};
+			var submitButton = new HtmlButton { InnerText = CurrentViewConfiguration.FilterSettings.ApplyButtonLabel ?? "Apply" };
 			submitButton.Attributes.Add("type", "button");
 			submitButton.Attributes.Add("class", "btn btn-default btn-entitylist-filter-submit");
 			submitButton.Attributes.Add("data-serialized-query",
@@ -1268,7 +1268,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 
 				scriptManager.Scripts.Add(new ScriptReference(url.RouteUrl("EntityListCalendarLanguage", new RouteValueDictionary
 				{
-					{"__portalScopeId__", websiteId.ToString()}
+					{ "__portalScopeId__", websiteId.ToString() }
 				})));
 
 				Attributes["lang"] = CultureInfo.CurrentCulture.ToString();
@@ -1285,7 +1285,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 						continue;
 					}
 
-					var link = new HtmlLink {Href = stylesheet};
+					var link = new HtmlLink { Href = stylesheet };
 
 					link.Attributes["rel"] = "stylesheet";
 
@@ -1403,8 +1403,8 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 
 			return html.EntityGrid(ViewConfigurations.ToList(),
 				BuildControllerActionUrl("GetGridData", "EntityGrid",
-					new {area = "Portal", __portalScopeId__ = portal == null ? Guid.Empty : portal.Website.Id}), user,
-				string.Join(" ", new[] {CssClass, CurrentViewConfiguration.CssClass}).TrimEnd(' '),
+					new { area = "Portal", __portalScopeId__ = portal == null ? Guid.Empty : portal.Website.Id }), user,
+				string.Join(" ", new[] { CssClass, CurrentViewConfiguration.CssClass }).TrimEnd(' '),
 				CurrentViewConfiguration.GridCssClass,
 				CurrentViewConfiguration.GridColumnWidthStyle ?? EntityGridExtensions.GridColumnWidthStyle.Percent,
 				SelectMode, null, CurrentViewConfiguration.LoadingMessage,

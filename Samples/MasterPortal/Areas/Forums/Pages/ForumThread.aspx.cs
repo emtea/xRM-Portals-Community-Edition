@@ -83,8 +83,8 @@ namespace Site.Areas.Forums.Pages
 			//Log Customer Journey Tracking
 			if (FeatureCheckHelper.IsFeatureEnabled(FeatureNames.CustomerJourneyTracking))
 			{
-				if (!String.IsNullOrEmpty(_portal.Value.Entity.Id.ToString()) &&
-				    !String.IsNullOrEmpty(_portal.Value.Entity.GetAttributeValue<string>("adx_name")))
+				if (!string.IsNullOrEmpty(_portal.Value.Entity.Id.ToString()) &&
+				    !string.IsNullOrEmpty(_portal.Value.Entity.GetAttributeValue<string>("adx_name")))
 				{
 					PortalTrackingTrace.TraceInstance.Log(Constants.Forum, _portal.Value.Entity.Id.ToString(), _portal.Value.Entity.GetAttributeValue<string>("adx_name"));
 				}
@@ -134,7 +134,7 @@ namespace Site.Areas.Forums.Pages
 
 		private IForumThreadDataAdapter CreateForumThreadDataAdapter()
 		{
-			return new ForumThreadDataAdapter(_portal.Value.Entity.ToEntityReference(), new PortalContextDataAdapterDependencies(_portal.Value, requestContext:Request.RequestContext));
+			return new ForumThreadDataAdapter(_portal.Value.Entity.ToEntityReference(), new PortalContextDataAdapterDependencies(_portal.Value, requestContext: Request.RequestContext));
 		}
 
 		protected void AddAlert_Click(object sender, EventArgs e)
@@ -217,7 +217,7 @@ namespace Site.Areas.Forums.Pages
 				throw new SecurityException("The current user does not have the necessary permissions to update this forum post.");
 			}
 
-			var content = ((Control) sender).FindControl("ForumPostContentUpdate") as ITextControl;
+			var content = ((Control)sender).FindControl("ForumPostContentUpdate") as ITextControl;
 
 			if (content == null)
 			{
@@ -243,7 +243,7 @@ namespace Site.Areas.Forums.Pages
 
 		protected void ValidatePostContentLength(object source, ServerValidateEventArgs args)
 		{
-			var response = (RetrieveAttributeResponse) ServiceContext.Execute(new RetrieveAttributeRequest
+			var response = (RetrieveAttributeResponse)ServiceContext.Execute(new RetrieveAttributeRequest
 			{
 				EntityLogicalName = "adx_communityforumpost",
 				LogicalName = "adx_content"

@@ -129,8 +129,7 @@ namespace Site.Areas.HelpDesk.Controls
 
 					PlanPackageList.Items.Add(new ListItem(
 												string.Format("{0} - {1} - {2}", supportProduct.GetAttributeValue<string>("name"), u.GetAttributeValue<string>("name"), amount.Value.ToString("c0")),
-												string.Format("{0}&{1}", supportProduct.GetAttributeValue<Guid>("productid"), u.GetAttributeValue<Guid>("uomid"))
-												));
+												string.Format("{0}&{1}", supportProduct.GetAttributeValue<Guid>("productid"), u.GetAttributeValue<Guid>("uomid"))));
 				}
 			}
 		}
@@ -206,7 +205,7 @@ namespace Site.Areas.HelpDesk.Controls
 		{
 			var context = new CrmOrganizationServiceContext(new CrmConnection("Xrm"));
 
-			var supportRequest = new Entity("adx_supportrequest") {Id = CurrentStepEntityID};
+			var supportRequest = new Entity("adx_supportrequest") { Id = CurrentStepEntityID };
 
 			supportRequest.Attributes["adx_shoppingcartid"] = myCart.Entity.ToEntityReference();
 

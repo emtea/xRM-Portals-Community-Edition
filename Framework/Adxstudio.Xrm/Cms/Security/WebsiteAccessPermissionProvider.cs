@@ -53,10 +53,10 @@ namespace Adxstudio.Xrm.Cms.Security
 
 		private static readonly IDictionary<WebsiteRight, Func<WebsiteAccessNode, bool?>> RightMappings = new Dictionary<WebsiteRight, Func<WebsiteAccessNode, bool?>>
 		{
-			{WebsiteRight.ManageContentSnippets, site => site.ManageContentSnippets},
-			{WebsiteRight.ManageSiteMarkers, site => site.ManageSiteMarkers},
-			{WebsiteRight.ManageWebLinkSets, site => site.ManageWebLinkSets},
-			{WebsiteRight.PreviewUnpublishedEntities, site => site.PreviewUnpublishedEntities}
+			{ WebsiteRight.ManageContentSnippets, site => site.ManageContentSnippets },
+			{ WebsiteRight.ManageSiteMarkers, site => site.ManageSiteMarkers },
+			{ WebsiteRight.ManageWebLinkSets, site => site.ManageWebLinkSets },
+			{ WebsiteRight.PreviewUnpublishedEntities, site => site.PreviewUnpublishedEntities }
 		};
 
 		public bool TryAssert(OrganizationServiceContext serviceContext, WebsiteRight right)
@@ -210,7 +210,7 @@ namespace Adxstudio.Xrm.Cms.Security
 			var websiteaccessFetch = 
 				new Fetch
 				{
-					Entity = new FetchEntity("adx_websiteaccess", new []{ "adx_manageweblinksets", "adx_previewunpublishedentities" })
+					Entity = new FetchEntity("adx_websiteaccess", new[] { "adx_manageweblinksets", "adx_previewunpublishedentities" })
 					{
 						Filters = new[]
 						{
@@ -242,7 +242,7 @@ namespace Adxstudio.Xrm.Cms.Security
 
 			foreach (var rule in rules)
 			{
-				var ruleRoles = context.RetrieveRelatedEntities(rule, "adx_websiteaccess_webrole", new [] { "adx_name" }).Entities;
+				var ruleRoles = context.RetrieveRelatedEntities(rule, "adx_websiteaccess_webrole", new[] { "adx_name" }).Entities;
 
 				if (ruleRoles == null)
 				{

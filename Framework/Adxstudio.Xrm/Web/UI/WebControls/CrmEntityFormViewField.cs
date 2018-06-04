@@ -54,7 +54,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 				{
 					return FieldType.Default;
 				}
-				return (FieldType) type;
+				return (FieldType)type;
 			}
 			set { ViewState["Type"] = value; }
 		}
@@ -100,7 +100,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 		{
 			var obj = ((IStateManager)ViewState).SaveViewState();
 			
-			return obj != null ? new [] { obj } : null;
+			return obj != null ? new[] { obj } : null;
 		}
 
 		public void TrackViewState()

@@ -80,8 +80,7 @@ namespace Adxstudio.Xrm.Web.Providers
 					join referenced in serviceContext.CreateQuery(websiteJoin.ReferencedEntity) on referencing.GetAttributeValue<EntityReference>(websiteJoin.ReferencingAttribute) equals referenced.GetAttributeValue<EntityReference>(websiteJoin.ReferencedAttribute)
 					where referenced.GetAttributeValue<EntityReference>(websiteJoin.WebsiteReferenceAttribute) == website
 					where referencing.GetAttributeValue<Guid>(entityMetadata.PrimaryIdAttribute) == entityReference.Id
-					select referencing
-					).FirstOrDefault();
+					select referencing).FirstOrDefault();
 			}
 
 			var query = serviceContext.CreateQuery(entityReference.LogicalName);
@@ -254,8 +253,7 @@ namespace Adxstudio.Xrm.Web.Providers
 					from referencing in serviceContext.CreateQuery(websiteJoin.ReferencingEntity)
 					join referenced in serviceContext.CreateQuery(websiteJoin.ReferencedEntity) on referencing.GetAttributeValue<EntityReference>(websiteJoin.ReferencingAttribute) equals referenced.GetAttributeValue<EntityReference>(websiteJoin.ReferencedAttribute)
 					where referenced.GetAttributeValue<EntityReference>(websiteJoin.WebsiteReferenceAttribute) == website
-					select referencing
-					).ToArray().Where(e =>
+					select referencing).ToArray().Where(e =>
 					{
 						try
 						{
@@ -486,7 +484,7 @@ namespace Adxstudio.Xrm.Web.Providers
 			var appliedTags = tagExtension.Value.Values<string>().Distinct(TagInfo.TagComparer).ToArray();
 
 			var existingTags = operation == CmsEntityOperation.Create
-				? new Entity[] {}
+				? new Entity[] { }
 				: GetTags(serviceContext, entity, website, taggableEntity);
 
 			var tagsToRemove = existingTags.Where(e => !appliedTags.Contains(e.GetAttributeValue<string>("adx_name"), TagInfo.TagComparer));
@@ -1049,12 +1047,12 @@ namespace Adxstudio.Xrm.Web.Providers
 				Distinct = true,
 				Entity = new FetchEntity(entityLogicalName)
 				{
-					Attributes = new []
+					Attributes = new[]
 					{
 						new FetchAttribute(idAttribute), 
 						new FetchAttribute(primaryNameAttribute)
 					},
-					Orders = new []
+					Orders = new[]
 					{
 						new Order(primaryNameAttribute, OrderType.Ascending)
 					}
@@ -1063,7 +1061,7 @@ namespace Adxstudio.Xrm.Web.Providers
 
 			if (!string.IsNullOrEmpty(stateAttribute))
 			{
-				fetch.Entity.Filters = new []
+				fetch.Entity.Filters = new[]
 				{
 					new Filter
 					{
@@ -1076,7 +1074,7 @@ namespace Adxstudio.Xrm.Web.Providers
 				};
 			}
 
-			return ((RetrieveMultipleResponse) serviceContext.Execute(fetch.ToRetrieveMultipleRequest()))
+			return ((RetrieveMultipleResponse)serviceContext.Execute(fetch.ToRetrieveMultipleRequest()))
 				.EntityCollection
 				.Entities
 				.ToArray();
@@ -1089,7 +1087,7 @@ namespace Adxstudio.Xrm.Web.Providers
 				Distinct = true,
 				Entity = new FetchEntity("adx_pagetemplate")
 				{
-					Attributes = new []
+					Attributes = new[]
 					{
 						new FetchAttribute("adx_pagetemplateid"), 
 						new FetchAttribute("adx_name"),
@@ -1101,14 +1099,14 @@ namespace Adxstudio.Xrm.Web.Providers
 						new Filter
 						{
 							Type = LogicalOperator.And,
-							Conditions = new []
+							Conditions = new[]
 							{
 								new Condition("adx_websiteid", ConditionOperator.Equal, websiteId),
 								new Condition("statecode", ConditionOperator.Equal, 0)
 							}
 						},
 					},
-					Orders = new []
+					Orders = new[]
 					{
 						new Order("adx_name", OrderType.Ascending)
 					}
@@ -1120,7 +1118,7 @@ namespace Adxstudio.Xrm.Web.Providers
 				fetch.Entity.Filters.Add(new Filter
 				{
 					Type = LogicalOperator.Or,
-					Conditions = new []
+					Conditions = new[]
 					{
 						new Condition("adx_entityname", ConditionOperator.Equal, filter),
 						new Condition("adx_entityname", ConditionOperator.Null)
@@ -1128,7 +1126,7 @@ namespace Adxstudio.Xrm.Web.Providers
 				});
 			}
 
-			return ((RetrieveMultipleResponse) serviceContext.Execute(fetch.ToRetrieveMultipleRequest()))
+			return ((RetrieveMultipleResponse)serviceContext.Execute(fetch.ToRetrieveMultipleRequest()))
 				.EntityCollection
 				.Entities
 				.ToArray();
@@ -1136,16 +1134,16 @@ namespace Adxstudio.Xrm.Web.Providers
 
 		private static readonly IDictionary<string, Tuple<string, string, string>> TaggableEntities = new Dictionary<string, Tuple<string, string, string>>
 		{
-			{"adx_blogpost", new Tuple<string, string, string>("adx_blogpost", "adx_blogpostid", "adx_blogpost_tag")},
-			{"adx_communityforumthread", new Tuple<string, string, string>("adx_communityforumthread", "adx_communityforumthreadid", "adx_communityforumthread_tag")},
+			{ "adx_blogpost", new Tuple<string, string, string>("adx_blogpost", "adx_blogpostid", "adx_blogpost_tag") },
+			{ "adx_communityforumthread", new Tuple<string, string, string>("adx_communityforumthread", "adx_communityforumthreadid", "adx_communityforumthread_tag") },
 		};
 
 		private static readonly IDictionary<string, WebsiteJoin> WebsiteJoins = new Dictionary<string, WebsiteJoin>
 		{
-			{"adx_communityforumthread", new WebsiteJoin("adx_communityforumthread", "adx_forumid", "adx_communityforum", "adx_communityforumid", "adx_websiteid")},
-			{"adx_eventschedule", new WebsiteJoin("adx_eventschedule", "adx_eventid", "adx_event", "adx_eventid", "adx_websiteid")},
-			{"adx_weblink", new WebsiteJoin("adx_weblink", "adx_weblinksetid", "adx_weblinkset", "adx_weblinksetid", "adx_websiteid")},
-			{"adx_blogpost", new WebsiteJoin("adx_blogpost", "adx_blogid", "adx_blog", "adx_blogid", "adx_websiteid")}
+			{ "adx_communityforumthread", new WebsiteJoin("adx_communityforumthread", "adx_forumid", "adx_communityforum", "adx_communityforumid", "adx_websiteid") },
+			{ "adx_eventschedule", new WebsiteJoin("adx_eventschedule", "adx_eventid", "adx_event", "adx_eventid", "adx_websiteid") },
+			{ "adx_weblink", new WebsiteJoin("adx_weblink", "adx_weblinksetid", "adx_weblinkset", "adx_weblinksetid", "adx_websiteid") },
+			{ "adx_blogpost", new WebsiteJoin("adx_blogpost", "adx_blogid", "adx_blog", "adx_blogid", "adx_websiteid") }
 		};
 
 		private class WebsiteJoin

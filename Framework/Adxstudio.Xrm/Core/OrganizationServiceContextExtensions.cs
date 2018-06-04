@@ -138,12 +138,12 @@ namespace Adxstudio.Xrm.Core
 			// when we make a switch to 2015 sdk, we should just replace this with the new RetrieveOrganizationRequest/Response.
 			if (columns == null)
 			{
-				columns = new[] {"name"};
+				columns = new[] { "name" };
 			}
-			return ((RetrieveResponse) serviceContext.Execute(new RetrieveRequest
+			return ((RetrieveResponse)serviceContext.Execute(new RetrieveRequest
 			{
 				ColumnSet = new ColumnSet(columns),
-				Target = new EntityReference("organization", ((WhoAmIResponse) serviceContext.Execute(new WhoAmIRequest())).OrganizationId)
+				Target = new EntityReference("organization", ((WhoAmIResponse)serviceContext.Execute(new WhoAmIRequest())).OrganizationId)
 			})).Entity;
 		}
 	}

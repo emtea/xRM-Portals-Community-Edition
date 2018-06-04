@@ -32,13 +32,13 @@ namespace Site.Areas.Service311.Controls
 		{
 			Potential = 756150000,
 			Confirmed = 756150001,
-		};
+		}
 
 		private enum DuplicateDistanceUnit
 		{
 			Miles = 756150000,
 			Kilometers = 756150001,
-		};
+		}
 
 		private bool _isUnique;
 
@@ -65,7 +65,7 @@ namespace Site.Areas.Service311.Controls
 
 				var duplicateDistance = Convert.ToDouble(type.GetAttributeValue("adx_duplicatedistance"));
 				var distanceUnit = type.GetAttributeValue<OptionSetValue>("adx_duplicatedistanceunit");
-				var unit = distanceUnit != null ? (DuplicateDistanceUnit) distanceUnit.Value : DuplicateDistanceUnit.Miles;
+				var unit = distanceUnit != null ? (DuplicateDistanceUnit)distanceUnit.Value : DuplicateDistanceUnit.Miles;
 				var distance = unit == DuplicateDistanceUnit.Miles ? (1.60934 * duplicateDistance) : duplicateDistance;
 
 				var entity = GetPreviousStepEntity(context);
@@ -133,7 +133,7 @@ namespace Site.Areas.Service311.Controls
 				ID = "CurrentList",
 				LanguageCode = LanguageCode,
 				PortalName = PortalName,
-				ViewConfigurations = new List<ViewConfiguration> {viewConfiguration},
+				ViewConfigurations = new List<ViewConfiguration> { viewConfiguration },
 				ListCssClass = "table table-striped",
 				SelectMode = EntityGridExtensions.GridSelectMode.Single
 			};
@@ -194,7 +194,7 @@ namespace Site.Areas.Service311.Controls
 				PortalName = PortalName
 			};
 
-			var response = context.Execute(new RetrieveMultipleRequest {Query = new FetchExpression(viewConfiguration.FetchXml.ToString())}) as RetrieveMultipleResponse;
+			var response = context.Execute(new RetrieveMultipleRequest { Query = new FetchExpression(viewConfiguration.FetchXml.ToString()) }) as RetrieveMultipleResponse;
 
 			if (!response.EntityCollection.Entities.Any())
 			{

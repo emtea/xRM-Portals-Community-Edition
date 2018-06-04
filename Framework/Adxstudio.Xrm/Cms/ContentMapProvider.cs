@@ -301,7 +301,7 @@ namespace Adxstudio.Xrm.Cms
 			{
 				references[0].ThrowOnNull("reference");
 				EntityDefinition ed;
-				Dictionary<Guid,Entity> mapEntities = new Dictionary<Guid, Entity>();
+				Dictionary<Guid, Entity> mapEntities = new Dictionary<Guid, Entity>();
 				bool getEntityDefinition = map.Solution.Entities.TryGetValue(references[0].LogicalName, out ed);
 
 				if (getEntityDefinition)
@@ -323,7 +323,7 @@ namespace Adxstudio.Xrm.Cms
 							mapEntities.Add(entity.Id, entity);
 						}
 
-						ADXTrace.Instance.TraceInfo(TraceCategory.Application, string.Format("Retrieve Multiple Response for Entity {0} has Record Count {1} , Refrence Count {2} ", references[0].LogicalName , entities.Count , references.Count));
+						ADXTrace.Instance.TraceInfo(TraceCategory.Application, string.Format("Retrieve Multiple Response for Entity {0} has Record Count {1} , Refrence Count {2} ", references[0].LogicalName, entities.Count, references.Count));
 
 						// check if the entity is inactive according to the definition
 						foreach (var reference in references)
@@ -346,7 +346,7 @@ namespace Adxstudio.Xrm.Cms
 						}
 
 					}
-					catch (FaultException<OrganizationServiceFault> fe)
+					catch (FaultException<OrganizationServiceFault>)
 					{
 						// an exception occurs when trying to retrieve a non-existing entity
 						ADXTrace.Instance.TraceInfo(TraceCategory.Application, string.Format("An exception occurs when trying to retrieve a non-existing entity"));
@@ -359,7 +359,7 @@ namespace Adxstudio.Xrm.Cms
 			}
 		}
 
-		private static DataCollection<Entity> RetrieveCRMRecords(CrmDbContext context, string primaryEntityAttribute , EntityReference reference , EntityDefinition ed , List<Guid> guids)
+		private static DataCollection<Entity> RetrieveCRMRecords(CrmDbContext context, string primaryEntityAttribute, EntityReference reference, EntityDefinition ed, List<Guid> guids)
 		{
 			var fetch = ed.CreateFetch();
 
@@ -390,7 +390,7 @@ namespace Adxstudio.Xrm.Cms
 
 			// retrieve a fresh entity which also acts as a backend validation
 			ADXTrace.Instance.TraceInfo(TraceCategory.Application, string.Format("Calling Retrieve Multiple Request for Entity {0} ", EntityNamePrivacy.GetEntityName(reference.LogicalName)));
-			RetrieveMultipleResponse responses = (RetrieveMultipleResponse) context.Service.Execute(fetch.ToRetrieveMultipleRequest());
+			RetrieveMultipleResponse responses = (RetrieveMultipleResponse)context.Service.Execute(fetch.ToRetrieveMultipleRequest());
 			var entities = responses.EntityCollection.Entities;
 
 			ADXTrace.Instance.TraceInfo(TraceCategory.Application, string.Format("Retrieve Multiple Response for Entity {0} has Record Count {1}  ", EntityNamePrivacy.GetEntityName(reference.LogicalName), responses.EntityCollection.Entities.Count));
@@ -503,8 +503,8 @@ namespace Adxstudio.Xrm.Cms
 
 				var targetRelationship = ed.Relationships.Single(r => r.ForeignEntityLogicalname == target.LogicalName);
 
-				var filters = fetch.Entity.Filters.FirstOrDefault() ?? new Filter {Conditions = new List<Condition>()};
-				filters.Conditions.Add(new Condition( targetRelationship.ForeignIdAttributeName, ConditionOperator.Equal, target.Id));
+				var filters = fetch.Entity.Filters.FirstOrDefault() ?? new Filter { Conditions = new List<Condition>() };
+				filters.Conditions.Add(new Condition(targetRelationship.ForeignIdAttributeName, ConditionOperator.Equal, target.Id));
 
 				var relatedIds = relatedEntities.Select(related => related.Id).Cast<object>().ToArray();
 				var firstRelated = relatedEntities.FirstOrDefault();

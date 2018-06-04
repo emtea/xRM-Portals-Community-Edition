@@ -54,7 +54,7 @@ namespace Adxstudio.Xrm.Issues
 
 		public DataAdapterDependencies(OrganizationServiceContext serviceContext, ICrmEntitySecurityProvider securityProvider,
 			HttpContextBase httpContext, EntityReference website, EntityReference portalUser = null)
-			:this(serviceContext, securityProvider, httpContext, website, portalUser: portalUser, requestContext: null)
+			: this(serviceContext, securityProvider, httpContext, website, portalUser: portalUser, requestContext: null)
 		{
 			
 		}
@@ -74,8 +74,7 @@ namespace Adxstudio.Xrm.Issues
 				httpContext,
 				portalContext.Website == null ? null : portalContext.Website.ToEntityReference(),
 				portalContext.User != null ? portalContext.User.ToEntityReference() : null,
-				requestContext: requestContext
-			)
+				requestContext: requestContext)
 		{
 			portalContext.ThrowOnNull("portalContext");
 		}
@@ -142,9 +141,9 @@ namespace Adxstudio.Xrm.Issues
 			{
 				var pathData = RouteTable.Routes.GetVirtualPath(_requestContext, typeof(CmsEntityDeleteRouteHandler).FullName, new RouteValueDictionary
 				{
-					{"__portalScopeId__", website.Id.ToString()},
-					{"entityLogicalName", entity.LogicalName},
-					{"id", entity.Id.ToString()},
+					{ "__portalScopeId__", website.Id.ToString() },
+					{ "entityLogicalName", entity.LogicalName },
+					{ "id", entity.Id.ToString() },
 				});
 				
 				return pathData == null ? null : ApplicationPath.FromAbsolutePath(VirtualPathUtility.ToAbsolute(pathData.VirtualPath));
@@ -167,9 +166,9 @@ namespace Adxstudio.Xrm.Issues
 			{
 				var pathData = RouteTable.Routes.GetVirtualPath(_requestContext, typeof(CmsEntityRouteHandler).FullName, new RouteValueDictionary
 				{
-					{"__portalScopeId__", website.Id.ToString()},
-					{"entityLogicalName", entity.LogicalName},
-					{"id", entity.Id.ToString()},
+					{ "__portalScopeId__", website.Id.ToString() },
+					{ "entityLogicalName", entity.LogicalName },
+					{ "id", entity.Id.ToString() },
 				});
 				
 				return pathData == null ? null : ApplicationPath.FromAbsolutePath(VirtualPathUtility.ToAbsolute(pathData.VirtualPath));

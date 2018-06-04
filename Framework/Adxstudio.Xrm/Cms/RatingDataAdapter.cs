@@ -16,7 +16,7 @@ using Microsoft.Xrm.Sdk.Metadata;
 
 namespace Adxstudio.Xrm.Cms
 {
-	public class RatingDataAdapter: IRatingDataAdapter
+	public class RatingDataAdapter : IRatingDataAdapter
 	{
 		public RatingDataAdapter(EntityReference rateableReference, IDataAdapterDependencies dependencies)
 		{
@@ -33,10 +33,10 @@ namespace Adxstudio.Xrm.Cms
 		}
 
 		public RatingDataAdapter(Entity rateable, IDataAdapterDependencies dependencies) 
-			: this(rateable.ToEntityReference(), dependencies) {}
+			: this(rateable.ToEntityReference(), dependencies) { }
 
 		public RatingDataAdapter(EntityReference rateableReference, string portalName = null)
-			: this(rateableReference, new PortalConfigurationDataAdapterDependencies(portalName)) {}
+			: this(rateableReference, new PortalConfigurationDataAdapterDependencies(portalName)) { }
 
 		public RatingDataAdapter(Entity rateable, string portalName = null) 
 			: this(rateable.ToEntityReference(), new PortalConfigurationDataAdapterDependencies(portalName)) { }
@@ -80,7 +80,7 @@ namespace Adxstudio.Xrm.Cms
 
 		public IRating SelectVisitorRating(string visitorID)
 		{
-			if (String.IsNullOrEmpty(visitorID)) return null;
+			if (string.IsNullOrEmpty(visitorID)) return null;
 
 			var serviceContext = Dependencies.GetServiceContext();
 
@@ -180,7 +180,7 @@ namespace Adxstudio.Xrm.Cms
 				{
 					var newRatingEntity = new Entity(FeedbackMetadataAttributes.RatingEntityName);
 
-					if (!String.IsNullOrEmpty(visitorID))
+					if (!string.IsNullOrEmpty(visitorID))
 					{
 						newRatingEntity.Attributes[FeedbackMetadataAttributes.VisitorAttributeName] = visitorID;
 					}
@@ -218,7 +218,7 @@ namespace Adxstudio.Xrm.Cms
 			entity.Attributes[FeedbackMetadataAttributes.RatingValueAttributeName] = rating;
 			entity.Attributes[FeedbackMetadataAttributes.MaxRatingAttributeName] = maxRating;
 			entity.Attributes[FeedbackMetadataAttributes.MinRatingAttributeName] = minRating;
-			entity.Attributes["source"] = new OptionSetValue((int) FeedbackSource.Portal);
+			entity.Attributes["source"] = new OptionSetValue((int)FeedbackSource.Portal);
 
 			var entityMetadata = GetRelatedEntityMetadata(serviceContext);
 

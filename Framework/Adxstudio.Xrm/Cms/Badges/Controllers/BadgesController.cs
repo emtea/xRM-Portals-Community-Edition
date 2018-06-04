@@ -70,29 +70,29 @@ namespace Adxstudio.Xrm.Cms.Badges.Controllers
 				default:
 					badges = BasicBadges(entities);
 					break;
-			};
+			}
 
 			return Content(badges);
 		}
 
 		private static RetrieveMultipleResponse FetchBadges(string contactid)
 		{
-			string parentAccountId = "";
+			string parentAccountId = string.Empty;
 			
 			
 			try
 			{
-				using(var context = PortalCrmConfigurationManager.CreateServiceContext())
+				using (var context = PortalCrmConfigurationManager.CreateServiceContext())
 				{
 					var AccountQueryResult = context.Execute(new RetrieveRequest
 					{
 						ColumnSet = new ColumnSet("parentcustomerid"),
 						Target = new EntityReference("contact", new Guid(contactid)),
 					}); 
-					if(AccountQueryResult.Results != null)
+					if (AccountQueryResult.Results != null)
 					{
 						var contactParentAccount = ((Entity)AccountQueryResult.Results.First().Value).GetAttributeValue<EntityReference>("parentcustomerid");
-						parentAccountId = contactParentAccount != null ? contactParentAccount.Id.ToString() : "";
+						parentAccountId = contactParentAccount != null ? contactParentAccount.Id.ToString() : string.Empty;
 					}
 				}
 			}
@@ -129,7 +129,7 @@ namespace Adxstudio.Xrm.Cms.Badges.Controllers
 			var filter = fetchXml.XPathSelectElement("//entity[@name='adx_badge']/filter/filter[@type='or']");
 
 			filter.AddFetchXmlFilterCondition("adx_contactid", "eq", contactid);
-			if(parentAccountId != "")
+			if (parentAccountId != string.Empty)
 			{
 				filter.AddFetchXmlFilterCondition("adx_accountid", "eq", parentAccountId);
 			}

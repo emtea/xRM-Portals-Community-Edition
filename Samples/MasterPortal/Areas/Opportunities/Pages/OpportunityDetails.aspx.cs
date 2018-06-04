@@ -172,7 +172,7 @@ namespace Site.Areas.Opportunities.Pages
 
 			Guid id;
 
-			if ((AssignToList != null && !String.IsNullOrEmpty(AssignToList.SelectedValue)) && Guid.TryParse(AssignToList.SelectedItem.Value, out id))
+			if ((AssignToList != null && !string.IsNullOrEmpty(AssignToList.SelectedValue)) && Guid.TryParse(AssignToList.SelectedItem.Value, out id))
 			{
 				e.Values["msa_partneroppid"] = id;
 			}
@@ -314,13 +314,13 @@ namespace Site.Areas.Opportunities.Pages
 			calculatePartnerDetailsAction.SetAttributeValue("adx_accountid", partner.ToEntityReference());
 			var assignedto = opportunity.GetRelatedEntity(context, new Relationship("msa_contact_opportunity"));
 
-			if (!String.IsNullOrEmpty(oppnote.GetAttributeValue<string>("adx_name")))
+			if (!string.IsNullOrEmpty(oppnote.GetAttributeValue<string>("adx_name")))
 			{
 				oppnote.SetAttributeValue("adx_opportunityid", opportunity.ToEntityReference());
 				oppnote.SetAttributeValue("adx_assignedto", assignedto != null ? assignedto.GetAttributeValue<string>("fullname") : string.Empty);
 				context.AddObject(oppnote);
 			}
-			if (!String.IsNullOrEmpty(oppnote2.GetAttributeValue<string>("adx_name")))
+			if (!string.IsNullOrEmpty(oppnote2.GetAttributeValue<string>("adx_name")))
 			{
 				oppnote2.SetAttributeValue("adx_opportunityid", opportunity.ToEntityReference());
 				oppnote2.SetAttributeValue("adx_assignedto", assignedto != null ? assignedto.GetAttributeValue<string>("fullname") : string.Empty);
@@ -395,7 +395,7 @@ namespace Site.Areas.Opportunities.Pages
 			var parentAccount = (account != null && account.GetAttributeValue<EntityReference>("msa_managingpartnerid") != null) ?
 				ServiceContext.CreateQuery("account").FirstOrDefault(a => a.GetAttributeValue<Guid>("accountid") == account.GetAttributeValue<EntityReference>("msa_managingpartnerid").Id) : null;
 
-			string contactFormattedString = "";
+			string contactFormattedString = string.Empty;
 
 			if ((parentAccount != null && channelPermission != null && channelPermission.GetAttributeValue<EntityReference>("adx_accountid") != null && (channelPermission.GetAttributeValue<EntityReference>("adx_accountid").Equals(parentAccount.ToEntityReference()))) ||
 					(contact.GetAttributeValue<EntityReference>("msa_managingpartnerid") != null && channelPermission != null && contact.GetAttributeValue<EntityReference>("msa_managingpartnerid").Equals(channelPermission.GetAttributeValue<EntityReference>("adx_accountid"))))
@@ -779,7 +779,7 @@ namespace Site.Areas.Opportunities.Pages
 
 		protected QueryStringCollection CreateCustomerContactQueryString()
 		{
-			var queryStringCollection = new QueryStringCollection("");
+			var queryStringCollection = new QueryStringCollection(string.Empty);
 
 			var oppId = OpenOpportunity.GetAttributeValue<Guid>("opportunityid");
 

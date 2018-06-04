@@ -472,7 +472,7 @@ namespace Adxstudio.Xrm.Blogs
 
 				if (!entities.Any())
 				{
-					return new Tuple<string, string, BlogCommentPolicy, string[], IRatingInfo>(null, null, defaultCommentPolicy, new string[] {}, null);
+					return new Tuple<string, string, BlogCommentPolicy, string[], IRatingInfo>(null, null, defaultCommentPolicy, new string[] { }, null);
 				}
 
 				var entity = entities.First();
@@ -482,17 +482,17 @@ namespace Adxstudio.Xrm.Blogs
 
 				object postCommentPolicyAttributeValue;
 				var postCommentPolicy = entity.Attributes.TryGetValue("adx_commentpolicy", out postCommentPolicyAttributeValue) && (postCommentPolicyAttributeValue is OptionSetValue)
-					? (BlogPostCommentPolicy)Enum.ToObject(typeof (BlogPostCommentPolicy), ((OptionSetValue)postCommentPolicyAttributeValue).Value)
+					? (BlogPostCommentPolicy)Enum.ToObject(typeof(BlogPostCommentPolicy), ((OptionSetValue)postCommentPolicyAttributeValue).Value)
 					: BlogPostCommentPolicy.Inherit;
 
 				var blogCommentPolicyOption = entity.GetAttributeAliasedValue<OptionSetValue>("blog.adx_commentpolicy");
 				var blogCommentPolicy = blogCommentPolicyOption == null
 					? defaultCommentPolicy
-					: (BlogCommentPolicy)Enum.ToObject(typeof (BlogCommentPolicy), blogCommentPolicyOption.Value);
+					: (BlogCommentPolicy)Enum.ToObject(typeof(BlogCommentPolicy), blogCommentPolicyOption.Value);
 
 				var commentPolicy = postCommentPolicy == BlogPostCommentPolicy.Inherit
 					? blogCommentPolicy
-					: (BlogCommentPolicy)Enum.ToObject(typeof (BlogCommentPolicy), (int)postCommentPolicy);
+					: (BlogCommentPolicy)Enum.ToObject(typeof(BlogCommentPolicy), (int)postCommentPolicy);
 
 				var tags = entities
 					.Select(e => e.GetAttributeAliasedValue<string>("tag.adx_name"))
@@ -501,7 +501,7 @@ namespace Adxstudio.Xrm.Blogs
 
 				int ratingCount = 0;
 				int ratingSum = 0;
-				double averageRating=0;
+				double averageRating = 0;
 				int yesCount = 0;
 				int noCount = 0;
 

@@ -80,9 +80,9 @@ namespace Adxstudio.Xrm.Blogs
 				return null;
 			}
 
-			var virtualPath = RouteTable.Routes.GetVirtualPath(requestContext, typeof (WebsiteBlogAggregationFeedRouteHandler).FullName, new RouteValueDictionary
+			var virtualPath = RouteTable.Routes.GetVirtualPath(requestContext, typeof(WebsiteBlogAggregationFeedRouteHandler).FullName, new RouteValueDictionary
 			{
-				{"__portalScopeId__", _website.Id}
+				{ "__portalScopeId__", _website.Id }
 			});
 			
 			return virtualPath == null ? null : ApplicationPath.FromAbsolutePath(VirtualPathUtility.ToAbsolute(virtualPath.VirtualPath));
@@ -97,10 +97,10 @@ namespace Adxstudio.Xrm.Blogs
 				return null;
 			}
 
-			var virtualPath = RouteTable.Routes.GetVirtualPath(requestContext, typeof (BlogFeedRouteHandler).FullName, new RouteValueDictionary
+			var virtualPath = RouteTable.Routes.GetVirtualPath(requestContext, typeof(BlogFeedRouteHandler).FullName, new RouteValueDictionary
 			{
-				{"__portalScopeId__", _website.Id},
-				{"id", blogId}
+				{ "__portalScopeId__", _website.Id },
+				{ "id", blogId }
 			});
 
 			return virtualPath == null ? null : ApplicationPath.FromAbsolutePath(VirtualPathUtility.ToAbsolute(virtualPath.VirtualPath));
@@ -116,11 +116,11 @@ namespace Adxstudio.Xrm.Blogs
 
 			try
 			{
-				var pathData = RouteTable.Routes.GetVirtualPath(_requestContext, typeof (CmsEntityDeleteRouteHandler).FullName, new RouteValueDictionary
+				var pathData = RouteTable.Routes.GetVirtualPath(_requestContext, typeof(CmsEntityDeleteRouteHandler).FullName, new RouteValueDictionary
 				{
-					{"__portalScopeId__", website.Id.ToString()},
-					{"entityLogicalName", entity.LogicalName},
-					{"id", entity.Id.ToString()},
+					{ "__portalScopeId__", website.Id.ToString() },
+					{ "entityLogicalName", entity.LogicalName },
+					{ "id", entity.Id.ToString() },
 				});
 
 				return pathData == null ? null : ApplicationPath.FromAbsolutePath(VirtualPathUtility.ToAbsolute(pathData.VirtualPath));
@@ -141,11 +141,11 @@ namespace Adxstudio.Xrm.Blogs
 
 			try
 			{
-				var pathData = RouteTable.Routes.GetVirtualPath(_requestContext, typeof (CmsEntityRouteHandler).FullName, new RouteValueDictionary
+				var pathData = RouteTable.Routes.GetVirtualPath(_requestContext, typeof(CmsEntityRouteHandler).FullName, new RouteValueDictionary
 				{
-					{"__portalScopeId__", website.Id.ToString()},
-					{"entityLogicalName", entity.LogicalName},
-					{"id", entity.Id.ToString()},
+					{ "__portalScopeId__", website.Id.ToString() },
+					{ "entityLogicalName", entity.LogicalName },
+					{ "id", entity.Id.ToString() },
 				});
 				
 				return pathData == null ? null : ApplicationPath.FromAbsolutePath(VirtualPathUtility.ToAbsolute(pathData.VirtualPath));

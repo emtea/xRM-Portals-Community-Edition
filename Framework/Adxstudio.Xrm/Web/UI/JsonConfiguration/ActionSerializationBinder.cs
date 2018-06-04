@@ -14,7 +14,7 @@ using Microsoft.Xrm.Sdk;
 
 namespace Adxstudio.Xrm.Web.UI.JsonConfiguration
 {
-	public class ActionSerializationBinder :SerializationBinder
+	public class ActionSerializationBinder : SerializationBinder
 	{
 		private IList<Type> _knownTypes;
 		
@@ -24,7 +24,7 @@ namespace Adxstudio.Xrm.Web.UI.JsonConfiguration
 			{
 				if (_knownTypes == null)
 				{
-					return new List<Type>
+					_knownTypes = new List<Type>
 					{
 						typeof(ViewLayout),
 						typeof(Order),

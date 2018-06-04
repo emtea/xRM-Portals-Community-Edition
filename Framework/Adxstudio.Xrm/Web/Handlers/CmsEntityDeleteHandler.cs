@@ -23,9 +23,9 @@ namespace Adxstudio.Xrm.Web.Handlers
 {
 	public class CmsEntityDeleteHandler : CmsEntityHandler, System.Web.SessionState.IReadOnlySessionState
 	{
-		public CmsEntityDeleteHandler() {}
+		public CmsEntityDeleteHandler() { }
 
-		public CmsEntityDeleteHandler(string portalName, Guid? portalScopeId, string entityLogicalName, Guid? id) : base(portalName, portalScopeId, entityLogicalName, id) {}
+		public CmsEntityDeleteHandler(string portalName, Guid? portalScopeId, string entityLogicalName, Guid? id) : base(portalName, portalScopeId, entityLogicalName, id) { }
 
 		protected override void ProcessRequest(HttpContext context, ICmsEntityServiceProvider serviceProvider, Guid portalScopeId, IPortalContext portal, OrganizationServiceContext serviceContext, Entity entity, CmsEntityMetadata entityMetadata, ICrmEntitySecurityProvider security)
 		{
@@ -53,7 +53,7 @@ namespace Adxstudio.Xrm.Web.Handlers
 				{
 					var forumDataAdapter = new ForumDataAdapter(
 						forum.ToEntityReference(),
-						new PortalConfigurationDataAdapterDependencies(portalName:PortalName, requestContext:context.Request.RequestContext));
+						new PortalConfigurationDataAdapterDependencies(portalName: PortalName, requestContext: context.Request.RequestContext));
 
 					forumDataAdapter.DeleteThread(entity.ToEntityReference());
 
@@ -76,7 +76,7 @@ namespace Adxstudio.Xrm.Web.Handlers
 				{
 					var forumThreadDataAdapter = new ForumThreadDataAdapter(
 						forumThread.ToEntityReference(),
-						new PortalConfigurationDataAdapterDependencies(portalName:PortalName, requestContext:context.Request.RequestContext));
+						new PortalConfigurationDataAdapterDependencies(portalName: PortalName, requestContext: context.Request.RequestContext));
 
 					forumThreadDataAdapter.DeletePost(entity.ToEntityReference());
 

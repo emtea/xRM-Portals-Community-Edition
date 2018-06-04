@@ -27,7 +27,7 @@ namespace Site.Areas.CaseManagement.Controllers
 		// POST: CaseManagement/Entitlements
 		[HttpPost]
 		[AjaxValidateAntiForgeryToken]
-		public ActionResult GetDefaultEntitlements(string layout, string sortExpression, IDictionary<string, string> customParameters )
+		public ActionResult GetDefaultEntitlements(string layout, string sortExpression, IDictionary<string, string> customParameters)
 		{
 			EntityGridController egc = new EntityGridController();
 			var result = GetData(layout, sortExpression, customParameters);
@@ -38,7 +38,7 @@ namespace Site.Areas.CaseManagement.Controllers
 				if (entitlements.Any())
 				{
 					var defaultEntitlement = entitlements[0];
-					return Json(new {id = defaultEntitlement.Id, name = defaultEntitlement.Attributes["name"], entityname = defaultEntitlement.LogicalName});
+					return Json(new { id = defaultEntitlement.Id, name = defaultEntitlement.Attributes["name"], entityname = defaultEntitlement.LogicalName });
 				}
 			}
 			return Json(null);

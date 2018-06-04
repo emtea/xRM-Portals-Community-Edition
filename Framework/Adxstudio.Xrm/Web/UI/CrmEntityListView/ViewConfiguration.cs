@@ -472,7 +472,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityListView
 					entitylist.GetAttributeValue<string>("adx_map_distancevalues"), entitylist.GetAttributeValue<int?>("adx_map_infoboxoffsety"),
 					entitylist.GetAttributeValue<int?>("adx_map_infoboxoffsetx"), entitylist.GetAttributeValue<int?>("adx_map_pushpinwidth"),
 					entitylist.GetAttributeValue<string>("adx_map_pushpinurl"), entitylist.GetAttributeValue<int?>("adx_map_zoom"),
-					entitylist.GetAttributeAliasedValue<Double?>("adx_map_longitude"), entitylist.GetAttributeAliasedValue<Double?>("adx_map_latitude"),
+					entitylist.GetAttributeAliasedValue<double?>("adx_map_longitude"), entitylist.GetAttributeAliasedValue<double?>("adx_map_latitude"),
 					entitylist.GetAttributeAliasedValue<string>("adx_map_resturl"), entitylist.GetAttributeValue<string>("adx_map_credentials"),
 					entitylist.GetAttributeValue<int?>("adx_map_pushpinheight"));
 			}
@@ -509,7 +509,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityListView
 				throw new ApplicationException("EntityName must not be null.");
 			}
 
-			if (!String.IsNullOrWhiteSpace(EntityName) && String.IsNullOrWhiteSpace(PrimaryKeyName))
+			if (!string.IsNullOrWhiteSpace(EntityName) && string.IsNullOrWhiteSpace(PrimaryKeyName))
 			{
 				PrimaryKeyName = MetadataHelper.GetEntityPrimaryKeyAttributeLogicalName(serviceContext, EntityName);
 			}
@@ -564,7 +564,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityListView
 				throw new ApplicationException("EntityName must not be null.");
 			}
 
-			if (!String.IsNullOrWhiteSpace(EntityName) && String.IsNullOrWhiteSpace(PrimaryKeyName))
+			if (!string.IsNullOrWhiteSpace(EntityName) && string.IsNullOrWhiteSpace(PrimaryKeyName))
 			{
 				PrimaryKeyName = MetadataHelper.GetEntityPrimaryKeyAttributeLogicalName(serviceContext, EntityName);
 			}
@@ -613,14 +613,14 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityListView
 				throw new ApplicationException("EntityName must not be null.");
 			}
 
-			if (!String.IsNullOrWhiteSpace(EntityName) && String.IsNullOrWhiteSpace(PrimaryKeyName))
+			if (!string.IsNullOrWhiteSpace(EntityName) && string.IsNullOrWhiteSpace(PrimaryKeyName))
 			{
 				throw new ApplicationException("PrimaryKeyName must not be null.");
 			}
 
 			if (string.IsNullOrEmpty(ViewName) && ViewId == Guid.Empty)
 			{
-				throw new ApplicationException(string.Format("The current view configuration isn't valid. Either specify a ViewName or ViewId {0}.", ""));
+				throw new ApplicationException(string.Format("The current view configuration isn't valid. Either specify a ViewName or ViewId {0}.", string.Empty));
 			}
 
 			SavedQueryView view = null;
@@ -654,14 +654,14 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityListView
 				throw new ApplicationException("EntityName must not be null.");
 			}
 
-			if (!String.IsNullOrWhiteSpace(EntityName) && String.IsNullOrWhiteSpace(PrimaryKeyName))
+			if (!string.IsNullOrWhiteSpace(EntityName) && string.IsNullOrWhiteSpace(PrimaryKeyName))
 			{
 				throw new ApplicationException("PrimaryKeyName must not be null.");
 			}
 
 			if (string.IsNullOrEmpty(ViewName) && ViewId == Guid.Empty)
 			{
-				throw new ApplicationException(string.Format("The current view configuration isn't valid. Either specify a ViewName or ViewId {0}.", ""));
+				throw new ApplicationException(string.Format("The current view configuration isn't valid. Either specify a ViewName or ViewId {0}.", string.Empty));
 			}
 
 			EntityView view = null;

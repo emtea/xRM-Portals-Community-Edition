@@ -58,7 +58,7 @@ namespace Adxstudio.Xrm.Web.Mvc.Liquid
 			var secondEnumerable = second as IEnumerable;
 
 			return secondEnumerable == null
-				? firstEnumerable.Concat(new [] { second })
+				? firstEnumerable.Concat(new[] { second })
 				: firstEnumerable.Concat(secondEnumerable.Cast<object>());
 		}
 
@@ -71,8 +71,8 @@ namespace Adxstudio.Xrm.Web.Mvc.Liquid
 		{
 			return input.Cast<object>().GroupBy(e => Get(e, key)).Select(group => new Hash
 			{
-				{"key", @group.Key},
-				{"items", @group.AsEnumerable()}
+				{ "key", @group.Key },
+				{ "items", @group.AsEnumerable() }
 			});
 		}
 

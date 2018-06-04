@@ -16,7 +16,7 @@ namespace Adxstudio.Xrm.Notes
 		private string _acceptMimeTypes;
 		private string _acceptExtensionTypes;
 		// Max possible CRM size
-		private const ulong _defaultMaxFileSize = 32 << 10 << 10;// MB<<kB<<B
+		private const ulong _defaultMaxFileSize = 32 << 10 << 10; // MB<<kB<<B
 
 		private readonly string _defaultRestrictFileTypesErrorMessage = ResourceManager.GetString("Restrict_FileTypes_ErrorMessage");
 		private readonly string _defaultMaxFileSizeErrorMessage = ResourceManager.GetString("Max_FileSize_ErrorMessage");
@@ -71,14 +71,14 @@ namespace Adxstudio.Xrm.Notes
 			switch (StorageLocation)
 			{
 			case StorageLocation.CrmDocument:
-				var org = context.GetOrganizationEntity(new[] {"maxuploadfilesize", "blockedattachments"});
+				var org = context.GetOrganizationEntity(new[] { "maxuploadfilesize", "blockedattachments" });
 				
 				var orgMaxFileSize = Convert.ToUInt64(org.GetAttributeValue<int>("maxuploadfilesize"));
 				MaxFileSize = Math.Min((maxFileSize.HasValue ? maxFileSize.Value : _defaultMaxFileSize), orgMaxFileSize);
 
 				var orgRestrictedTypes = org.GetAttributeValue<string>("blockedattachments")
-					.Split(new[] {',', ';'}, StringSplitOptions.RemoveEmptyEntries);
-				var customRestrictedTypes = restrictedFileExtensions.Split(new[] {',', ';'}, StringSplitOptions.RemoveEmptyEntries);
+					.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
+				var customRestrictedTypes = restrictedFileExtensions.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
 				RestrictedFileExtensions = string.Join(";", orgRestrictedTypes.Union(customRestrictedTypes));
 				break;
 			default:
@@ -99,7 +99,7 @@ namespace Adxstudio.Xrm.Notes
 			{ 
 				if (string.IsNullOrEmpty(_acceptMimeTypes))
 				{
-					return (IsPortalComment) ? "" : "*/*";
+					return (IsPortalComment) ? string.Empty : "*/*";
 				}
 				else
 				{
@@ -112,7 +112,7 @@ namespace Adxstudio.Xrm.Notes
 
 		public string AcceptExtensionTypes
 		{
-			get { return string.IsNullOrEmpty(_acceptExtensionTypes) ? "" : _acceptExtensionTypes; }
+			get { return string.IsNullOrEmpty(_acceptExtensionTypes) ? string.Empty : _acceptExtensionTypes; }
 			set { _acceptExtensionTypes = value; }
 		}
 
@@ -123,7 +123,7 @@ namespace Adxstudio.Xrm.Notes
 		public string RestrictedFileExtensions { get; set; }
 		public string RestrictedFileExtensionsErrorMessage { get; set; }
 		public string InvalidFileExtenstionErrorMessage { get; set; }
-		public bool IsPortalComment{ get; set; }
+		public bool IsPortalComment { get; set; }
 
 	}
 }

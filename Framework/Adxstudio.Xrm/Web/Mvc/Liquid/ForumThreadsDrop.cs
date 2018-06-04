@@ -22,13 +22,12 @@ namespace Adxstudio.Xrm.Web.Mvc.Liquid
 		public ForumThreadsDrop(IPortalLiquidContext portalLiquidContext,
 									IDataAdapterDependencies dependencies,
 									int startRowIndex = 0, int pageSize = -1, string orderBy = "adx_lastpostdate", string sortDirection = "asc")
-									: this (portalLiquidContext, dependencies, null, startRowIndex, pageSize, orderBy, sortDirection) { }
+									: this(portalLiquidContext, dependencies, null, startRowIndex, pageSize, orderBy, sortDirection) { }
 
 		public ForumThreadsDrop(IPortalLiquidContext portalLiquidContext, 
 									IDataAdapterDependencies dependencies,
 									IForum forum,
-									int startRowIndex = 0, int pageSize = -1, string orderBy = "adx_lastpostdate", string sortDirection = "asc"
-									): base(portalLiquidContext)
+									int startRowIndex = 0, int pageSize = -1, string orderBy = "adx_lastpostdate", string sortDirection = "asc") : base(portalLiquidContext)
 		{
 			if (forum != null)
 			{

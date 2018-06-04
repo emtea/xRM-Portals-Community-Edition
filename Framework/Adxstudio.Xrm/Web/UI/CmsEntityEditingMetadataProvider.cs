@@ -31,7 +31,6 @@ using Microsoft.Xrm.Sdk.Query;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Adxstudio.Xrm.Resources;
-using Adxstudio.Xrm.AspNet.Cms;
 
 namespace Adxstudio.Xrm.Web.UI
 {
@@ -43,13 +42,13 @@ namespace Adxstudio.Xrm.Web.UI
 		private static readonly Dictionary<string, IEnumerable<Relationship>> ChildRelationshipsByEntityName = new Dictionary<string, IEnumerable<Relationship>>
 		{
 			{ "adx_event",
-				new []
+				new[]
 				{
 					"adx_event_eventschedule".ToRelationship()
 				}
 			},
 			{ "adx_webpage",
-				new []
+				new[]
 				{
 					"adx_webpage_webfile".ToRelationship(),
 					"adx_webpage_webpage".ToRelationship(EntityRole.Referenced),
@@ -59,13 +58,13 @@ namespace Adxstudio.Xrm.Web.UI
 				}
 			},
 			{ "adx_blog",
-				new []
+				new[]
 				{
 					"adx_blog_blogpost".ToRelationship(),
 				}
 			},
 			{ "adx_blogpost",
-				new []
+				new[]
 				{
 					"adx_blogpost_webfile".ToRelationship(),
 				}
@@ -75,7 +74,7 @@ namespace Adxstudio.Xrm.Web.UI
 		private static readonly Dictionary<string, IEnumerable<string>> SiteMapChildEntitiesByEntityName = new Dictionary<string, IEnumerable<string>>
 		{
 			{ "adx_webpage",
-				new []
+				new[]
 				{
 					"adx_communityforum",
 					"adx_event",
@@ -86,7 +85,7 @@ namespace Adxstudio.Xrm.Web.UI
 				}
 			},
 			{ "adx_blogpost",
-				new []
+				new[]
 				{
 					"adx_webfile",
 				}
@@ -408,7 +407,7 @@ namespace Adxstudio.Xrm.Web.UI
 					container.AddAttribute("data-root", "true");
 				}
 
-				var langContext =HttpContext.Current.GetContextLanguageInfo();
+				var langContext = HttpContext.Current.GetContextLanguageInfo();
 
 				// For multi language portals, add root webpage id to the dom
 				if (langContext.IsCrmMultiLanguageEnabled)
@@ -755,7 +754,7 @@ namespace Adxstudio.Xrm.Web.UI
 				container.AddAttribute(name, url);
 			}
 			// If the route isn't found, just silently fail to add the data attribute.
-			catch (ArgumentException) {}
+			catch (ArgumentException) { }
 		}
 
 		private static bool EntityNameExistsInSchema(string entityLogicalName, IDictionary<string, EntityMetadata> allEntities)
@@ -793,7 +792,7 @@ namespace Adxstudio.Xrm.Web.UI
 				var attributeFilter = new MetadataFilterExpression(LogicalOperator.And);
 				attributeFilter.Conditions.Add(new MetadataConditionExpression("LogicalName", MetadataConditionOperator.Equals, attributeLogicalName));
 
-				var response = (RetrieveMetadataChangesResponse) serviceContext.Execute(new RetrieveMetadataChangesRequest
+				var response = (RetrieveMetadataChangesResponse)serviceContext.Execute(new RetrieveMetadataChangesRequest
 				{
 					Query = new EntityQueryExpression
 					{
@@ -873,7 +872,7 @@ namespace Adxstudio.Xrm.Web.UI
 
 		private static IDictionary<string, EntityMetadata> GetEntityDictionary(OrganizationServiceContext serviceContext)
 		{
-			var response = (RetrieveMetadataChangesResponse) serviceContext.Execute(new RetrieveMetadataChangesRequest
+			var response = (RetrieveMetadataChangesResponse)serviceContext.Execute(new RetrieveMetadataChangesRequest
 			{
 				Query = new EntityQueryExpression
 				{
@@ -894,7 +893,7 @@ namespace Adxstudio.Xrm.Web.UI
 			var entityFilter = new MetadataFilterExpression(LogicalOperator.And);
 			entityFilter.Conditions.Add(new MetadataConditionExpression("LogicalName", MetadataConditionOperator.Equals, entityLogicalName));
 
-			var response = (RetrieveMetadataChangesResponse) serviceContext.Execute(new RetrieveMetadataChangesRequest
+			var response = (RetrieveMetadataChangesResponse)serviceContext.Execute(new RetrieveMetadataChangesRequest
 			{
 				Query = new EntityQueryExpression
 				{

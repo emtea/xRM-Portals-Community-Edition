@@ -35,7 +35,7 @@ namespace Adxstudio.Xrm.Commerce
 		public string PayPalAccountEmail { get; private set; }
 
 
-		public PayPalHelper(IPortalContext xrm) :this(GetPaypalBaseUrl(xrm), GetPaypalAccountEmail(xrm))
+		public PayPalHelper(IPortalContext xrm) : this(GetPaypalBaseUrl(xrm), GetPaypalAccountEmail(xrm))
 		{
 			
 		}
@@ -113,7 +113,7 @@ namespace Adxstudio.Xrm.Commerce
 		{
 			var paypalBaseUrl = xrm.ServiceContext.GetSiteSettingValueByName(xrm.Website, "Ecommerce/Paypal/PaypalBaseUrl");
 
-			if (String.IsNullOrWhiteSpace(paypalBaseUrl))
+			if (string.IsNullOrWhiteSpace(paypalBaseUrl))
 			{
 				paypalBaseUrl = SandboxURL;
 			}
@@ -231,9 +231,9 @@ namespace Adxstudio.Xrm.Commerce
 			return true;
 		}
 
-		public static Dictionary <string, string> ToDictionary (NameValueCollection source)
+		public static Dictionary<string, string> ToDictionary(NameValueCollection source)
 		{
-			return source.Cast<string>().Select(s => new {Key = s, Value = source[s]}).ToDictionary(p => p.Key, p => p.Value);
+			return source.Cast<string>().Select(s => new { Key = s, Value = source[s] }).ToDictionary(p => p.Key, p => p.Value);
 		}
 
 		public static string GetPayPalPdtIdentityToken(IPortalContext xrm)
@@ -253,7 +253,7 @@ namespace Adxstudio.Xrm.Commerce
 		{
 			var query = string.Format("cmd=_notify-synch&tx={0}&at={1}", transactionId, identityToken);
 
-			var request = (HttpWebRequest) WebRequest.Create(PayPalBaseUrl);
+			var request = (HttpWebRequest)WebRequest.Create(PayPalBaseUrl);
 
 			request.Method = WebRequestMethods.Http.Post;
 			request.ContentType = "application/x-www-form-urlencoded";
@@ -297,7 +297,7 @@ namespace Adxstudio.Xrm.Commerce
 			{
 				Details = new Dictionary<string, string>();
 
-				if (String.IsNullOrWhiteSpace(response))
+				if (string.IsNullOrWhiteSpace(response))
 				{
 					Status = PaymentDataTransferStatus.Unknown;
 
@@ -306,7 +306,7 @@ namespace Adxstudio.Xrm.Commerce
 
 				using (var reader = new StringReader(response))
 				{
-					var line=reader.ReadLine();
+					var line = reader.ReadLine();
 
 					if (line == "FAIL")
 					{

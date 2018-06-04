@@ -47,7 +47,7 @@ namespace Adxstudio.Xrm.Cms
 		}
 
 		public ActivityEnabledEntityDataAdapter(ActivityEnabledEntity record, IDataAdapterDependencies dependencies)
-			: this(record.EntityReference, dependencies) {}
+			: this(record.EntityReference, dependencies) { }
 
 		protected IDataAdapterDependencies Dependencies { get; private set; }
 
@@ -109,7 +109,7 @@ namespace Adxstudio.Xrm.Cms
 										  EntityFilters = EntityFilters.Attributes
 									  };
 
-			var metadataResponse = (RetrieveEntityResponse) serviceContext.Execute(metadataRequest);
+			var metadataResponse = (RetrieveEntityResponse)serviceContext.Execute(metadataRequest);
 
 			var primaryIdFieldName = metadataResponse.EntityMetadata.PrimaryIdAttribute;
 
@@ -130,7 +130,7 @@ namespace Adxstudio.Xrm.Cms
 
 			activityparty["partyid"] = user;
 
-			var particpant = new EntityCollection(new List<Entity> {activityparty});
+			var particpant = new EntityCollection(new List<Entity> { activityparty });
 
 			alert["customers"] = particpant;
 

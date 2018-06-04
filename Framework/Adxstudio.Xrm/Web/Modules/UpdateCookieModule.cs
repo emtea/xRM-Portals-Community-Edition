@@ -12,7 +12,7 @@ using System.Web;
 
 namespace Adxstudio.Xrm.Web.Modules
 {
-public class UpdateCookieModule :IHttpModule
+public class UpdateCookieModule : IHttpModule
 	{
 		public void Dispose() { }
  
@@ -23,13 +23,13 @@ public class UpdateCookieModule :IHttpModule
  
 		private static void UpdateCookies(object sender, EventArgs e)
 		{
-			if(HttpContext.Current.Request.IsSecureConnection && HttpContext.Current.Response.Cookies.Count > 0)
+			if (HttpContext.Current.Request.IsSecureConnection && HttpContext.Current.Response.Cookies.Count > 0)
 			{
 				foreach (string cookieKey in HttpContext.Current.Response.Cookies.AllKeys)
 				{
-					if (cookieKey !="adxPreviewUnpublishedEntities")
+					if (cookieKey != "adxPreviewUnpublishedEntities")
 					{
-						var httpCookie =HttpContext.Current.Response.Cookies[cookieKey];
+						var httpCookie = HttpContext.Current.Response.Cookies[cookieKey];
 						if (httpCookie != null && !httpCookie.Secure)
 						{
 							httpCookie.Secure = true;

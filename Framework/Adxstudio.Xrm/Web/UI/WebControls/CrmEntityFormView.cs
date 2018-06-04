@@ -286,8 +286,8 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 		{
 			get 
 			{ 
-				var text = (string) ViewState["PreviousButtonText"];
-				return String.IsNullOrWhiteSpace(text) ? DefaultPreviousStepTemplate.DefaultPreviousButtonText : text;
+				var text = (string)ViewState["PreviousButtonText"];
+				return string.IsNullOrWhiteSpace(text) ? DefaultPreviousStepTemplate.DefaultPreviousButtonText : text;
 			}
 			set { ViewState["PreviousButtonText"] = value; }
 		}
@@ -298,7 +298,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 			get
 			{
 				var text = (string)ViewState["NextButtonText"];
-				return String.IsNullOrWhiteSpace(text) ? DefaultNextStepTemplate.DefaultNextButtonText : text;
+				return string.IsNullOrWhiteSpace(text) ? DefaultNextStepTemplate.DefaultNextButtonText : text;
 			}
 			set { ViewState["NextButtonText"] = value; }
 		}
@@ -309,7 +309,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 			get
 			{
 				var text = (string)ViewState["SubmitButtonText"];
-				return String.IsNullOrWhiteSpace(text) ? DefaultSubmitButtonText : text;
+				return string.IsNullOrWhiteSpace(text) ? DefaultSubmitButtonText : text;
 			}
 			set { ViewState["SubmitButtonText"] = value; }
 		}
@@ -343,7 +343,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 			get
 			{
 				var text = (string)ViewState["ValidationSummaryCssClass"];
-				return String.IsNullOrWhiteSpace(text) ? DefaultValidationSummaryCssClass : text;
+				return string.IsNullOrWhiteSpace(text) ? DefaultValidationSummaryCssClass : text;
 			}
 			set { ViewState["ValidationSummaryCssClass"] = value; }
 		}
@@ -355,7 +355,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 			get
 			{
 				var text = (string)ViewState["ValidationHeaderText"];
-				return String.IsNullOrWhiteSpace(text) ? DefaultValidationHeaderText : text;
+				return string.IsNullOrWhiteSpace(text) ? DefaultValidationHeaderText : text;
 			}
 			set { ViewState["ValidationHeaderText"] = value; }
 		}
@@ -400,7 +400,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 			get
 			{
 				var text = (string)ViewState["ReadAccessDeniedSnippetName"];
-				return String.IsNullOrWhiteSpace(text) ? DefaultReadAccessDeniedSnippetName : text;
+				return string.IsNullOrWhiteSpace(text) ? DefaultReadAccessDeniedSnippetName : text;
 			}
 			set { ViewState["ReadAccessDeniedSnippetName"] = value; }
 		}
@@ -416,7 +416,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 			{
 				var text = (string)ViewState["WriteAccessDeniedSnippetName"];
 
-				return String.IsNullOrWhiteSpace(text) ? DefaultWriteAccessDeniedSnippetName : text;
+				return string.IsNullOrWhiteSpace(text) ? DefaultWriteAccessDeniedSnippetName : text;
 			}
 			set
 			{
@@ -434,7 +434,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 			get
 			{
 				var text = (string)ViewState["CreateAccessDeniedSnippetName"];
-				return String.IsNullOrWhiteSpace(text) ? DefaultCreateAccessDeniedSnippetName : text;
+				return string.IsNullOrWhiteSpace(text) ? DefaultCreateAccessDeniedSnippetName : text;
 			}
 			set { ViewState["CreateAccessDeniedSnippetName"] = value; }
 		}
@@ -511,7 +511,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 		[PersistenceMode(PersistenceMode.InnerProperty), Browsable(false), DefaultValue((string)null)]
 		public ITemplate UpdateItemTemplate
 		{
-			get { return _updateItemTemplate ?? new DefaultUpdateItemTemplate(ValidationGroup, String.IsNullOrWhiteSpace(SubmitButtonText) ? DefaultUpdateItemTemplate.DefaultUpdateButtonText : SubmitButtonText, SubmitButtonCssClass); }
+			get { return _updateItemTemplate ?? new DefaultUpdateItemTemplate(ValidationGroup, string.IsNullOrWhiteSpace(SubmitButtonText) ? DefaultUpdateItemTemplate.DefaultUpdateButtonText : SubmitButtonText, SubmitButtonCssClass); }
 			set { _updateItemTemplate = value; }
 		}
 
@@ -558,7 +558,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 				{
 					_stepCount = GetStepTemplates().ToList().Count;
 				}
-				return (int) _stepCount;
+				return (int)_stepCount;
 			}
 		}
 
@@ -667,7 +667,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 
 		protected override void CreateChildControls()
 		{
-			CssClass = string.Join(" ", new[] {"entity-form", CssClass}).TrimEnd(' ');
+			CssClass = string.Join(" ", new[] { "entity-form", CssClass }).TrimEnd(' ');
 
 			if (string.IsNullOrEmpty(EntityName)) throw new InvalidOperationException("EntityName can't be null or empty.");
 
@@ -773,7 +773,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 			
 			Controls.Add(EntityNameField);
 
-			EntityIdField = new HiddenField {ID = string.Format("{0}_EntityID", ID), ClientIDMode = ClientIDMode.Static};
+			EntityIdField = new HiddenField { ID = string.Format("{0}_EntityID", ID), ClientIDMode = ClientIDMode.Static };
 
 			Controls.Add(EntityIdField);
 
@@ -783,11 +783,11 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 				EntityIdField.Value = crmEntityId.ToString();
 			}
 
-			EntityStateField = new HiddenField {ID = string.Format("{0}_EntityState", ID), ClientIDMode = ClientIDMode.Static};
+			EntityStateField = new HiddenField { ID = string.Format("{0}_EntityState", ID), ClientIDMode = ClientIDMode.Static };
 
 			Controls.Add(EntityStateField);
 
-			EntityStatusField = new HiddenField {ID = string.Format("{0}_EntityStatus", ID), ClientIDMode = ClientIDMode.Static};
+			EntityStatusField = new HiddenField { ID = string.Format("{0}_EntityStatus", ID), ClientIDMode = ClientIDMode.Static };
 
 			Controls.Add(EntityStatusField);
 
@@ -830,7 +830,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 					EditType = "html",
 					Editable = true,
 					DefaultText =
-						"<div class='alert alert-block alert-danger'><span class='fa fa-lock' aria-hidden='true'></span>"+ ResourceManager.GetString("Access_Denied_Error")+"</div>"
+						"<div class='alert alert-block alert-danger'><span class='fa fa-lock' aria-hidden='true'></span>" + ResourceManager.GetString("Access_Denied_Error") + "</div>"
 				};
 
 			Controls.Add(accessDeniedSnippet);
@@ -1022,7 +1022,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 			var filterExpression = new FilterExpression();
 			filterExpression.FilterOperator = LogicalOperator.And;
 			filterExpression.Conditions.Add(new ConditionExpression("type", ConditionOperator.NotNull));
-			filterExpression.Conditions.Add(new ConditionExpression("type",ConditionOperator.NotEqual,5));
+			filterExpression.Conditions.Add(new ConditionExpression("type", ConditionOperator.NotEqual, 5));
 			filterExpression.Conditions.Add(new ConditionExpression("objecttypecode", ConditionOperator.Equal, EntityName));
 
 			filterExpression = AddNameCondition(filterExpression, FormName);
@@ -1042,7 +1042,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 
 			const string xPathSelectAllTabs = "form/tabs/tab";
 
-			if(string.IsNullOrWhiteSpace(TabName))
+			if (string.IsNullOrWhiteSpace(TabName))
 			{
 				tabs = XDocument.Parse(formXml).XPathSelectElements(xPathSelectAllTabs).Where(t => t.HasAttributes && (t.Attribute("visible") == null || t.Attribute("visible").Value == "true")).ToList();
 			}
@@ -1056,7 +1056,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 				}
 
 				// fallback to showing all tabs if the TabName could not be found
-				if(!tabs.Any())
+				if (!tabs.Any())
 				{
 					tabs = XDocument.Parse(formXml).XPathSelectElements(xPathSelectAllTabs).Where(t => t.HasAttributes && (t.Attribute("visible") == null || t.Attribute("visible").Value == "true")).ToList();
 				}
@@ -1186,11 +1186,11 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 				{
 					CellBindings[key].Set(dataItem);
 				}
-				else if (Mode != FormViewMode.ReadOnly && key == "fullname_firstname" || key == "fullname_lastname" )
+				else if (Mode != FormViewMode.ReadOnly && key == "fullname_firstname" || key == "fullname_lastname")
 				{
 					CellBindings[key].Set(dataItem);
 				}
-				else if(Mode != FormViewMode.ReadOnly && (key.StartsWith("address") && key.Contains("composite")))
+				else if (Mode != FormViewMode.ReadOnly && (key.StartsWith("address") && key.Contains("composite")))
 				{
 					CellBindings[key].Set(dataItem);
 				}
@@ -1742,7 +1742,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 			var webControl = control as WebControl;
 			if (webControl != null)
 			{
-				webControl.Attributes.Add("readonly","readonly");
+				webControl.Attributes.Add("readonly", "readonly");
 				if (webControl is RadioButtonList || webControl is DropDownList || webControl is CheckBoxList || webControl is RadioButton || webControl is CheckBox)
 				{
 					webControl.Enabled = false;
@@ -1772,5 +1772,5 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 
 	public class CrmEntityFormViewUpdatedEventArgs : UI.CrmEntityFormView.CrmEntityFormViewUpdatedEventArgs { }
 
-	public class CrmEntityFormViewUpdatingEventArgs : UI.CrmEntityFormView.CrmEntityFormViewUpdatingEventArgs { public CrmEntityFormViewUpdatingEventArgs(IDictionary<string, object> values):base(values){ } }
+	public class CrmEntityFormViewUpdatingEventArgs : UI.CrmEntityFormView.CrmEntityFormViewUpdatingEventArgs { public CrmEntityFormViewUpdatingEventArgs(IDictionary<string, object> values) : base(values) { } }
 }

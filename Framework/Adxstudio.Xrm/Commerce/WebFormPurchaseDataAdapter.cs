@@ -390,7 +390,7 @@ namespace Adxstudio.Xrm.Commerce
 
 			var webForm = serviceContext.CreateQuery("adx_webform")
 				.Where(e => e.GetAttributeValue<Guid>("adx_webformid") == WebForm.Id)
-				.Select(e => new {Name = e.GetAttributeValue<string>("adx_name")})
+				.Select(e => new { Name = e.GetAttributeValue<string>("adx_name") })
 				.ToArray()
 				.FirstOrDefault();
 
@@ -474,7 +474,7 @@ namespace Adxstudio.Xrm.Commerce
 		{
 			TraceMethodInfo("Start: product={0}:{1}", product.LogicalName, product.Id);
 
-			var lineItems = new []
+			var lineItems = new[]
 			{
 				new LineItem(product, null, 1, false, product.GetAttributeValue<string>("description"), null, 1)
 			};

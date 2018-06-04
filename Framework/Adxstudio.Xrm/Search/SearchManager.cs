@@ -124,7 +124,7 @@ namespace Adxstudio.Xrm.Search
 					{
 						_provider = _providers[searchElement.DefaultProvider];
 					}
-					catch {}
+					catch { }
 
 					if (_provider == null)
 					{
@@ -165,7 +165,7 @@ namespace Adxstudio.Xrm.Search
 
 				var providerType = Type.GetType(settings.Type, true, true);
 
-				if (!typeof (TProvider).IsAssignableFrom(providerType))
+				if (!typeof(TProvider).IsAssignableFrom(providerType))
 				{
 					throw new ArgumentException("Provider must implement the class {0}.".FormatWith(typeof(TProvider)));
 				}

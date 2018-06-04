@@ -40,7 +40,7 @@ namespace Adxstudio.Xrm.Cms.Replication
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="args"></param>
-		public void Deleted(object sender, OrganizationServiceDeletedEventArgs args) {}
+		public void Deleted(object sender, OrganizationServiceDeletedEventArgs args) { }
 
 		/// <summary>
 		/// Executed event
@@ -51,7 +51,7 @@ namespace Adxstudio.Xrm.Cms.Replication
 		{
 			if (args != null && args.Request is CreateRequest)
 			{
-				var createRequest = (CreateRequest) args.Request;
+				var createRequest = (CreateRequest)args.Request;
 				var entity = createRequest.Target;
 				var service = args.Service;
 

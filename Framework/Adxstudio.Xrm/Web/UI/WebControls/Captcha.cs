@@ -207,7 +207,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 						return true;
 					}
 				}
-				catch(FormatException)
+				catch (FormatException)
 				{
 					// Swallow the exception.
 				}
@@ -232,7 +232,7 @@ namespace Adxstudio.Xrm.Web.UI.WebControls
 			private const string LowerCaseCharacterSet = "abcdefghjkmnpqrstuvwxyz";
 			private const string NumericCharacterSet   = "23456789";
 
-			public RandomStringGenerator(TextCase textCase) : this(BuildCharacterSet(textCase)) {}
+			public RandomStringGenerator(TextCase textCase) : this(BuildCharacterSet(textCase)) { }
 
 			public RandomStringGenerator(string characterSet)
 			{

@@ -194,7 +194,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityListView
 	                                    $"Could not filter option list: user is not of type {filterEntityName}");
 								}
 
-								var response = (RetrieveMultipleResponse) context.Execute(fetch.ToRetrieveMultipleRequest());
+								var response = (RetrieveMultipleResponse)context.Execute(fetch.ToRetrieveMultipleRequest());
 								return response.EntityCollection.Entities.Select(
 									r => ToFilterOption(context.GetEntityMetadata(link.Name), r, labelColumn, selected));
 							}
@@ -356,7 +356,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityListView
 			{
 				Id = id,
 				Type = "dynamic",
-				Label = entity.GetAttributeValueOrDefault(labelColumn, ""),
+				Label = entity.GetAttributeValueOrDefault(labelColumn, string.Empty),
 				Checked = selected.Contains(id)
 			};
 		}
@@ -454,7 +454,7 @@ namespace Adxstudio.Xrm.Web.UI.CrmEntityListView
 			{
 				fetch.Entity.Filters = new List<Filter>
 				{
-					new Filter {Type = LogicalOperator.And, Filters = new List<Filter> {filter}}
+					new Filter { Type = LogicalOperator.And, Filters = new List<Filter> { filter } }
 				};
 			}
 			else

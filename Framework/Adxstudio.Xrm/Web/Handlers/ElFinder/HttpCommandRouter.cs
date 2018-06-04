@@ -25,17 +25,17 @@ namespace Adxstudio.Xrm.Web.Handlers.ElFinder
 		/// </summary>
 		private static readonly IDictionary<string, ICommand> _commands = new Dictionary<string, ICommand>(StringComparer.InvariantCultureIgnoreCase)
 		{
-			{"open", new OpenCommand()},
-			{"upload", new UploadCommand()},
-			{"ping", new PingCommand()},
-			{"rm", new RmCommand()},
-			{"tmb", new ThumbnailCommand()},
+			{ "open", new OpenCommand() },
+			{ "upload", new UploadCommand() },
+			{ "ping", new PingCommand() },
+			{ "rm", new RmCommand() },
+			{ "tmb", new ThumbnailCommand() },
 		};
 
 		/// <summary>
 		/// List of all valid elFinder (1.2) service commands.
 		/// </summary>
-		private static readonly string[] _validCommandNames = new []
+		private static readonly string[] _validCommandNames = new[]
 		{
 			"open",
 			"mkdir",

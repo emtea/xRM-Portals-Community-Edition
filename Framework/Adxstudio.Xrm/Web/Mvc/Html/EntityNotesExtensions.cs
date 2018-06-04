@@ -193,7 +193,7 @@ namespace Adxstudio.Xrm.Web.Mvc.Html
 				var json = JsonConvert.SerializeObject(attachmentSettings);
 				container.MergeAttribute("data-attachmentsettings", Convert.ToBase64String(MachineKey.Protect(Encoding.UTF8.GetBytes(json), "Secure Notes Configuration").ToArray()));
 
-				fileAcceptString = String.Format("{0},{1}", attachmentSettings.AcceptMimeTypes, attachmentSettings.AcceptExtensionTypes);
+				fileAcceptString = string.Format("{0},{1}", attachmentSettings.AcceptMimeTypes, attachmentSettings.AcceptExtensionTypes);
 				container.MergeAttribute("data-add-accept-types", fileAcceptString);
 			}
 			container.MergeAttribute("data-url-get", serviceUrlGet);
@@ -209,7 +209,7 @@ namespace Adxstudio.Xrm.Web.Mvc.Html
 
 			if (orders == null || !orders.Any())
 			{
-				orders = new List<Order> {new Order("createdon")};
+				orders = new List<Order> { new Order("createdon") };
 			}
 			container.MergeAttribute("data-orders", JsonConvert.SerializeObject(orders));
 			container.MergeAttribute("data-target", JsonConvert.SerializeObject(target));
@@ -221,7 +221,7 @@ namespace Adxstudio.Xrm.Web.Mvc.Html
 				var header = new TagBuilder("div");
 				header.AddCssClass("page-header");
 				header.AddCssClass("col-sm-9");
-				header.InnerHtml = (new TagBuilder("h3") {InnerHtml = title.GetValueOrDefault(DefaultNotesListTitle)}).ToString();
+				header.InnerHtml = (new TagBuilder("h3") { InnerHtml = title.GetValueOrDefault(DefaultNotesListTitle) }).ToString();
 				container.InnerHtml += header.ToString();
 			}
 
@@ -232,7 +232,7 @@ namespace Adxstudio.Xrm.Web.Mvc.Html
 				timelineHeader.AddCssClass("col-sm-12");
 
 				var timelineTitle = new TagBuilder("div");
-				timelineTitle.InnerHtml = (new TagBuilder("label") { InnerHtml = title.GetValueOrDefault(DefaultTimelineListTitle)}).ToString();
+				timelineTitle.InnerHtml = (new TagBuilder("label") { InnerHtml = title.GetValueOrDefault(DefaultTimelineListTitle) }).ToString();
 				timelineTitle.MergeAttribute("for", "timeline");
 				timelineTitle.MergeAttribute("id", "timeline_label");
 				timelineTitle.AddCssClass("col-sm-9 title");
@@ -401,7 +401,7 @@ namespace Adxstudio.Xrm.Web.Mvc.Html
 
 			if (deleteNotesEnabled && !string.IsNullOrWhiteSpace(serviceUrlDelete))
 			{
-				var deleteNoteModal = html.DeleteModal(modalDeleteNoteSize, string.Join(" ", new[] { "modal-deletenote", modalDeleteNoteCssClass}).TrimEnd(' '),
+				var deleteNoteModal = html.DeleteModal(modalDeleteNoteSize, string.Join(" ", new[] { "modal-deletenote", modalDeleteNoteCssClass }).TrimEnd(' '),
 					modalDeleteNoteTitle.GetValueOrDefault(DefaultDeleteNoteModalTitle),
 					modalDeleteNoteConfirmation.GetValueOrDefault(DefaultDeleteNoteModalConfirmation),
 					modalDeleteNoteDismissButtonSrText.GetValueOrDefault(DefaultModalDismissButtonSrText),
@@ -516,7 +516,7 @@ namespace Adxstudio.Xrm.Web.Mvc.Html
 				var fileInputLabel = new TagBuilder("label");
 				fileInputLabel.AddCssClass(formLeftColumnCssClass.GetValueOrDefault(DefaultAddNoteModalFormLeftColumnCssClass));
 				fileInputLabel.AddCssClass("control-label");
-				fileInputLabel.InnerHtml = attachFileLabel.GetValueOrDefault(isTimeline? DefaultAddCommentModalAttachFileLabel: DefaultAddNoteModalAttachFileLabel);
+				fileInputLabel.InnerHtml = attachFileLabel.GetValueOrDefault(isTimeline ? DefaultAddCommentModalAttachFileLabel : DefaultAddNoteModalAttachFileLabel);
 				fileInputLabel.MergeAttribute("aria-label", DefaultAddCommentModalAttachFileLabel);
 				var fileInputContainer = new TagBuilder("div");
 				fileInputContainer.AddCssClass(formRightColumnCssClass.GetValueOrDefault(DefaultAddNoteModalFormRightColumnCssClass));
@@ -527,7 +527,7 @@ namespace Adxstudio.Xrm.Web.Mvc.Html
 				fileInput.MergeAttribute("type", "file");
 				fileInput.MergeAttribute("aria-label", DefaultAddNoteModalAttachFileLabel);
 				fileInput.MergeAttribute("tabindex", "0");
-				fileInput.MergeAttribute("multiple", "");
+				fileInput.MergeAttribute("multiple", string.Empty);
 				if (!string.IsNullOrWhiteSpace(attachFileAccept))
 				{
 					fileInput.MergeAttribute("accept", attachFileAccept);
@@ -856,7 +856,7 @@ namespace Adxstudio.Xrm.Web.Mvc.Html
 					</div>
 					{{#if ViewFields.modifiedon}}
 						{{#if_not_eq ViewFields.modifiedon ViewFields.createdon}}
-							<div class=""modifiedon"">"+ String.Format(DefaultTimelineModifiedOnFieldLabel, "{{#dateTimeFormatter ViewFields.modifiedon}}") + @"{{this}}{{/dateTimeFormatter}}</div>
+							<div class=""modifiedon"">" + string.Format(DefaultTimelineModifiedOnFieldLabel, "{{#dateTimeFormatter ViewFields.modifiedon}}") + @"{{this}}{{/dateTimeFormatter}}</div>
 						{{/if_not_eq}}
 					{{/if}}
 				</div>
@@ -888,7 +888,7 @@ namespace Adxstudio.Xrm.Web.Mvc.Html
 					</div>
 					{{#if ViewFields.modifiedon}}
 						{{#if_not_eq ViewFields.modifiedon ViewFields.createdon}}
-							<div class=""modifiedon"">" + String.Format(DefaultTimelineModifiedOnFieldLabel, "{{#dateTimeFormatter ViewFields.modifiedon}}") + @"{{this}}{{/dateTimeFormatter}}</div>
+							<div class=""modifiedon"">" + string.Format(DefaultTimelineModifiedOnFieldLabel, "{{#dateTimeFormatter ViewFields.modifiedon}}") + @"{{this}}{{/dateTimeFormatter}}</div>
 						{{/if_not_eq}}
 					{{/if}}
 				</div>
@@ -898,7 +898,7 @@ namespace Adxstudio.Xrm.Web.Mvc.Html
 				<div class=""subject""><b>{{ViewFields.subject}}</b></div>
 				<div class=""description"">{{{ViewFields.description}}}</div>
 				{{#if PostedByName}}
-					<div class=""createdby text-muted"">" + String.Format(DefaultTimelineCreatedByFieldLabel, "{{PostedByName}}") + @"</div>
+					<div class=""createdby text-muted"">" + string.Format(DefaultTimelineCreatedByFieldLabel, "{{PostedByName}}") + @"</div>
 				{{/if}}
 			</div>
 		{{/if_eq}}
@@ -934,7 +934,7 @@ namespace Adxstudio.Xrm.Web.Mvc.Html
 					</div>
 					{{#if ViewFields.modifiedon}}
 						{{#if_not_eq ViewFields.modifiedon ViewFields.createdon}}
-							<div class=""modifiedon"">" + String.Format(DefaultTimelineModifiedOnFieldLabel, "{{#dateTimeFormatter ViewFields.modifiedon}}") + @"{{this}}{{/dateTimeFormatter}}</div>
+							<div class=""modifiedon"">" + string.Format(DefaultTimelineModifiedOnFieldLabel, "{{#dateTimeFormatter ViewFields.modifiedon}}") + @"{{this}}{{/dateTimeFormatter}}</div>
 						{{/if_not_eq}}
 					{{/if}}
 				</div>
@@ -952,7 +952,7 @@ namespace Adxstudio.Xrm.Web.Mvc.Html
 				</div>
 				<div class=""description"">{{{ViewFields.description}}}</div>
 				{{#if PostedByName}}
-					<div class=""createdby text-muted"">" + String.Format(DefaultTimelineCreatedByFieldLabel, "{{PostedByName}}") + @"</div>
+					<div class=""createdby text-muted"">" + string.Format(DefaultTimelineCreatedByFieldLabel, "{{PostedByName}}") + @"</div>
 				{{/if}}
 				{{#attachments ViewFields.activityid ViewFields.activitytypecode}}
 				{{/attachments}}
@@ -967,7 +967,7 @@ namespace Adxstudio.Xrm.Web.Mvc.Html
 					</div>
 					{{#if ViewFields.modifiedon}}
 						{{#if_not_eq ViewFields.modifiedon ViewFields.createdon}}
-							<div class=""modifiedon"">" + String.Format(DefaultTimelineModifiedOnFieldLabel, "{{#dateTimeFormatter ViewFields.modifiedon}}") + @"{{this}}{{/dateTimeFormatter}}</div>
+							<div class=""modifiedon"">" + string.Format(DefaultTimelineModifiedOnFieldLabel, "{{#dateTimeFormatter ViewFields.modifiedon}}") + @"{{this}}{{/dateTimeFormatter}}</div>
 						{{/if_not_eq}}
 					{{/if}}
 				</div>

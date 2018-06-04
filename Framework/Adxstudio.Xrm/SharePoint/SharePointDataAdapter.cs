@@ -197,7 +197,7 @@ namespace Adxstudio.Xrm.SharePoint
 			if (!result.PermissionsExist || !result.CanCreate || !result.CanAppend || !result.CanAppendTo)
 			{
                 ADXTrace.Instance.TraceInfo(TraceCategory.Application, "Permission Denied. You do not have the appropriate Entity Permissions to Create or Append document locations or AppendTo the regarding entity.");
-				return SharePointCollection.Empty(true); ;
+				return SharePointCollection.Empty(true);
 			}
 
 			var entityMetadata = context.GetEntityMetadata(regarding.LogicalName);
@@ -268,8 +268,7 @@ namespace Adxstudio.Xrm.SharePoint
 						item => item["FileLeafRef"],
 						item => item["Created"],
 						item => item["Modified"],
-						item => item["FileSizeDisplay"]
-						));
+						item => item["FileSizeDisplay"]));
 				client.ExecuteQuery();
 
 				var sharePointItems = new List<SharePointItem>();
@@ -343,21 +342,21 @@ namespace Adxstudio.Xrm.SharePoint
 				? RouteTable.Routes.GetVirtualPath(null, typeof(EntityRouteHandler).FullName,
 					new RouteValueDictionary
 					{
-						{"prefix", "_entity"},
-						{"logicalName", entity.LogicalName},
-						{"id", entity.Id},
-						{"file", fileName},
-						{"folderPath", folderPath}
+						{ "prefix", "_entity" },
+						{ "logicalName", entity.LogicalName },
+						{ "id", entity.Id },
+						{ "file", fileName },
+						{ "folderPath", folderPath }
 					})
 				: RouteTable.Routes.GetVirtualPath(null, typeof(EntityRouteHandler).FullName + "PortalScoped",
 					new RouteValueDictionary
 					{
-						{"prefix", "_entity"},
-						{"logicalName", entity.LogicalName},
-						{"id", entity.Id},
-						{"__portalScopeId__", website.Id},
-						{"file", fileName},
-						{"folderPath", folderPath}
+						{ "prefix", "_entity" },
+						{ "logicalName", entity.LogicalName },
+						{ "id", entity.Id },
+						{ "__portalScopeId__", website.Id },
+						{ "file", fileName },
+						{ "folderPath", folderPath }
 					});
 
 			var absolutePath = virtualPath == null

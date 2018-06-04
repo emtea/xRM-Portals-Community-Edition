@@ -20,7 +20,7 @@ namespace Adxstudio.Xrm.Ideas
 	internal static class OrganizationServiceContextExtensions
 	{
 		public static int FetchCount(this OrganizationServiceContext serviceContext, string entityLogicalName, string countAttributeLogicalName, Action<Action<string, string, string>> addFilterConditions,
-			Action<Action<string, string, string, Action<Action<string, string, string>>, Action<Action<string, string, string, Action<Action<string, string, string>>>>>> addLinkEntities = null, Action<Action<string,string>> addBinaryFilterConditions = null)
+			Action<Action<string, string, string, Action<Action<string, string, string>>, Action<Action<string, string, string, Action<Action<string, string, string>>>>>> addLinkEntities = null, Action<Action<string, string>> addBinaryFilterConditions = null)
 		{
 			var fetchXml = XDocument.Parse(@"
 				<fetch mapping=""logical"" aggregate=""true"">
@@ -135,7 +135,7 @@ namespace Adxstudio.Xrm.Ideas
 					addCondition("statecode", "eq", "0");
 				},
 				null,
-				addBinaryFilterConditions => addBinaryFilterConditions("comments","not-null"));
+				addBinaryFilterConditions => addBinaryFilterConditions("comments", "not-null"));
 			}
 			else
 			{
@@ -417,7 +417,7 @@ namespace Adxstudio.Xrm.Ideas
 				idea =>
 				{
 					int ideaForumActiveVoteCountValue;
-					var ideaForumActiveVoteCount = idea.GetAttributeValue<EntityReference>("adx_ideaforumid") == null ? 0: ideaForumActiveVoteCounts.TryGetValue(idea.GetAttributeValue<EntityReference>("adx_ideaforumid").Id, out ideaForumActiveVoteCountValue)
+					var ideaForumActiveVoteCount = idea.GetAttributeValue<EntityReference>("adx_ideaforumid") == null ? 0 : ideaForumActiveVoteCounts.TryGetValue(idea.GetAttributeValue<EntityReference>("adx_ideaforumid").Id, out ideaForumActiveVoteCountValue)
 						? ideaForumActiveVoteCountValue
 						: 0;
 

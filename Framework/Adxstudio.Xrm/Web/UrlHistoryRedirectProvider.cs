@@ -211,7 +211,7 @@ namespace Adxstudio.Xrm.Web
 						return new FailedMatch();
 					}
 
-					var newPath = parentPath.AppRelativePath + (parentPath.AppRelativePath.EndsWith("/") ? "" : "/") + pathAfterSlash;
+					var newPath = parentPath.AppRelativePath + (parentPath.AppRelativePath.EndsWith("/") ? string.Empty : "/") + pathAfterSlash;
 
 					if (newPath == path)
 					{
@@ -291,12 +291,12 @@ namespace Adxstudio.Xrm.Web
 
 		private class HistoryMatch : SuccessfulMatch
 		{
-			public HistoryMatch(Entity webPage) : base(webPage, true) {}
+			public HistoryMatch(Entity webPage) : base(webPage, true) { }
 		}
 
 		private class NonHistoryMatch : SuccessfulMatch
 		{
-			public NonHistoryMatch(Entity webPage) : base(webPage, false) {}
+			public NonHistoryMatch(Entity webPage) : base(webPage, false) { }
 		}
 	}
 }

@@ -50,19 +50,19 @@ namespace Adxstudio.Xrm.Web.Mvc.Liquid
 			{
 				Entity = new FetchEntity(EntityLogicalName, new[] { NameAttributeLogicalName })
 				{
-					Filters = new []
+					Filters = new[]
 					{
 						new Filter
 						{
 							Type = LogicalOperator.And,
-							Conditions = new []
+							Conditions = new[]
 							{
 								new Condition("statecode", ConditionOperator.Equal, 0),
 								new Condition("adx_websiteid", ConditionOperator.Equal, website.Id)
 							}
 						}
 					},
-					Orders = new []
+					Orders = new[]
 					{
 						new Order(NameAttributeLogicalName, OrderType.Ascending), 
 					}
@@ -71,7 +71,7 @@ namespace Adxstudio.Xrm.Web.Mvc.Liquid
 
 			using (var serviceContext = PortalViewContext.CreateServiceContext())
 			{
-				var response = (RetrieveMultipleResponse) serviceContext.Execute(fetch.ToRetrieveMultipleRequest());
+				var response = (RetrieveMultipleResponse)serviceContext.Execute(fetch.ToRetrieveMultipleRequest());
 
 				return response.EntityCollection.Entities
 					.Select(e => new TemplateFileInfo(e.GetAttributeValue<string>(NameAttributeLogicalName)));
@@ -94,7 +94,7 @@ namespace Adxstudio.Xrm.Web.Mvc.Liquid
 		{
 			template = null;
 
-			var entityName = (string) context[templateName];
+			var entityName = (string)context[templateName];
 
 			HtmlHelper htmlHelper;
 
@@ -109,7 +109,7 @@ namespace Adxstudio.Xrm.Web.Mvc.Liquid
 
 			if (htmlHelper.ViewContext.TempData.TryGetValue(cacheKey, out cached) && cached is string)
 			{
-				template = (string) cached;
+				template = (string)cached;
 
 				return true;
 			}
@@ -133,12 +133,12 @@ namespace Adxstudio.Xrm.Web.Mvc.Liquid
 				PageSize = 1,
 				Entity = new FetchEntity(EntityLogicalName, new[] { SourceAttributeLogicalName })
 				{
-					Filters = new []
+					Filters = new[]
 					{
 						new Filter
 						{
 							Type = LogicalOperator.And,
-							Conditions = new []
+							Conditions = new[]
 							{
 								new Condition("statecode", ConditionOperator.Equal, 0),
 								new Condition("adx_websiteid", ConditionOperator.Equal, website.Id),
@@ -151,7 +151,7 @@ namespace Adxstudio.Xrm.Web.Mvc.Liquid
 
 			using (var serviceContext = PortalViewContext.CreateServiceContext())
 			{
-				var response = (RetrieveMultipleResponse) serviceContext.Execute(fetch.ToRetrieveMultipleRequest());
+				var response = (RetrieveMultipleResponse)serviceContext.Execute(fetch.ToRetrieveMultipleRequest());
 				var entity = response.EntityCollection.Entities.FirstOrDefault();
 
 				if (entity == null)
